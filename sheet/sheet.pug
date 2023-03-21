@@ -1,27 +1,57 @@
-include form
 include section
 
 .character-sheet
   section.header
-    .2colrow
-      .col
-        +input("Character Name", "attr_name")
-        +input("Pronouns", "attr_pronouns")
-        +input("Class & Calling", "attr_class_calling")
-        +input("Homeland", "attr_homeland")
+    .columns
+      .column.column50
+        input(type="text" name="attr_name" placeholder="Character Name")
+        input(type="text" name="attr_pronouns" placeholder="Pronouns")
+      .column.column50
+        input(type="text" name="attr_class_calling" placeholder="Class & Calling")
+        input(type="text" name="attr_homeland" placeholder="Homeland")
   main
-    .2colrow
-      .col#skills
+    .columns
+      .column.column50#skills
         +section("Skills")
           fieldset.repeating_skills
-            +input("", "attr_skillname")
-            +input("", "attr_skillrank")
-      .col#traits-inventory
+            .columns
+              .column.column75
+                input(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
+              .column.column25
+                input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5")
+                button(type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
+          .columns
+            .column.column75 All Others
+            .column.column25 
+              span 1
+              button(type="roll" value="/roll 1d20>?{Difficulty|15}" name="roll_rank")
+          datalist#skillnames
+            option Attune
+            option Bargain
+            option Create
+            option Drive
+            option Finesse
+            option Force
+            option Hunt
+            option Inspect
+            option Learn
+            option Move
+            option Perform
+            option Restore
+            option Sneak
+            option Survive
+            option Talk
+            option Watch
+            option Cautious (Cutscene)
+            option Clever (Cutscene)
+            option Forceful (Cutscene)
+            option Quick (Cutscene)
+      .column.column50#traits-inventory
         +section("Talents")
-          +input("Background", "attr_talent_background")
-          +input("Physical", "attr_talent_physical")
-          +input("Mental", "attr_talent_mental")
-          +input("Special", "attr_talent_special")
+          input(type="text" name="attr_talent_background" placeholder="Background")
+          input(type="text" name="attr_talent_physical" placeholder="Physical")
+          input(type="text" name="attr_talent_physical" placeholder="Mental")
+          input(type="text" name="attr_talent_special" placeholder="Special")
         +section("Inventory")
           fieldset.repeating_inventory
-            +input("", "attr_itemname", "")
+            input(type="text" name="attr_itemname" placeholder="Item name")

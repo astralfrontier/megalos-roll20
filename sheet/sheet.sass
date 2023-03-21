@@ -1,12 +1,33 @@
 @charset "utf-8"
 
-// TODO: filter this down to just what we need
+.columns
+  display: flex
 
-// @import "../node_modules/bulma/sass/utilities/_all"
-// @import "../node_modules/bulma/sass/base/_all"
-// @import "../node_modules/bulma/sass/elements/_all"
-// @import "../node_modules/bulma/sass/form/_all"
-// @import "../node_modules/bulma/sass/components/_all"
-// @import "../node_modules/bulma/sass/grid/_all"
-// @import "../node_modules/bulma/sass/helpers/_all"
-// @import "../node_modules/bulma/sass/layout/_all"
+.columns > .column
+  margin: .1em
+  padding: .3em
+  flex: 1
+
+.column25
+  flex: 3 !important
+
+.column33
+  flex: 4 !important
+
+.column50
+  flex: 6 !important
+
+.column66
+  flex: 8 !important
+
+.column75
+  flex: 9 !important
+
+.column100
+  flex: 12 !important
+
+input
+  width: 100%
+  margin: .1em !important
+  padding: .3em !important
+  background: white
