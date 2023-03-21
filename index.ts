@@ -1,6 +1,7 @@
-import pug from 'pug'
-import path from 'path'
 import fs from 'fs-extra'
+import path from 'path'
+import pug from 'pug'
+import { PurgeCSS } from 'purgecss'
 import sass from 'sass'
 
 const sheetJson = {
@@ -20,14 +21,20 @@ const OUTPUT_DIR = path.join(__dirname, 'dist')
 // Optional local variables for HTML
 const locals: any = fs.readJSONSync(path.join(INPUT_DIR, 'config.json'))
 
-const html = pug.compileFile(path.join(INPUT_DIR, 'sheet.pug'))
+const html = pug.compileFile(path.join(INPUT_DIR, 'sheet.pug'))(locals)
 const css = sass.compile(path.join(INPUT_DIR, 'sheet.sass'), {
   style: 'compressed',
-})
+}).css
 
-fs.ensureDirSync(OUTPUT_DIR)
-fs.writeJSONSync(path.join(OUTPUT_DIR, 'sheet.json'), sheetJson)
-fs.writeFileSync(path.join(OUTPUT_DIR, sheetJson.html), html(locals))
-fs.writeFileSync(path.join(OUTPUT_DIR, sheetJson.css), css.css)
-// TODO: sheet.css
-// TODO: sheet.json
+new PurgeCSS()
+  .purge({
+    content: [{ raw: html, extension: 'html' }],
+    css: [{ raw: css }],
+  })
+  .then((output) => {
+    fs.ensureDirSync(OUTPUT_DIR)
+    fs.writeJSONSync(path.join(OUTPUT_DIR, 'sheet.json'), sheetJson)
+    fs.writeFileSync(path.join(OUTPUT_DIR, sheetJson.html), html)
+    fs.writeFileSync(path.join(OUTPUT_DIR, sheetJson.css), output[0].css)
+  })
+  .catch(console.error)
