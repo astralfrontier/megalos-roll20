@@ -1,4 +1,27 @@
+include form
+include section
+
 .character-sheet
   section.header
-    h1 Character Name
-    input(type="text" name="attr_name" value="My Character")
+    .2colrow
+      .col
+        +input("Character Name", "attr_name")
+        +input("Pronouns", "attr_pronouns")
+        +input("Class & Calling", "attr_class_calling")
+        +input("Homeland", "attr_homeland")
+  main
+    .2colrow
+      .col#skills
+        +section("Skills")
+          fieldset.repeating_skills
+            +input("", "attr_skillname")
+            +input("", "attr_skillrank")
+      .col#traits-inventory
+        +section("Talents")
+          +input("Background", "attr_talent_background")
+          +input("Physical", "attr_talent_physical")
+          +input("Mental", "attr_talent_mental")
+          +input("Special", "attr_talent_special")
+        +section("Inventory")
+          fieldset.repeating_inventory
+            +input("", "attr_itemname", "")
