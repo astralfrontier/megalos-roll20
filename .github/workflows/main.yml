@@ -10,6 +10,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   publish_sheet:
     name: Publish Roll20 pagaes
