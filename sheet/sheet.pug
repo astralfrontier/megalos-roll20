@@ -1,6 +1,17 @@
-include section
+//- Helpers for blocking out sections of the sheet
+include containers
 
 .megalos-sheet
+  section#megalos-top
+    .columns
+      .column.w3
+        TODO MEGALOS ICON
+      .column.w3
+        +box_current_max("HP", "hp")
+      .column.w3
+        +box_current_max("Armor HP", "armor_hp")
+      .column.w3
+        +box_current_max("Recovery", "recovery")
   section#megalos-biography
     .columns
       .column.w6

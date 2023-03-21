@@ -1,0 +1,13 @@
+mixin section(title)
+  h4= title
+  if block
+    block
+
+mixin box_current_max(label, attr_name)
+  .box-current-max
+    .box-current-max-label
+      span= label
+    .box-current-value
+      input(type="number" name=`attr_${attr_name}`)
+    .box-max-value
+      input(type="number" name=`attr_${attr_name}_max`)

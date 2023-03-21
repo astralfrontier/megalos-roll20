@@ -1,5 +1,7 @@
 @charset "utf-8"
 
+$megalos-green: #4ABCAD
+
 .columns
   display: flex
 
@@ -49,3 +51,14 @@ input
   margin: .1em !important
   padding: .3em !important
   background: white
+
+.box-current-max
+  display: flex
+  border: thin solid black
+  height: 6rem
+
+.box-current-max > .box-current-max-label
+  flex: 2
+
+.box-current-max > .box-current-value, .box-current-max > .box-max-value
+  flex: 5
