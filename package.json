@@ -1,8 +1,8 @@
 {
-  "name": "megalos-roll20",
+  "name": "megalos",
   "author": "Bill Garrett <garrett@astralfrontier.org>",
   "version": "1.0.0",
-  "description": "",
+  "description": "118980",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",

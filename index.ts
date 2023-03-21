@@ -4,22 +4,23 @@ import pug from 'pug'
 import { PurgeCSS } from 'purgecss'
 import sass from 'sass'
 
+import * as packageJson from './package.json'
+
+const INPUT_DIR = path.join(__dirname, 'src')
+const OUTPUT_DIR = path.join(__dirname, 'dist')
+
 const sheetJson = {
-  html: 'megalos.html',
-  css: 'megalos.css',
-  authors: 'Bill Garrett <garrett@astralfrontier.org>',
-  roll20userid: '118980',
-  preview: 'megalos.png',
-  instructions:
-    '**This is a test**\n\nYou can put Markdown-formatted instructions here for how to use your sheet. Please try to keep it moderately-short (500 characters or less is preferred).',
+  html: `${packageJson.name}.html`,
+  css: `${packageJson.name}.css`,
+  authors: packageJson.author,
+  roll20userid: packageJson.description,
+  preview: `${packageJson.name}.png`,
+  instructions: fs.readFileSync(path.join(INPUT_DIR, 'sheet.md')),
   legacy: false,
 }
 
-const INPUT_DIR = path.join(__dirname, 'sheet')
-const OUTPUT_DIR = path.join(__dirname, 'dist')
-
 // Optional local variables for HTML
-const locals: any = fs.readJSONSync(path.join(INPUT_DIR, 'config.json'))
+const locals: any = fs.readJSONSync(path.join(INPUT_DIR, 'variables.json'))
 
 const html = pug.compileFile(path.join(INPUT_DIR, 'sheet.pug'))(locals)
 const css = sass.compile(path.join(INPUT_DIR, 'sheet.sass'), {
