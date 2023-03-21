@@ -6,22 +6,25 @@
 name: Publish Roll20 sheets
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
 
 jobs:
-  push_to_registry:
+  publish_sheet:
     name: Publish Roll20 pagaes
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v3      
+      - name: Checkout
+        uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: npm ci
       - run: npm start
-      - uses: actions/upload-artifact@v3
+      - uses: softprops/action-gh-release@v1
         with:
-          name: roll20-sheet
-          path: dist/
+          files: |
+            dist/sheet.json
+            dist/megalos.html
+            dist/megalos.css
