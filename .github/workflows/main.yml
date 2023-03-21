@@ -1,0 +1,27 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Publish Roll20 sheets
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push_to_registry:
+    name: Publish Roll20 pagaes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm start
+      - uses: actions/upload-artifact@v3
+        with:
+          name: roll20-sheet
+          path: dist/
