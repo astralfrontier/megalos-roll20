@@ -1,0 +1,12 @@
+fieldset.repeating_skills
+  .columns
+    .column.w9
+      input(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
+    .column.w3
+      input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5")
+      button(type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
+.columns
+  .column.w9 All Others
+  .column.w3
+    span 1
+    button(type="roll" value="/roll 1d20>?{Difficulty|15}" name="roll_rank")
