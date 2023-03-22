@@ -9,3 +9,9 @@
   all: initial
 
 @import "../node_modules/bulma/bulma.sass"
+
+// For soak dice, which use d6
+// In Pug, use: button.soak-dice
+button[type=roll].soak-dice::before
+  font-family: 'dicefontd6'
+  content: 'F '

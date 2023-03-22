@@ -1,15 +1,28 @@
+include bulma_form
+
+mixin skillname(attr)
+  .field
+    .control
+      input.input.is-expanded(type="text" name=attr placeholder="Skill name" list="skillnames")&attributes(attributes)
+
+mixin skillrank(attr)
+  .field.has-addons
+    .control
+      input.input(type="text" name=attr placeholder="Skill rank")&attributes(attributes)
+    .control
+      if block
+        block
+
 fieldset.repeating_skills
   .columns
-    .column
-      input.input.is-expanded(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
-    .column.is-narrow
-      input.input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5")
-      button(class="button" type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
+    .column.is-three-quarters
+      +skillname("attr_skillname")
+    .column.is-one-quarter
+      +skillrank("attr_skillrank")
+        button.button(class="button" type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
 .columns
-  .column
-    fieldset(disabled=true)
-      input.input.is-expanded(type="text" value="All Others")
-  .column.is-narrow
-    fieldset(disabled=true)
-      input.input(type="number" value="1")
-    button(type="roll" value="/roll 1d20>?{Difficulty|15}" name="roll_rank")
+  .column.is-three-quarters
+    +skillname("default_skillname")(value="All Others" disabled=true)
+  .column.is-one-quarter
+    +skillrank("default_skillrank")(value="1" disabled=true)
+      button.button(type="roll" value="/roll 1d20>?{Difficulty|15}" name="roll_rank")

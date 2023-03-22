@@ -4,7 +4,7 @@ This is a toolkit for producing Roll20 character sheets using modern(ish) web de
 
 - HTML is built from the [Pug](https://pugjs.org) templating language
 - CSS is built from the [Sass](https://sass-lang.com) CSS superset
-- Final CSS is minified via [PurgeCSS](https://purgecss.com), meaning you can use modern CSS frameworks
+- Final CSS is stripped via [PurgeCSS](https://purgecss.com), meaning you can use modern CSS frameworks without bloating your final file size
 
 ## Getting started
 
