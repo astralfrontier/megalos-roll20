@@ -24,13 +24,14 @@ include containers
         +section("Soak")
           include soak
       .column.is-half#megalos-main-right
-        .columns
-          .column
-            +box_value("Level", "level")
-          .column
-            +box_value("XP", "xp")
-          .column
-            +box_value("RB", "rb")
+        .block
+          .columns
+            .column
+              +box_value("Level", "level")
+            .column
+              +box_value("XP", "xp")
+            .column
+              +box_value("RB", "rb")
         +section("Talents")
           include talents
         +section("Inventory")

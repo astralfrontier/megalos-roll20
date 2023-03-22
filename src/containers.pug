@@ -1,6 +1,6 @@
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title)
-  section
+  section.block
     .has-background-primary.p-2.mb-4
       h3.title.is-3.has-text-white= title
     if block
