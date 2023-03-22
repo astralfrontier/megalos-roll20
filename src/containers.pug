@@ -6,6 +6,18 @@ mixin section(title)
     if block
       block
 
+mixin box_value(label, attr_name)
+  article.message.is-primary
+    .message-header
+      p= label
+    .message-body
+      .columns
+        .column
+          .field
+            .control
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}`)
+            p.help Value
+
 //- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
   article.message.is-primary
