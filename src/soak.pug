@@ -1,0 +1,26 @@
+//- Show a single box for holding a numeric value, e.g. Soak
+//- TODO: roll 2d6 for tank callings
+mixin soak_value(label, attr_name)
+  article.message.is-primary
+    .message-header
+      p= label
+    .message-body
+      .columns
+        .column
+          .field.has-addons
+            .control
+              input.input.is-expanded.boxed-value(type="number" name=`attr_soak_${attr_name}` size="4")
+            .control
+              button.button(type="roll" value=`/roll 1d6+@{soak_${attr_name}}` name="roll_soak")
+
+.columns.is-multiline
+  .column
+    +soak_value("Physical", "physical")
+  .column
+    +soak_value("Astral", "astral")
+  .column
+    +soak_value("Umbral", "umbral")
+  .column
+    +soak_value("Toxic", "toxic")
+  .column
+    p TODO Tank?

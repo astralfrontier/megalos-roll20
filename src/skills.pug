@@ -8,7 +8,7 @@ mixin skillname(attr)
 mixin skillrank(attr)
   .field.has-addons
     .control
-      input.input(type="text" name=attr placeholder="Skill rank")&attributes(attributes)
+      input.input.boxed-value(type="number" name=attr placeholder="Skill rank" min="1" max="5")&attributes(attributes)
     .control
       if block
         block

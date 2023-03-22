@@ -6,12 +6,20 @@ mixin section(title)
     if block
       block
 
-//- Show two black-framed boxes of current and maximum values, e.g. HP
+//- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
-  .box-current-max
-    .box-current-max-label
-      span= label
-    .box-current-value
-      input(type="number" name=`attr_${attr_name}`)
-    .box-max-value
-      input(type="number" name=`attr_${attr_name}_max`)
+  article.message.is-primary
+    .message-header
+      p= label
+    .message-body
+      .columns
+        .column
+          .field
+            .control
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}`)
+            p.help Current
+        .column
+          .field
+            .control
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}_max`)
+            p.help Max

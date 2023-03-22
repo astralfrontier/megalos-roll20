@@ -3,10 +3,11 @@
 .ui-dialog .charsheet select,
 .ui-dialog .charsheet textarea,
 .ui-dialog .charsheet input,
+.ui-dialog .charsheet input[type="number"],
 .ui-dialog .charsheet .uneditable-input,
 .ui-dialog .charsheet label,
 .ui-dialog .charsheet button
-  all: initial
+  all: revert
 
 @import "../node_modules/bulma/bulma.sass"
 
@@ -15,3 +16,6 @@
 button[type=roll].soak-dice::before
   font-family: 'dicefontd6'
   content: 'F '
+
+.boxed-value
+  width: 7em !important

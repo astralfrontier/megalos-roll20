@@ -1,7 +1,7 @@
 //- Helpers for blocking out sections of the sheet
 include containers
 
-.megalos-sheet
+.container#megalos-sheet
   section#megalos-top
     .columns
       .column
@@ -14,20 +14,23 @@ include containers
         +box_current_max("Recovery", "recovery")
   section#megalos-main
     .columns
-      .column#megalos-main-left
+      .column.is-half#megalos-main-left
         +section("Character Profile")
           include profile
         +section("Skills")
           include skills
         //- TODO: weapon
         //- TODO: armor
-        //- TODO: soak
-      .column#megalos-main-right
+        +section("Soak")
+          include soak
+      .column.is-half#megalos-main-right
         //- TODO: Level, XP, RB
         +section("Talents")
           include talents
         +section("Inventory")
-          include inventory        
+          include inventory
+        +section("Bonds")
+          include bonds
   section#megalos-powers
     //- TODO: powers
 
