@@ -1,12 +1,15 @@
 fieldset.repeating_skills
   .columns
-    .column.is-three-quarters
-      input(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
-    .column.is-one-quarter
-      input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5")
-      button(type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
+    .column
+      input.input.is-expanded(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
+    .column.is-narrow
+      input.input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5")
+      button(class="button" type="roll" value="/roll @{skillrank}d20>?{Difficulty|15}" name="roll_rank")
 .columns
-  .column.is-three-quarters All Others
-  .column.is-one-quarter
-    span 1
+  .column
+    fieldset(disabled=true)
+      input.input.is-expanded(type="text" value="All Others")
+  .column.is-narrow
+    fieldset(disabled=true)
+      input.input(type="number" value="1")
     button(type="roll" value="/roll 1d20>?{Difficulty|15}" name="roll_rank")

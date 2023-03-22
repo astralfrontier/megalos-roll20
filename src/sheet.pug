@@ -12,26 +12,24 @@ include containers
         +box_current_max("Armor HP", "armor_hp")
       .column
         +box_current_max("Recovery", "recovery")
-  section#megalos-biography
-    .columns
-      .column
-        input.input(type="text" name="attr_name" placeholder="Character Name")
-        input.input(type="text" name="attr_pronouns" placeholder="Pronouns")
-      .column
-        input.input(type="text" name="attr_class_calling" placeholder="Class & Calling")
-        input.input(type="text" name="attr_homeland" placeholder="Homeland")
   section#megalos-main
     .columns
-      .column#skills
+      .column#megalos-main-left
+        +section("Character Profile")
+          include profile
         +section("Skills")
           include skills
-
-      .column#traits-inventory
+        //- TODO: weapon
+        //- TODO: armor
+        //- TODO: soak
+      .column#megalos-main-right
+        //- TODO: Level, XP, RB
         +section("Talents")
           include talents
-
         +section("Inventory")
-          include inventory
+          include inventory        
+  section#megalos-powers
+    //- TODO: powers
 
   //- Pull in datalists for auto completing text fields
   include datalists

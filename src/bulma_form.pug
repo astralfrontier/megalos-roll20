@@ -1,0 +1,10 @@
+//- Mixins for Bulma form elements
+mixin input(attr, label)
+  .field.is-horizontal
+    if label
+      .field-label
+        label.label= label
+    .field-body
+      .field
+        .control
+          input.input(type=text name=attr placeholder=placeholder)&attributes(attributes)
