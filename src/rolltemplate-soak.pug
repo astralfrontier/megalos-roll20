@@ -1,0 +1,11 @@
+//- A roll template for saving throws
+
+//- Usage:
+//- &{template:soak} {{name=Physical}} {{roll=[[1d6]]}}
+
+rolltemplate.sheet-rolltemplate-soak
+  .sheet-rolltemplate-header
+    h3= "{{name}}"
+  .sheet-rolltemplate-outcome
+    p= "You roll: {{roll}}"
+    //- TODO: effect, once we get custom roll parsing

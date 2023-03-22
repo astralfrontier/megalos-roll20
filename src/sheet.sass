@@ -9,6 +9,10 @@
 .ui-dialog .charsheet button
   all: revert
 
+$megalos-green: #4ABCAD
+$megalos-yellow: #E69C55
+$megalos-red: #9C3335
+
 @import "../node_modules/bulma/bulma.sass"
 
 // For soak dice, which use d6
@@ -19,3 +23,18 @@ button[type=roll].soak-dice::before
 
 .boxed-value
   width: 7em !important
+
+.sheet-rolltemplate-check .sheet-rolltemplate-header
+  background: linear-gradient(to right, $megalos-green, rgba(255,0,0,0))
+
+.sheet-rolltemplate-save .sheet-rolltemplate-header
+  background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
+
+.sheet-rolltemplate-soak .sheet-rolltemplate-header
+  background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
+
+.sheet-rolltemplate-attack .sheet-rolltemplate-header
+  background: linear-gradient(to right, $megalos-red, rgba(255,0,0,0))
+
+.sheet-rolltemplate-header
+  color: white

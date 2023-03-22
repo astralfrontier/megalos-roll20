@@ -39,10 +39,19 @@ include containers
         +section("Bonds")
           include bonds
   section#megalos-powers
+    //- TODO: aether current
     //- TODO: powers
+  section#megalos-conditions
+    //- TODO: status & conditions, p. 46
 
   //- Pull in datalists for auto completing text fields
   include datalists
 
 script(type="text/worker")
   include sheet.js
+
+//- Roll templates
+include rolltemplate-check
+//- TODO: attacks
+include rolltemplate-soak
+include rolltemplate-save

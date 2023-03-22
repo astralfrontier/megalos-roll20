@@ -1,0 +1,11 @@
+//- A roll template for regular checks
+
+//- Usage:
+//- &{template:check} {{name=Attune}} {{roll=[[1d20]]}}
+
+rolltemplate.sheet-rolltemplate-check
+  .sheet-rolltemplate-header
+    h3= "{{name}}"
+  .sheet-rolltemplate-outcome
+    p= "You roll: {{roll}}"
+    //- TODO: effect, once we get custom roll parsing
