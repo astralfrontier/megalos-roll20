@@ -1,5 +1,23 @@
 include containers
 
+mixin aether_current_die(number)
+  article.message.is-primary
+    .message-header
+      p= `AC ${number}`
+    .message-body
+      .field.has-addons
+        .control
+          .select.is-normal.fuck-you-roll20
+            select(name=`attr_aether_current_${number}`)
+              option Available
+              option Used
+              option Astral Seal
+              option Umbral Seal
+              option Weak Charge
+              option Surging Charge
+        .control
+          button.button(type="roll" value=`Aether Charge die ${number} is [[1d6]]` name="roll_aether_current")
+
 .sheet-page2
   section#megalos-powers
     .columns
@@ -15,11 +33,19 @@ include containers
           .column
             +box_value("RB", "rb")
       .column.is-one-half
-        .field
-          label.label Aether Current
-          .control
-            textarea.textarea.is-normal(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
-        //- TODO: how do we track used Aether Current dice?
+        +section("Aether Current")
+          .field
+            .control
+              textarea.textarea.is-normal(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
+    .columns
+      .column
+        +aether_current_die(1)
+      .column
+        +aether_current_die(2)
+      .column
+        +aether_current_die(3)
+      .column
+        +aether_current_die(4)
     +section("Powers")
       fieldset.repeating_powers
         .columns.is-multiline
