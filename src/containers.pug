@@ -15,7 +15,7 @@ mixin box_value(label, attr_name)
         .column
           .field
             .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}`)
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}` value="0")
             p.help Value
 
 //- Show two framed boxes of current and maximum values, e.g. HP
@@ -28,10 +28,10 @@ mixin box_current_max(label, attr_name)
         .column
           .field
             .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}`)
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}` value="0")
             p.help Current
         .column
           .field
             .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}_max`)
+              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}_max` value="0")
             p.help Max
