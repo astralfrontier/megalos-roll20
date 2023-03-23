@@ -1,12 +1,12 @@
 // Roll20 styling reset
 
-.ui-dialog .charsheet select,
-.ui-dialog .charsheet textarea,
-.ui-dialog .charsheet input,
-.ui-dialog .charsheet input[type="number"],
-.ui-dialog .charsheet .uneditable-input,
-.ui-dialog .charsheet label,
-.ui-dialog .charsheet button
+.ui-dialog #megalos-sheet select,
+.ui-dialog #megalos-sheet textarea,
+.ui-dialog #megalos-sheet input,
+.ui-dialog #megalos-sheet input[type="number"],
+.ui-dialog #megalos-sheet .uneditable-input,
+.ui-dialog #megalos-sheet label,
+.ui-dialog #megalos-sheet button
   all: revert
 
 $megalos-green: #4ABCAD
@@ -24,17 +24,29 @@ button[type=roll].soak-dice::before
 .boxed-value
   width: 7em !important
 
-.sheet-rolltemplate-check .sheet-rolltemplate-header
-  background: linear-gradient(to right, $megalos-green, rgba(255,0,0,0))
+/*Configure the tab buttons*/
+#megalos-sheet .sheet-page1,
+#megalos-sheet .sheet-page2,
+#megalos-sheet .sheet-page3
+  display: none
 
-.sheet-rolltemplate-save .sheet-rolltemplate-header
-  background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
+/* show the selected tab */
+#megalos-sheet .sheet-tabstoggle[value="page1"] ~ .sheet-page1,
+#megalos-sheet .sheet-tabstoggle[value="page2"] ~ .sheet-page2,
+#megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet-page3
+  display: block
 
-.sheet-rolltemplate-soak .sheet-rolltemplate-header
-  background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
+// .sheet-rolltemplate-check .sheet-rolltemplate-header
+//   background: linear-gradient(to right, $megalos-green, rgba(255,0,0,0))
 
-.sheet-rolltemplate-attack .sheet-rolltemplate-header
-  background: linear-gradient(to right, $megalos-red, rgba(255,0,0,0))
+// .sheet-rolltemplate-save .sheet-rolltemplate-header
+//   background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
 
-.sheet-rolltemplate-header
-  color: white
+// .sheet-rolltemplate-soak .sheet-rolltemplate-header
+//   background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
+
+// .sheet-rolltemplate-attack .sheet-rolltemplate-header
+//   background: linear-gradient(to right, $megalos-red, rgba(255,0,0,0))
+
+// .sheet-rolltemplate-header
+//   color: white

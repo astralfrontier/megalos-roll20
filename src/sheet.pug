@@ -2,53 +2,22 @@
 include containers
 
 .container#megalos-sheet
-  section#megalos-top
-    .columns
-      .column
-        TODO MEGALOS ICON
-      .column
-        +box_current_max("HP", "hp")
-      .column
-        +box_current_max("Armor HP", "armor_hp")
-      .column
-        +box_current_max("Recovery", "recovery")
-  section#megalos-main
-    .columns
-      .column.is-half#megalos-main-left
-        +section("Character Profile")
-          include profile
-        +section("Skills")
-          include skills
-        //- TODO: weapon
-        //- TODO: armor
-        +section("Soak")
-          include soak
-      .column.is-half#megalos-main-right
-        .block
-          .columns
-            .column
-              +box_value("Level", "level")
-            .column
-              +box_value("XP", "xp")
-            .column
-              +box_value("RB", "rb")
-        +section("Talents")
-          include talents
-        +section("Inventory")
-          include inventory
-        +section("Bonds")
-          include bonds
-  section#megalos-powers
-    //- TODO: aether current
-    //- TODO: powers
-  section#megalos-conditions
-    //- TODO: status & conditions, p. 46
+  input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
+  .sheet-tabs-listing
+    button(type="action" name="act_page1") Character
+    button(type="action" name="act_page2") Powers
+    button(type="action" name="act_page3") Conditions &amp; Status
 
-  //- Pull in datalists for auto completing text fields
-  include datalists
+  include sheet-page1
+  include sheet-page2
+  include sheet-page3
+
+//- Pull in datalists for auto completing text fields
+include datalists
 
 script(type="text/worker")
   include sheet.js
+  include tabstoggle.js
 
 //- Roll templates
 //- include rolltemplate-check

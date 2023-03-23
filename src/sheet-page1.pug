@@ -1,0 +1,40 @@
+//- Helpers for blocking out sections of the sheet
+include containers
+
+.sheet-page1
+  section#megalos-top
+    .columns
+      .column
+        TODO MEGALOS ICON
+      .column
+        +box_current_max("HP", "hp")
+      .column
+        +box_current_max("Armor HP", "armor_hp")
+      .column
+        +box_current_max("Recovery", "recovery")
+  section#megalos-main
+    .columns
+      .column.is-half#megalos-main-left
+        +section("Character Profile")
+          include profile
+        +section("Skills")
+          include skills
+        //- TODO: weapon
+        //- TODO: armor
+        +section("Soak")
+          include soak
+      .column.is-half#megalos-main-right
+        .block
+          .columns
+            .column
+              +box_value("Level", "level")
+            .column
+              +box_value("XP", "xp")
+            .column
+              +box_value("RB", "rb")
+        +section("Talents")
+          include talents
+        +section("Inventory")
+          include inventory
+        +section("Bonds")
+          include bonds
