@@ -1,8 +1,47 @@
-//- Helpers for blocking out sections of the sheet
 include containers
 
 .sheet-page2
   section#megalos-powers
-    p TODO powers
-    //- TODO: aether current
-    //- TODO: powers
+    .columns
+      .column.is-one-half
+        .columns
+          .column
+            +box_current_max("HP", "hp")
+          .column
+            +box_current_max("Armor HP", "armor_hp")
+        .columns
+          .column
+            +box_current_max("Recovery", "recovery")
+          .column
+            +box_value("RB", "rb")
+      .column.is-one-half
+        .field
+          label.label Aether Current
+          .control
+            textarea.textarea.is-normal(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
+        //- TODO: how do we track used Aether Current dice?
+    +section("Powers")
+      fieldset.repeating_powers
+        .columns.is-multiline
+          .column.is-two-thirds
+            .field
+              .control
+                input.input.is-expanded(type="text" name="attr_powername" placeholder="Power Name")
+          .column-is-one-third
+            .field
+              .control
+                select.select(name="attr_powertype")
+                  option Talent
+                  option Calling Bonus
+                  option Invocation
+                  option Arcana
+                  option Charged Strike
+                  option Combo Strike
+                  option Counter
+                  option Finisher
+                  option Sorcery
+                  option Cantrip
+          .column.is-full
+            .field
+              .control
+                textarea.textarea.is-normal(name="attr_powerdesc" placeholder="Power Description" rows="3")
