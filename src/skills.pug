@@ -1,5 +1,9 @@
 include bulma_form
 
+- var roll_syntax = "d20>?{Difficulty|15}"
+- var skill_roll_syntax = `/roll @{skillrank}${roll_syntax}`
+- var default_roll_syntax = `/roll 1${roll_syntax}`
+
 mixin skillname(attr)
   .field
     .control
@@ -19,11 +23,11 @@ fieldset.repeating_skills
       +skillname("attr_skillname")
     .column.is-one-quarter
       +skillrank("attr_skillrank")
-        button.button(type="roll" value="&{template:check} {{name=@{skillname}}} {{roll=[[@{skillrank}d20>?{Difficulty|15}]]}}" name="roll_rank")
+        button.button(type="roll" value=skill_roll_syntax name="roll_rank")
         
 .columns
   .column.is-three-quarters
     +skillname("default_skillname")(value="All Others" disabled=true)
   .column.is-one-quarter
     +skillrank("default_skillrank")(value="1" disabled=true)
-      button.button(class="button" type="roll" value="&{template:check} {{name=Untrained Skill}} {{roll=[[1d20>?{Difficulty|15}]]}}" name="roll_rank")
+      button.button(class="button" type="roll" value=default_roll_syntax name="roll_rank")
