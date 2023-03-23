@@ -11,9 +11,9 @@ mixin soak_value(label, attr_name)
         .column
           .field.has-addons
             .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_soak_${attr_name}` size="4")
+              input.input.is-expanded.boxed-value(type="number" name=`attr_soak_${attr_name}` size="4" value="0")
             .control
-              button.button(type="roll" value=`/roll @{soak_dice}d6+@{soak_${attr_name}}` name="roll_soak")
+              button.button(type="roll" value=`/roll @{soak_dice}d6kh1+@{soak_${attr_name}}` name="roll_soak")
 
 
 .columns.is-multiline
