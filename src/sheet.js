@@ -41,9 +41,9 @@ function startSaveRoll(status, difficulty) {
   )
 }
 
-function startAttackRoll(skillname, skillrank) {
+function startAttackRoll(weaponname, weapondice, weapondamage) {
   startRoll(
-    `&{template:attack} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${skillrank}d20>?{Defense|15}]]}} {{message=[[0]]}}`,
+    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${weapondice}d20>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}}`,
     finishSkillRoll
   )
 }
@@ -76,8 +76,34 @@ on('clicked:save', (event) => {
 })
 
 on('clicked:attack', (event) => {
-  getAttrs(['weapon_name', 'weapon_dice'], (v) => {
-    const { weapon_name, weapon_dice } = v
-    startAttackRoll(weapon_name, weapon_dice)
-  })
+  getAttrs(
+    [
+      'weapon_name',
+      'weapon_dice',
+      'weapon_core_damage',
+      'aether_current_1',
+      'aether_current_2',
+      'aether_current_3',
+      'aether_current_4',
+    ],
+    (v) => {
+      const {
+        weapon_name,
+        weapon_dice,
+        weapon_core_damage,
+        aether_current_1,
+        aether_current_2,
+        aether_current_3,
+        aether_current_4,
+      } = v
+      let weapon_final_damage =
+        parseInt(weapon_core_damage) +
+        (aether_current_1 == 'Throne Damage' ? 1 : 0) +
+        (aether_current_2 == 'Throne Damage' ? 1 : 0) +
+        (aether_current_3 == 'Throne Damage' ? 1 : 0) +
+        (aether_current_4 == 'Throne Damage' ? 1 : 0)
+      // TODO: other sources of damage?
+      startAttackRoll(weapon_name, weapon_dice, weapon_final_damage)
+    }
+  )
 })
