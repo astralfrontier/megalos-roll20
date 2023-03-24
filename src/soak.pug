@@ -1,7 +1,6 @@
 include containers
 
 //- Show a single box for holding a numeric value, e.g. Soak
-//- TODO: roll 2d6 for tank callings
 mixin soak_value(label, attr_name)
   article.message.is-primary
     .message-header
@@ -13,8 +12,7 @@ mixin soak_value(label, attr_name)
             .control
               input.input.is-expanded.boxed-value(type="number" name=`attr_soak_${attr_name}` size="4" value="0")
             .control
-              button.button(type="roll" value=`/roll @{soak_dice}d6kh1+@{soak_${attr_name}}` name="roll_soak")
-
+              button.sheet-blank-button(type="roll" value=`&{template:soak} {{name=${label}}} {{roll=[[@{soak_dice}d6kh1+@{soak_${attr_name}}]]}}` name="roll_soak")
 
 .columns.is-multiline
   .column

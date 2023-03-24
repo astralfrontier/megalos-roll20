@@ -5,7 +5,6 @@ mixin outcome(label, text)
     span.sheet-rolltemplate-outcome-label= label
     span.sheet-rolltemplate-outcome-text= text
 
-
 rolltemplate.sheet-rolltemplate-check
   .sheet-rolltemplate-header
     h3= "{{name}}"
@@ -29,7 +28,6 @@ rolltemplate.sheet-rolltemplate-soak
   .sheet-rolltemplate-header
     h3= "{{name}}"
   .sheet-rolltemplate-outcome
-    p= "You roll: {{roll}}"
-    //- TODO: effect, once we get custom roll parsing
+    +outcome("Soak", "{{roll}}")
 
 //- TODO: attacks

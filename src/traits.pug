@@ -12,7 +12,7 @@ mixin trait(attr, label)
             .control
               input.input.is-expanded(type="text" name=attr)
     .column.is-narrow
-      button(type="action" name="act_trait") Roll
+      button.sheet-blank-button(type="action" name="act_trait")
 
 +trait("attr_talent_background", "Background")
 +trait("attr_talent_physical", "Physical")

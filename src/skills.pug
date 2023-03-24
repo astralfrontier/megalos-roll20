@@ -21,10 +21,10 @@ fieldset.repeating_skills
     .column.is-narrow
       +skillrank("attr_skillrank")
     .column.is-narrow
-      button(type="action" name="act_skill") Roll
+      button.sheet-blank-button(type="action" name="act_skill")
         
 .columns
   .column
     +skillname("default_skillname")(value="All Others" disabled=true)
   .column.is-narrow
-    button(type="action" name="act_skilldefault") Roll
+    button.sheet-blank-button(type="action" name="act_skilldefault")
