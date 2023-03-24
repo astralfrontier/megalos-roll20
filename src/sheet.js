@@ -45,3 +45,7 @@ on('clicked:repeating_skills:skill', (event) => {
 on('clicked:skilldefault', (event) => {
   startSkillRoll('Untrained Skill', 1)
 })
+
+on('clicked:trait', (event) => {
+  startSkillRoll('Trait Reroll', 1)
+})

@@ -1,0 +1,22 @@
+//- Traits
+
+mixin trait(attr, label)
+  .columns
+    .column
+      .field.is-horizontal
+        if label
+          .field-label
+            label.label= label
+        .field-body
+          .field
+            .control
+              input.input.is-expanded(type="text" name=attr)
+    .column.is-narrow
+      button(type="action" name="act_trait") Roll
+
++trait("attr_talent_background", "Background")
++trait("attr_talent_physical", "Physical")
++trait("attr_talent_mental", "Mental")
++trait("attr_talent_special", "Special")
+
+    
