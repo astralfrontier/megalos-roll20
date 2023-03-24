@@ -10,24 +10,21 @@ mixin skillname(attr)
       input.input.is-expanded(type="text" name=attr placeholder="Skill name" list="skillnames")&attributes(attributes)
 
 mixin skillrank(attr)
-  .field.has-addons
+  .field
     .control
       input.input.boxed-value(type="number" name=attr placeholder="Skill rank" min="1" max="5")&attributes(attributes)
-    .control
-      if block
-        block
 
-fieldset.repeating_skills
+fieldset.repeating_skills    
   .columns
-    .column.is-three-quarters
+    .column
       +skillname("attr_skillname")
-    .column.is-one-quarter
+    .column.is-narrow
       +skillrank("attr_skillrank")
-        button.button(type="roll" value=skill_roll_syntax name="roll_rank")
+    .column.is-narrow
+      button(type="action" name="act_skill") Roll
         
 .columns
-  .column.is-three-quarters
+  .column
     +skillname("default_skillname")(value="All Others" disabled=true)
-  .column.is-one-quarter
-    +skillrank("default_skillrank")(value="1" disabled=true)
-      button.button(class="button" type="roll" value=default_roll_syntax name="roll_rank")
+  .column.is-narrow
+    button(type="action" name="act_skilldefault") Roll

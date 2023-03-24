@@ -9,10 +9,6 @@
 .ui-dialog #megalos-sheet button
   all: revert
 
-$megalos-green: #4ABCAD
-$megalos-yellow: #E69C55
-$megalos-red: #9C3335
-
 @import "../node_modules/bulma/bulma.sass"
 
 .fuck-you-roll20
@@ -39,17 +35,4 @@ button[type=roll].soak-dice::before
 #megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet-page3
   display: block
 
-// .sheet-rolltemplate-check .sheet-rolltemplate-header
-//   background: linear-gradient(to right, $megalos-green, rgba(255,0,0,0))
-
-// .sheet-rolltemplate-save .sheet-rolltemplate-header
-//   background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
-
-// .sheet-rolltemplate-soak .sheet-rolltemplate-header
-//   background: linear-gradient(to right, $megalos-yellow, rgba(255,0,0,0))
-
-// .sheet-rolltemplate-attack .sheet-rolltemplate-header
-//   background: linear-gradient(to right, $megalos-red, rgba(255,0,0,0))
-
-// .sheet-rolltemplate-header
-//   color: white
+@import "./rolltemplate.sass"
