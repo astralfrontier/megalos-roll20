@@ -2,79 +2,71 @@
 include containers
 
 mixin status(name)
-  .field.has-addons
-    label.label= name.toUpperCase()
-    .control
-      input.input.boxed-value(type="number" name=`attr_status_save_${name}`)
-    .control
-      button.button(type="roll" value=`Saving against ${name.toUpperCase()}(@{status_save_${name}}): [[1d20]]` name="roll_save")
+  .columns
+    .column
+      p
+        strong= name.toUpperCase()
+      block
+    .column.is-narrow
+      .field
+        .control
+          input.input.boxed-value(type="number" name=`attr_status_save_${name}`)
+    .column.is-narrow
+      button.sheet-blank-button(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
-  .field.is-horizontal
-    label.label= name.toUpperCase()
-    .control
-      input.input.boxed-value(type="number" name=`attr_condition_${name}`)
+  .columns
+    .column
+      p
+        strong= name.toUpperCase()
+      block
+    .column.is-narrow
+      .field
+        .control
+          input.input.boxed-value(type="number" name=`attr_condition_${name}`)
 
 .sheet-page3
   section#megalos-conditions
     .columns
       .column#status
         +section("Statuses")
-          p
-            +status("afraid")
-          p Do -3 damage vs. whoever infliced this on you.
-          p
-            +status("agony")
-          p Don't regain HP. Cleansed by the first healing effect you receive.
-          p
-            +status("dazed")
-          p Disadvantage on attack rolls &amp; skill tests.
-          p
-            +status("exposed")
-          p Take +3 damage (+4 from Strikers) from the next attack to hit you.
-          p
-            +status("immobilized")
-          p Unable to move, -3 to Dodge.
-          p
-            +status("sick")
-          p Disadvantage on saves, -3 to Dodge &amp; Ward
-          p
-            +status("slowed")
-          p No Charged actions, all terrain is difficult, only Slow actions, only receive ◆◆ action budget.
-          p
-            +status("stunned")
-          p Lose one ◆ on your turn, automatically cleansed after 1 turn.
-          p
-            +status("taunted")
-          p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
-          p
-            +status("wounded")
-          p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
+          +status("afraid")
+            p Do -3 damage vs. whoever inflicted this on you.
+          +status("agony")
+            p Don't regain HP. Cleansed by the first healing effect you receive.
+          +status("dazed")
+            p Disadvantage on attack rolls &amp; skill tests.
+          +status("exposed")
+            p Take +3 damage (+4 from Strikers) from the next attack to hit you.
+          +status("immobilized")
+            p Unable to move, -3 to Dodge.
+          +status("sick")
+            p Disadvantage on saves, -3 to Dodge &amp; Ward
+          +status("slowed")
+            p No Charged actions, all terrain is difficult, only Slow actions, only receive ◆◆ action budget.
+          +status("stunned")
+            p Lose one ◆ on your turn, automatically cleansed after 1 turn.
+          +status("taunted")
+            p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
+          +status("wounded")
+            p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
       .column#condition
         +section("Conditions")
-          p
-            +condition("blink")
-          p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
-          p
-            +condition("cloaked")
-          p Unhittable by single target attacks, advantage on Sneaks, +3 to Dodge &amp; Ward vs. AOE attacks.
-          p
-            +condition("cover")
-          p +3 to Dodge &amp; Ward.
-          p
-            +condition("empowered")
-          p Do +3 damage with single-target attacks, +1 with AOE/multitarget.
-          p
-            +condition("focused")
-          p Gain Advantage on attacks.
-          p
-            +condition("haste")
-          p Gain +1 ◆ on your turn.
-          p
-            +condition("regen")
-          p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
-          p
-            +condition("shielded")
-          p Gain +3 on Soak rolls.
+          +condition("blink")
+            p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
+          +condition("cloaked")
+            p Unhittable by single target attacks, advantage on Sneaks, +3 to Dodge &amp; Ward vs. AOE attacks.
+          +condition("cover")
+            p +3 to Dodge &amp; Ward.
+          +condition("empowered")
+            p Do +3 damage with single-target attacks, +1 with AOE/multitarget.
+          +condition("focused")
+            p Gain Advantage on attacks.
+          +condition("haste")
+            p Gain +1 ◆ on your turn.
+          +condition("regen")
+            p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
+          +condition("shielded")
+            p Gain +3 on Soak rolls.
 
 //- TODO: marks

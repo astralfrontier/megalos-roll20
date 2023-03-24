@@ -23,14 +23,14 @@ rolltemplate.sheet-rolltemplate-check
     +outcome("Roll", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
 
-//- Usage: &{template:save} {{name=Attune}} {{roll=[[1d20]]}}
+//- Usage: &{template:save} {{name=WOUNDED(10)}} {{roll=[[1d20]]}}
 
 rolltemplate.sheet-rolltemplate-save
   .sheet-rolltemplate-header
     h3= "{{name}}"
   .sheet-rolltemplate-outcome
-    p= "You roll: {{roll}}"
-    //- TODO: effect, once we get custom roll parsing
+    +outcome("Save", "{{computed::roll}}")
+    +outcome("Outcome", "{{computed::message}}")
 
 //- Usage: &{template:soak} {{name=Physical}} {{roll=[[1d6]]}}
 
