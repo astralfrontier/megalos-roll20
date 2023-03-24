@@ -1,11 +1,10 @@
 //- Bonds
 
-//- TODO: this is broken, figure out why CSS rules are hiding checkboxes
-//- and not expanding text input to fill the space
-
 fieldset.repeating_bonds
-  .field.has-addons
-    .control
-      input.input.is-expanded(type="text" name="attr_bondname" placeholder="Bond name")
-    .control
-      input.input(type="checkbox" name="attr_bondstressed")
+  .columns.is-vcentered
+    .column
+      .field
+        .control
+          input.input.is-expanded(type="text" name="attr_bondname" placeholder="Bond name")
+    .column.is-narrow
+      input(type="checkbox" name="attr_bondstressed")
