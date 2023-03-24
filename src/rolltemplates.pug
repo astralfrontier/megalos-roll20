@@ -1,9 +1,19 @@
-//- Usage: &{template:check} {{name=Attune}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}}
-
 mixin outcome(label, text)
   p
     span.sheet-rolltemplate-outcome-label= label
     span.sheet-rolltemplate-outcome-text= text
+
+//- Usage: &{template:aether} {{name=Aether Current (1)}} {{roll=[[1d20]]}}
+
+rolltemplate.sheet-rolltemplate-aether
+  .sheet-rolltemplate-header
+    h3= "{{name}}"
+  .sheet-rolltemplate-outcome
+    +outcome("Roll", "{{roll}}")
+    p <strong>Invokers:</strong> EVEN=Astral ODD=Umbral
+    p <strong>Witches:</strong> 1-4=Weak, 5-6=Surging
+
+//- Usage: &{template:check} {{name=Attune}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}}
 
 rolltemplate.sheet-rolltemplate-check
   .sheet-rolltemplate-header
