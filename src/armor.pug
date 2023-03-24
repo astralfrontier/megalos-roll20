@@ -1,0 +1,16 @@
+include containers
+
++input("attr_armor_name", "Name")
+.field
+  .control
+    textarea.textarea.is-expanded(name="attr_armor_desc" rows="3")
+
+.columns.is-multiline
+  .column
+    +box_value("Dodge", "armor_dodge")
+  .column
+    +box_value("Ward", "armor_ward")
+  .column
+    +box_value("Soak", "armor_soak")
+  .column
+    +box_value("AHP", "armor_hp")

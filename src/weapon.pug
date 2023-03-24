@@ -1,0 +1,24 @@
+include containers
+
++input("attr_weapon_name", "Name")
+.field
+  .control
+    textarea.textarea.is-expanded(name="attr_weapon_desc" rows="3")
+
+.columns.is-multiline
+  .column
+    +box_value("CD", "weapon_core_damage")
+  .column
+    +box_value("Range", "weapon_range")
+  .column
+    article.message.is-primary
+      .message-header
+        p Weapon Dice  
+      .message-body
+        .columns
+          .column
+            .field.has-addons
+              .control
+                input.input.is-expanded.boxed-value(type="number" name="attr_weapon_dice" size="4" value="0")
+              .control
+                button.sheet-blank-button(type="action" name="act_attack")

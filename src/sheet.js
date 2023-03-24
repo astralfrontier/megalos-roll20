@@ -41,6 +41,13 @@ function startSaveRoll(status, difficulty) {
   )
 }
 
+function startAttackRoll(skillname, skillrank) {
+  startRoll(
+    `&{template:attack} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${skillrank}d20>?{Defense|15}]]}} {{message=[[0]]}}`,
+    finishSkillRoll
+  )
+}
+
 on('clicked:repeating_skills:skill', (event) => {
   const { sourceAttribute } = event
   // SourceAttribute: repeating_skills_-NRFjaNa3LW-sC6ntcBd_skill
@@ -65,5 +72,12 @@ on('clicked:save', (event) => {
   getAttrs([attrname], (v) => {
     const diff = parseInt(v[attrname]) || 10
     startSaveRoll(`${status.toUpperCase()}(${diff})`, diff)
+  })
+})
+
+on('clicked:attack', (event) => {
+  getAttrs(['weapon_name', 'weapon_dice'], (v) => {
+    const { weapon_name, weapon_dice } = v
+    startAttackRoll(weapon_name, weapon_dice)
   })
 })
