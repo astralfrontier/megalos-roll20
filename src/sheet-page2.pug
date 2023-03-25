@@ -17,7 +17,8 @@ mixin aether_current_die(number)
               option Weak Charge
               option Surging Charge
         .control
-          button.sheet-blank-button(type="roll" value=`&{template:aether} {{name=Aether Current (${number})}} {{roll=[[1d6]]}}` name="roll_aether_current")
+          //- button.sheet-blank-button(type="roll" value=`&{template:aether} {{name=Aether Current (${number})}} {{roll=[[1d6]]}}` name="roll_aether_current")
+          button.sheet-blank-button(type="action" name="act_aethercurrent" data-aethercurrent-number=number)
 
 .sheet-page2
   section#megalos-powers

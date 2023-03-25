@@ -75,6 +75,83 @@ on('clicked:save', (event) => {
   })
 })
 
+on('clicked:aethercurrent', (event) => {
+  const number = event.htmlAttributes['data-aethercurrent-number']
+  getAttrs(['class'], (v) => {
+    const className = v.class
+    startRoll(
+      `&{template:aether} {{name=Aether Current (${number})}} {{roll=[[1d6]]}} {{message=[[0]]}}`,
+      (outcome) => {
+        const {
+          rollId,
+          results: {
+            roll: { result },
+          },
+        } = outcome
+        let newAetherCurrent = ''
+        let message = ''
+        switch (className) {
+          case 'Invoker':
+            newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
+            message = newAetherCurrent
+            break
+          case 'Throne':
+            newAetherCurrent = 'Used'
+            message = 'Inflict damage'
+            break
+          case 'Witch':
+            newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
+            message = newAetherCurrent
+            break
+        }
+        if (newAetherCurrent) {
+          const setObj = {}
+          setObj[`aether_current_${number}`] = newAetherCurrent
+          setAttrs(setObj, {}, () => {
+            finishRoll(rollId, {
+              message,
+            })
+          })
+        } else {
+          finishRoll(rollId, {
+            message,
+          })
+        }
+      }
+    )
+  })
+})
+
+/*
+{
+  "rollId": "-NRMbCHNIIyomtq2Shnc",
+  "results": {
+    "roll": {
+      "result": 2,
+      "dice": [
+        2
+      ],
+      "expression": "1d6",
+      "rolls": [
+        {
+          "sides": 6,
+          "dice": 1,
+          "results": [
+            2
+          ]
+        }
+      ]
+    },
+    "message": {
+      "result": 0,
+      "dice": [],
+      "expression": "0",
+      "rolls": []
+    }
+  }
+}
+ */
+
 on('clicked:attack', (event) => {
   getAttrs(
     [
