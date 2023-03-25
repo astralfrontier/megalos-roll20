@@ -22,7 +22,9 @@ const sheetJson = {
 // Optional local variables for HTML
 const locals: any = fs.readJSONSync(path.join(INPUT_DIR, 'variables.json'))
 
-const html = pug.compileFile(path.join(INPUT_DIR, 'sheet.pug'))(locals)
+const html = pug.compileFile(path.join(INPUT_DIR, 'sheet.pug'), {
+  basedir: INPUT_DIR,
+})(locals)
 const css = sass.compile(path.join(INPUT_DIR, 'sheet.sass'), {
   style: 'compressed',
 }).css
