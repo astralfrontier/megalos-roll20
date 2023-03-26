@@ -1,0 +1,24 @@
+$border-white: #eee
+$border-black: #111
+
+$gradient-bottom: rgba(2,0,36,1)
+$gradient-top: rgba(160,212,255,1)
+
+@mixin white-black-border
+  border-radius: 3px
+  border-top: solid $border-white
+  border-left: solid $border-white
+  border-bottom: solid $border-black
+  border-right: solid $border-black
+
+@mixin blue-gradient
+  background: $gradient-bottom
+  background: linear-gradient(0deg, $gradient-bottom 0%, $gradient-top 100%)
+  color: white
+
+@mixin blue-solid
+  background: $gradient-top
+  color: white
+
+@mixin outlined-font
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000

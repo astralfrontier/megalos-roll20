@@ -1,6 +1,15 @@
 //- Form elements
 
+@use "./theme"
+
 .noctis
   input[type="text"]
     border-bottom: thin solid black
     width: 100%
+
+  input[type="checkbox"]
+    @include theme.white-black-border
+    width: 1em
+
+  select
+    @include theme.white-black-border

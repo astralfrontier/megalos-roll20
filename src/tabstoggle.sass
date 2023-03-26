@@ -1,3 +1,5 @@
+@use "noctis/theme"
+
 /*Configure the tab buttons*/
 #megalos-sheet .sheet-page1,
 #megalos-sheet .sheet-page2,
@@ -6,10 +8,10 @@
   display: none
 
 /* show the selected tab */
-#megalos-sheet .sheet-tabstoggle[value="page1"] ~ .sheet-page1,
-#megalos-sheet .sheet-tabstoggle[value="page2"] ~ .sheet-page2,
-#megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet-page3,
-#megalos-sheet .sheet-tabstoggle[value="page4"] ~ .sheet-page4
+#megalos-sheet .sheet-tabstoggle[value="page1"] ~ .sheet.sheet-page1,
+#megalos-sheet .sheet-tabstoggle[value="page2"] ~ .sheet.sheet-page2,
+#megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet.sheet-page3,
+#megalos-sheet .sheet-tabstoggle[value="page4"] ~ .sheet.sheet-page4
   display: block
 
 // Styling for the buttons
@@ -18,8 +20,12 @@
   flex-wrap: wrap
   justify-content: center
 
-  // button
-  //   border: thick solid black
-  //   padding: 4px
-  //   margin-left: 2px
-  //   margin-right: 2px
+  button
+    @include theme.white-black-border
+    @include theme.blue-solid
+    @include theme.outlined-font
+    padding-left: 2px
+    padding-right: 2px
+    padding-top: 2px
+    font-family: "Candal", "Georgia", "Arial"
+    font-size: 24px
