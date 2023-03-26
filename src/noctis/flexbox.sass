@@ -21,19 +21,17 @@
   .row.locked, .column.locked
     flex-wrap: nowrap
 
-  //- TODO NOCTIS - this isn't working as desired, limited cells are still eating space
   .cell
     flex: 0 1 auto
 
+  .cell.centered
+    align-items: center
+
+  .cell.fixed
+    flex: 0 1 6em
+
   .cell.full
     flex: 10 0 auto
-
-  //- DEBUG
-  // .row:hover
-  //   border-top: thick dotted red
-
-  // .cell:hover
-  //   border: thin solid black
 
   @media screen and (min-width: 800px)
     .cell
