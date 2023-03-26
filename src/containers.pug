@@ -1,6 +1,3 @@
-//- TODO NOCTIS use new columns
-//- TODO NOCTIS replace +input mixin
-
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title)
   section
@@ -12,7 +9,7 @@ mixin box_value(label, attr_name)
   .column
     .cell
       p= label
-    .cell.full
+    .cell.centered
       input(type="number" name=`attr_${attr_name}` value="0")
     .cell
       p Value
@@ -24,9 +21,9 @@ mixin box_current_max(label, attr_name)
       p= label
     .cell
       .row
-        .cell
-          input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}` value="0")
+        .cell.centered
+          input(type="number" name=`attr_${attr_name}` value="0")
           p.help Current
-        .cell
-          input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}_max` value="0")
+        .cell.centered
+          input(type="number" name=`attr_${attr_name}_max` value="0")
           p.help Max

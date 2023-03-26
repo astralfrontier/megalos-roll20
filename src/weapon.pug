@@ -1,5 +1,3 @@
-//- TODO NOCTIS replace +input mixin
-
 .row
   .cell
     p Name
@@ -15,5 +13,5 @@
     +box_value("Range", "weapon_range")
   .cell
     p Weapon Dice  
-    input.input.is-expanded.boxed-value(type="number" name="attr_weapon_dice" size="4" value="0")
+    input(type="number" name="attr_weapon_dice" size="4" value="0")
     button.sheet-blank-button(type="action" name="act_attack")

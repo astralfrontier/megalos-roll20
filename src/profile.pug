@@ -1,12 +1,8 @@
 //- Character Profile, including name, pronouns, etc.
 
-//- TODO NOCTIS use new columns
-//- TODO NOCTIS replace +input mixin
-
-//- Mixins for Bulma form elements
 mixin profilefield(attr, label)
   .row
-    .cell
+    .cell.fixed
       p= label
     .cell.full
       input(type="text" name=attr)&attributes(attributes)

@@ -1,14 +1,11 @@
-//- TODO NOCTIS use new columns
-//- TODO NOCTIS replace +input mixin
-
 //- Traits
 
 mixin trait(attr, label)
   .row
-    .cell
+    .cell.fixed
       p= label
     .cell.full
-      input.input.is-expanded(type="text" name=attr)
+      input(type="text" name=attr)
     .cell
       button.sheet-blank-button(type="action" name="act_trait")
 
