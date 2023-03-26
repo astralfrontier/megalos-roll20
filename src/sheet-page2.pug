@@ -1,77 +1,65 @@
-//- TODO NOCTIS use new columns
-//- TODO NOCTIS replace +input mixin
-
 mixin aether_current_die(number)
   article.message.is-primary
-    .message-header
-      p= `AC ${number}`
-    .message-body
-      .field.has-addons
-        .control
-          .select.is-normal
-            select(name=`attr_aether_current_${number}`)
-              option Available
-              option Used
-              option Throne Damage
-              option Astral Seal
-              option Umbral Seal
-              option Weak Charge
-              option Surging Charge
-        .control
-          //- button.sheet-blank-button(type="roll" value=`&{template:aether} {{name=Aether Current (${number})}} {{roll=[[1d6]]}}` name="roll_aether_current")
-          button.sheet-blank-button(type="action" name="act_aethercurrent" data-aethercurrent-number=number)
+    .column
+      .cell
+        p= `AC ${number}`
+      .cell
+        select(name=`attr_aether_current_${number}`)
+          option Available
+          option Used
+          option Throne Damage
+          option Astral Seal
+          option Umbral Seal
+          option Weak Charge
+          option Surging Charge
+        button.sheet-blank-button(type="action" name="act_aethercurrent" data-aethercurrent-number=number)
 
 .sheet-page2
-  section#megalos-powers
-    .columns
-      .column.is-one-half
-        .columns
-          .column
-            +box_current_max("HP", "hp")
-          .column
-            +box_current_max("Armor HP", "armor_hp")
-        .columns
-          .column
-            +box_current_max("Recovery", "recovery")
-          .column
-            +box_value("RB", "rb")
-      .column.is-one-half
-        +section("Aether Current")
-          .field
-            .control
-              textarea.textarea.is-normal(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
-    .columns
+  .row
+    .cell
       .column
-        +aether_current_die(1)
+        .cell
+          +box_current_max("HP", "hp")
+        .cell
+          +box_current_max("Recovery", "recovery")
+    .cell
       .column
-        +aether_current_die(2)
-      .column
-        +aether_current_die(3)
-      .column
-        +aether_current_die(4)
-    +section("Powers")
-      fieldset.repeating_powers
-        .columns.is-multiline
-          .column.is-two-thirds
-            .field
-              .control
-                input.input.is-expanded(type="text" name="attr_powername" placeholder="Power Name")
-          .column-is-one-third
-            .field
-              .control
-                select.select(name="attr_powertype")
-                  option Talent
-                  option Calling Bonus
-                  option Invocation
-                  option Arcana
-                  option Charged Strike
-                  option Combo Strike
-                  option Counter
-                  option Finisher
-                  option Sorcery
-                  option Cantrip
-                  option Artifact
-          .column.is-full
-            .field
-              .control
-                textarea.textarea.is-normal(name="attr_powerdesc" placeholder="Power Description" rows="3")
+        .cell
+          +box_current_max("Armor HP", "armor_hp")
+        .cell
+          +box_value("RB", "rb")
+    .cell
+      +section("Aether Current")
+        textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
+  .row
+    .cell
+      +aether_current_die(1)
+    .cell
+      +aether_current_die(2)
+    .cell
+      +aether_current_die(3)
+    .cell
+      +aether_current_die(4)
+  .row
+    .cell
+      +section("Powers")
+        fieldset.repeating_powers
+          .row
+            .cell.full
+              input(type="text" name="attr_powername" placeholder="Power Name")
+            .cell
+              select.select(name="attr_powertype")
+                option Talent
+                option Calling Bonus
+                option Invocation
+                option Arcana
+                option Charged Strike
+                option Combo Strike
+                option Counter
+                option Finisher
+                option Sorcery
+                option Cantrip
+                option Artifact
+          .row
+            .cell
+              textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
