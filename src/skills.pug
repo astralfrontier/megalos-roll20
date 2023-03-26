@@ -3,26 +3,22 @@
 - var default_roll_syntax = `/roll 1${roll_syntax}`
 
 mixin skillname(attr)
-  .field
-    .control
-      input.input.is-expanded(type="text" name=attr placeholder="Skill name" list="skillnames")&attributes(attributes)
+  input(type="text" name=attr placeholder="Skill name" list="skillnames")&attributes(attributes)
 
 mixin skillrank(attr)
-  .field
-    .control
-      input.input.boxed-value(type="number" name=attr placeholder="Skill rank" min="1" max="5")&attributes(attributes)
+  input.input.boxed-value(type="number" name=attr placeholder="Skill rank" min="1" max="5")&attributes(attributes)
 
-fieldset.repeating_skills    
-  .columns
-    .column
+fieldset.repeating_skills
+  .row
+    .cell.full
       +skillname("attr_skillname")
-    .column.is-narrow
+    .cell
       +skillrank("attr_skillrank")
-    .column.is-narrow
+    .cell
       button.sheet-blank-button(type="action" name="act_skill")
         
-.columns
-  .column
+.row
+  .cell.full
     +skillname("default_skillname")(value="All Others" disabled=true)
-  .column.is-narrow
+  .cell
     button.sheet-blank-button(type="action" name="act_skilldefault")

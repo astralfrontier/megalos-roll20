@@ -1,20 +1,26 @@
-//- Helpers for blocking out sections of the sheet
 include containers
 
-.container#megalos-sheet
-  input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
-  .sheet-tabs-listing
-    button(type="action" name="act_page1") Character
-    button(type="action" name="act_page2") Powers
-    button(type="action" name="act_page3") Conditions &amp; Status
+.roll20-reset
+  .noctis#megalos-sheet
+    //- Page buttons, found in tabstoggle.js and tabstoggle.sass
+    input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
+    .sheet-tabs-listing
+      button(type="action" name="act_page1") Character
+      button(type="action" name="act_page2") Powers
+      button(type="action" name="act_page3") Conditions &amp; Status
+      button(type="action" name="act_page4") Help
 
-  include sheet-page1
-  include sheet-page2
-  include sheet-page3
+    //- Include individual sheets in their entirety
+    include sheet-page1
+    include sheet-page2
+    include sheet-page3
+    //- include sheet-page4
+    .sheet-page4
 
 //- Pull in datalists for auto completing text fields
 include datalists
 
+//- TODO: convert to typescript
 script(type="text/worker")
   include sheet.js
   include tabstoggle.js

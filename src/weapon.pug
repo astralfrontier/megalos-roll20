@@ -1,24 +1,19 @@
-include containers
+//- TODO NOCTIS replace +input mixin
 
-+input("attr_weapon_name", "Name")
-.field
-  .control
-    textarea.textarea.is-expanded(name="attr_weapon_desc" rows="3")
-
-.columns.is-multiline
-  .column
+.row
+  .cell
+    p Name
+  .cell.full
+    input(type="text" name="attr_weapon_name")
+.row
+  .cell.full
+    textarea(name="attr_weapon_desc" rows="3")
+.row
+  .cell
     +box_value("CD", "weapon_core_damage")
-  .column
+  .cell
     +box_value("Range", "weapon_range")
-  .column
-    article.message.is-primary
-      .message-header
-        p Weapon Dice  
-      .message-body
-        .columns
-          .column
-            .field.has-addons
-              .control
-                input.input.is-expanded.boxed-value(type="number" name="attr_weapon_dice" size="4" value="0")
-              .control
-                button.sheet-blank-button(type="action" name="act_attack")
+  .cell
+    p Weapon Dice  
+    input.input.is-expanded.boxed-value(type="number" name="attr_weapon_dice" size="4" value="0")
+    button.sheet-blank-button(type="action" name="act_attack")

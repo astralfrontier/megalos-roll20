@@ -1,0 +1,13 @@
+/*Configure the tab buttons*/
+#megalos-sheet .sheet-page1,
+#megalos-sheet .sheet-page2,
+#megalos-sheet .sheet-page3,
+#megalos-sheet .sheet-page4
+  display: none
+
+/* show the selected tab */
+#megalos-sheet .sheet-tabstoggle[value="page1"] ~ .sheet-page1,
+#megalos-sheet .sheet-tabstoggle[value="page2"] ~ .sheet-page2,
+#megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet-page3,
+#megalos-sheet .sheet-tabstoggle[value="page4"] ~ .sheet-page4
+  display: block

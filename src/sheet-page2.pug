@@ -1,4 +1,5 @@
-include containers
+//- TODO NOCTIS use new columns
+//- TODO NOCTIS replace +input mixin
 
 mixin aether_current_die(number)
   article.message.is-primary
@@ -7,7 +8,7 @@ mixin aether_current_die(number)
     .message-body
       .field.has-addons
         .control
-          .select.is-normal.fuck-you-roll20
+          .select.is-normal
             select(name=`attr_aether_current_${number}`)
               option Available
               option Used

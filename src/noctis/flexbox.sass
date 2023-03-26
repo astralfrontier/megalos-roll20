@@ -1,0 +1,40 @@
+// https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+.noctis
+  .row, .column
+    display: flex
+    flex-wrap: wrap
+    justify-content: flex-start
+    gap: 1em
+
+  .row
+    width: 100%
+    flex-direction: row
+    margin-bottom: 1em
+
+  .column
+    flex-direction: column
+
+  .row.centered, .column.centered
+    justify-content: center
+
+  .row.locked, .column.locked
+    flex-wrap: nowrap
+
+  //- TODO NOCTIS - this isn't working as desired, limited cells are still eating space
+  .cell
+    flex: 0 1 auto
+
+  .cell.full
+    flex: 10 0 auto
+
+  //- DEBUG
+  // .row:hover
+  //   border-top: thick dotted red
+
+  // .cell:hover
+  //   border: thin solid black
+
+  @media screen and (min-width: 800px)
+    .cell
+      flex: 1

@@ -1,17 +1,15 @@
+//- TODO NOCTIS use new columns
+//- TODO NOCTIS replace +input mixin
+
 //- Traits
 
 mixin trait(attr, label)
-  .columns
-    .column
-      .field.is-horizontal
-        if label
-          .field-label
-            label.label= label
-        .field-body
-          .field
-            .control
-              input.input.is-expanded(type="text" name=attr)
-    .column.is-narrow
+  .row
+    .cell
+      p= label
+    .cell.full
+      input.input.is-expanded(type="text" name=attr)
+    .cell
       button.sheet-blank-button(type="action" name="act_trait")
 
 +trait("attr_talent_background", "Background")

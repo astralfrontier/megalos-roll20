@@ -1,4 +1,4 @@
-include containers
+//- TODO NOCTIS replace box value
 
 //- Show a single box for holding a numeric value, e.g. Soak
 mixin soak_value(label, attr_name)
@@ -14,14 +14,14 @@ mixin soak_value(label, attr_name)
             .control
               button.sheet-blank-button(type="roll" value=`&{template:soak} {{name=${label}}} {{roll=[[@{soak_dice}d6kh1+@{soak_${attr_name}}]]}}` name="roll_soak")
 
-.columns.is-multiline
-  .column
+.row
+  .cell
     +soak_value("Physical", "physical")
-  .column
+  .cell
     +soak_value("Astral", "astral")
-  .column
+  .cell
     +soak_value("Umbral", "umbral")
-  .column
+  .cell
     +soak_value("Toxic", "toxic")
-  .column
+  .cell
     +box_value("Soak Dice", "soak_dice")

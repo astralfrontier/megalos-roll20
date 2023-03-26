@@ -1,0 +1,14 @@
+// Roll20 style reset
+.roll20-reset
+  select, textarea, input, input[type="number"], .uneditable-input, label, button
+    all: initial
+
+.sheet-blank-button[type="action"]::before
+  font-family: "dicefontd20"
+  content: "t"
+
+// For soak dice, which use d6
+// In Pug, use: button.soak-dice
+button[type=roll].soak-dice::before
+  font-family: 'dicefontd6'
+  content: 'F '
