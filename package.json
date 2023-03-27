@@ -23,7 +23,7 @@
     "fs-extra": "^11.1.1",
     "jstransformer-typescript": "^2.0.0",
     "pug": "^3.0.2",
-    "sass": "^1.59.3",
+    "sass": "^1.60.0",
     "typescript": "^5.0.2"
   },
   "devDependencies": {
