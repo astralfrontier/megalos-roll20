@@ -1,13 +1,14 @@
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title)
-  section
-    h3= title
+  section.noctis-section
+    h3.noctis-section-title= title
     if block
-      block
+      .noctis-section-body
+        block
 
 mixin box_value(label, attr_name)
-  .column
-    .cell
+  .column.centered.noctis-box
+    .cell.noctis-box-title
       p= label
     .cell.centered
       input(type="number" name=`attr_${attr_name}` value="0")
@@ -16,11 +17,11 @@ mixin box_value(label, attr_name)
 
 //- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
-  .column
-    .cell
+  .column.noctis-box
+    .cell.noctis-box-title
       p= label
     .cell
-      .row
+      .row.centered
         .cell.centered
           input(type="number" name=`attr_${attr_name}` value="0")
           p.help Current

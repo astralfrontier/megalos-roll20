@@ -1,16 +1,11 @@
 //- Show a single box for holding a numeric value, e.g. Soak
-mixin soak_value(label, attr_name) 
-  article.message.is-primary
-    .message-header
+mixin soak_value(label, attr_name)
+  .column.centered.noctis-box
+    .cell.noctis-box-title
       p= label
-    .message-body
-      .columns
-        .column
-          .field.has-addons
-            .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_soak_${attr_name}` size="4" value="0")
-            .control
-              button.sheet-blank-button(type="roll" value=`&{template:soak} {{name=${label}}} {{roll=[[@{soak_dice}d6kh1+@{soak_${attr_name}}]]}}` name="roll_soak")
+    .cell.centered
+      input(type="number" name=`attr_soak_${attr_name}` size="4" value="0")
+      button.sheet-blank-button(type="roll" value=`&{template:soak} {{name=${label}}} {{roll=[[@{soak_dice}d6kh1+@{soak_${attr_name}}]]}}` name="roll_soak")
 
 .row
   .cell

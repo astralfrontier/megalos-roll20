@@ -1,3 +1,7 @@
+// This is in development.
+// The intent is to hit that 90's JRPG look.
+// Right now we only use it for the tabbed buttons
+
 $border-white: #eee
 $border-black: #111
 
@@ -10,6 +14,13 @@ $gradient-top: rgba(160,212,255,1)
   border-left: solid $border-white
   border-bottom: solid $border-black
   border-right: solid $border-black
+
+@mixin black-white-border
+  border-radius: 3px
+  border-top: solid $border-black
+  border-left: solid $border-black
+  border-bottom: solid $border-white
+  border-right: solid $border-white
 
 @mixin blue-gradient
   background: $gradient-bottom

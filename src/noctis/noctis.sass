@@ -1,17 +1,19 @@
 @use "./flexbox"
 @use "./form"
 @use "./sheets"
+@use "./theme"
 
 .noctis
   font-family: "Verdana", "Arial"
 
-  // Remove spinners from text fields
-  /* Chrome, Safari, Edge, Opera */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button
-    -webkit-appearance: none
-    margin: 0
+  .noctis-section-title
+    @include theme.white-black-border
+    @include theme.blue-solid
+    margin-bottom: 3px
+    padding-left: 2px
 
-  /* Firefox */
-  input[type=number]
-    -moz-appearance: textfield
+  .noctis-box
+    @include theme.white-black-border
+
+  .noctis-box-title
+    @include theme.blue-solid
