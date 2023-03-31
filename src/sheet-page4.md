@@ -23,7 +23,7 @@ Each Trait has a die roll button next to it. This allows you to reroll an action
 Weapons
 -------
 
-"CD" means "Core Damage". This is the base damage for the weapon. When you roll to attack with the weapon, it will output the Core Damage, +1 for each Aether Current die you set to "Throne Damage" if you are a Throne.
+"Core dmg" is your class/calling/roll base damage plus damage for the weapon. When you roll to attack with the weapon, it will output the Core Damage, +1 for each Aether Current die you set to "Throne Damage" if you are a Throne.
 
 Aether Current Dice
 -------------------
@@ -45,6 +45,8 @@ Each status has a numeric field next to it. This is the save value for the statu
 
 Beside the field is a die symbol. Click this button to roll a saving throw for that status.
 
+Statuses **do not impact** the outcome of dice rolls, or modify attributes - you must take these into account yourself.
+
 Conditions
 ----------
 
@@ -53,3 +55,5 @@ Each condition has a numeric field next to it. This is the number of rounds rema
 Beside the field is a plus sign. Click on it to set the field to 2, the default number of rounds a condition will last.
 
 At the bottom, there's a button labeled "One Round Passes". Click this to reduce all condition durations by 1 round.
+
+Conditions **do not impact** the outcome of dice rolls, or modify attributes - you must take these into account yourself.

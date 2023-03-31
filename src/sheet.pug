@@ -16,7 +16,8 @@ include containers
       include sheet-page2
       include sheet-page3
       .sheet.sheet-page4
-        include:markdown-it sheet-page4.md
+        +section("Help")
+          include:markdown-it sheet-page4.md
 
 //- Pull in datalists for auto completing text fields
 include datalists
