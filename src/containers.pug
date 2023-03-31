@@ -1,7 +1,8 @@
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title)
   section.noctis-section
-    h3.noctis-section-title= title
+    if title
+      h3.noctis-section-title= title
     if block
       .noctis-section-body
         block

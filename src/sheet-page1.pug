@@ -2,15 +2,16 @@
   .row
     .cell
       //- Top level
-      .row.centered
-        .cell
-          TODO MEGALOS ICON
-        .cell
-          +box_current_max("HP", "hp")
-        .cell
-          +box_current_max("Armor HP", "armor_hp")
-        .cell
-          +box_current_max("Recovery", "recovery")
+      +section()
+        .row.centered
+          .cell
+            TODO MEGALOS ICON
+          .cell
+            +box_current_max("HP", "hp")
+          .cell
+            +box_current_max("Armor HP", "armor_hp")
+          .cell
+            +box_current_max("Recovery", "recovery")
 
   .row.centered
     //- Left column
@@ -35,13 +36,14 @@
     .cell
       .column
         .cell
-          .row.centered
-            .cell
-              +box_value("Level", "level")
-            .cell
-              +box_value("XP", "xp")
-            .cell
-              +box_value("RB", "rb")
+          +section()
+            .row.centered
+              .cell
+                +box_value("Level", "level")
+              .cell
+                +box_value("XP", "xp")
+              .cell
+                +box_value("RB", "rb")
         .cell
           +section("Skills")
             include skills
