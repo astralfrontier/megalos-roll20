@@ -10,7 +10,7 @@ mixin section(title)
 mixin box_default(label, help)
   .column.centered.noctis-box
     .cell.noctis-box-title
-      p= label
+      h4= label
     .cell.centered
       if block
         block
@@ -27,7 +27,7 @@ mixin box_value(label, attr_name)
 mixin box_current_max(label, attr_name)
   .column.noctis-box
     .cell.noctis-box-title
-      p= label
+      h4= label
     .cell.centered
       .row.centered
         .column.centered
