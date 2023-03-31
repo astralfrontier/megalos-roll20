@@ -33,22 +33,25 @@
     .cell
       +section("Powers")
         fieldset.repeating_powers
-          .row
-            .cell.full
-              input(type="text" name="attr_powername" placeholder="Power Name")
-            .cell
-              select.select(name="attr_powertype")
-                option Talent
-                option Calling Bonus
-                option Invocation
-                option Arcana
-                option Charged Strike
-                option Combo Strike
-                option Counter
-                option Finisher
-                option Sorcery
-                option Cantrip
-                option Artifact
-          .row
-            .cell
-              textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
+          //- Hidden field to allow CSS selectors to work
+          input(type="hidden" name="attr_powertype" class="attr_powertype_key")
+          .attr_powertype_container
+            .row
+              .cell.full
+                input(type="text" name="attr_powername" placeholder="Power Name")
+              .cell
+                select.select(name="attr_powertype")
+                  option Talent
+                  option Calling Bonus
+                  option Invocation
+                  option Arcana
+                  option Charged Strike
+                  option Combo Strike
+                  option Counter
+                  option Finisher
+                  option Sorcery
+                  option Cantrip
+                  option Artifact
+            .row
+              .cell
+                textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
