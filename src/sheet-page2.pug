@@ -37,23 +37,14 @@
           input(type="hidden" name="attr_powertype" class="attr_powertype_key")
           .attr_powertype_container
             .row
-              .cell.full
-                input(type="text" name="attr_powername" placeholder="Power Name")
+              .cell.fixed
+                strong Name
               .cell
-                select.select(name="attr_powertype")
-                  option Talent
-                  option Calling Bonus
-                  option Invocation
-                  option Astral Invocation
-                  option Umbral Invocation
-                  option Arcana
-                  option Charged Strike
-                  option Combo Strike
-                  option Counter
-                  option Finisher
-                  option Sorcery
-                  option Cantrip
-                  option Artifact
+                input(type="text" name="attr_powername" placeholder="Power Name")
+              .cell.fixed
+                strong Type
+              .cell
+                input(type="text" name="attr_powertype" placeholder="Power Name" size="24" list="powertypes")
             .row
               .cell
                 textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
