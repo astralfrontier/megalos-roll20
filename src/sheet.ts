@@ -1,6 +1,8 @@
+/// <reference path="sheet.d.ts" />
+
 // Documentation: https://wiki.roll20.net/Sheet_Worker_Scripts
 
-function finishSkillRoll(outcome) {
+function finishSkillRoll(outcome: StartRollCallbackValues) {
   const {
     rollId,
     results: {
@@ -8,8 +10,9 @@ function finishSkillRoll(outcome) {
     },
   } = outcome
   const [_dicestmt, diff] = expression.split('>')
+  const diffN = parseInt(diff)
   const hits = dice.reduce(
-    (hits, die) => hits + (die >= diff ? 1 : 0) + (die == 20 ? 1 : 0),
+    (hits, die) => hits + (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0),
     0
   )
   let message
@@ -27,21 +30,25 @@ function finishSkillRoll(outcome) {
   })
 }
 
-function startSkillRoll(skillname, skillrank) {
+function startSkillRoll(skillname: string, skillrank: number) {
   startRoll(
     `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${skillrank}d20>?{Difficulty|15}]]}} {{message=[[0]]}}`,
     finishSkillRoll
   )
 }
 
-function startSaveRoll(status, difficulty) {
+function startSaveRoll(status: string, difficulty: number) {
   startRoll(
     `&{template:save} {{name=${status}}} {{roll=[[1d20>${difficulty}]]}} {{message=[[0]]}}`,
     finishSkillRoll
   )
 }
 
-function startAttackRoll(weaponname, weapondice, weapondamage) {
+function startAttackRoll(
+  weaponname: string,
+  weapondice: number,
+  weapondamage: number
+) {
   startRoll(
     `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${weapondice}d20>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}}`,
     finishSkillRoll
@@ -53,7 +60,7 @@ on('clicked:repeating_skills:skill', (event) => {
   // SourceAttribute: repeating_skills_-NRFjaNa3LW-sC6ntcBd_skill
   getAttrs([`${sourceAttribute}name`, `${sourceAttribute}rank`], (v) => {
     const skillname = v[`${sourceAttribute}name`]
-    const skillrank = v[`${sourceAttribute}rank`]
+    const skillrank = parseInt(v[`${sourceAttribute}rank`])
     startSkillRoll(skillname, skillrank)
   })
 })
@@ -105,7 +112,7 @@ on('clicked:aethercurrent', (event) => {
             break
         }
         if (newAetherCurrent) {
-          const setObj = {}
+          const setObj: any = {}
           setObj[`aether_current_${number}`] = newAetherCurrent
           setAttrs(setObj, {}, () => {
             finishRoll(rollId, {
@@ -121,36 +128,6 @@ on('clicked:aethercurrent', (event) => {
     )
   })
 })
-
-/*
-{
-  "rollId": "-NRMbCHNIIyomtq2Shnc",
-  "results": {
-    "roll": {
-      "result": 2,
-      "dice": [
-        2
-      ],
-      "expression": "1d6",
-      "rolls": [
-        {
-          "sides": 6,
-          "dice": 1,
-          "results": [
-            2
-          ]
-        }
-      ]
-    },
-    "message": {
-      "result": 0,
-      "dice": [],
-      "expression": "0",
-      "rolls": []
-    }
-  }
-}
- */
 
 on('clicked:attack', (event) => {
   getAttrs(
@@ -180,7 +157,7 @@ on('clicked:attack', (event) => {
         (aether_current_3 == 'Throne Damage' ? 1 : 0) +
         (aether_current_4 == 'Throne Damage' ? 1 : 0)
       // TODO: other sources of damage?
-      startAttackRoll(weapon_name, weapon_dice, weapon_final_damage)
+      startAttackRoll(weapon_name, parseInt(weapon_dice), weapon_final_damage)
     }
   )
 })
