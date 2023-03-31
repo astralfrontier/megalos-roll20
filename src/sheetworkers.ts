@@ -139,6 +139,7 @@ on('clicked:attack', (event) => {
       'aether_current_2',
       'aether_current_3',
       'aether_current_4',
+      'aether_current_5',
     ],
     (v) => {
       const {
@@ -149,13 +150,15 @@ on('clicked:attack', (event) => {
         aether_current_2,
         aether_current_3,
         aether_current_4,
+        aether_current_5,
       } = v
       let weapon_final_damage =
         parseInt(weapon_core_damage) +
         (aether_current_1 == 'Throne Damage' ? 1 : 0) +
         (aether_current_2 == 'Throne Damage' ? 1 : 0) +
         (aether_current_3 == 'Throne Damage' ? 1 : 0) +
-        (aether_current_4 == 'Throne Damage' ? 1 : 0)
+        (aether_current_4 == 'Throne Damage' ? 1 : 0) +
+        (aether_current_5 == 'Throne Damage' ? 1 : 0)
       // TODO: other sources of damage?
       startAttackRoll(weapon_name, parseInt(weapon_dice), weapon_final_damage)
     }
