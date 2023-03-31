@@ -5,9 +5,17 @@
 $border-white: #eee
 $border-black: #111
 
+$form-border: thin solid black
+
 $gradient-bottom: rgba(2,0,36,1)
 $gradient-top: rgba(160,212,255,1)
 $gradient-mid: #516A92
+
+@mixin input-open
+  border-bottom: $form-border
+
+@mixin input-closed
+  border: $form-border
 
 @mixin white-black-border
   border-radius: 3px

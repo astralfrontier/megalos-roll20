@@ -1,8 +1,8 @@
 //- Form elements
 
-$form-border: thin solid black
+@use "./theme"
 
-.noctis
+#noctis
   input,
   textarea,
   select,
@@ -16,21 +16,21 @@ $form-border: thin solid black
     margin: 0
 
   input[type="text"]
-    border-bottom: $form-border
+    @include theme.input-open
     width: 100%
 
   textarea
-    border: $form-border
+    @include theme.input-closed
     width: 100%
 
   input[type="checkbox"]
-    border: $form-border
+    @include theme.input-closed
     width: 1em
 
   input[type="number"]
-    border: $form-border
+    @include theme.input-closed
     text-align: center
     -moz-appearance: textfield
 
   select
-    border: $form-border
+    @include theme.input-closed

@@ -15,21 +15,18 @@
   .pictos
     font-family: "Pictos"
 
-.btn.repcontrol_add, .btn.repcontrol_edit, .btn.repcontrol_move, .btn.repcontrol_del
-  @include theme.white-black-border
-  @include theme.blue-solid
+  .btn.repcontrol_add, .btn.repcontrol_edit, .btn.repcontrol_move, .btn.repcontrol_del
+    @include theme.white-black-border
+    @include theme.blue-solid
 
-.sheet-blank-button[type="action"]::before
-  font-family: "dicefontd20"
-  content: "t"
+  .btn.repcontrol_del
+    padding: 4px 10px
 
-// For soak dice, which use d6
-// In Pug, use: button.soak-dice
-button[type=roll].soak-dice::before
-  font-family: 'dicefontd6'
-  content: 'F '
+  .sheet-blank-button[type="action"]::before
+    font-family: "dicefontd20"
+    content: "t"
 
-.noctis
+#noctis
   font-family: "Verdana", "Arial"
 
   .noctis-box
@@ -55,3 +52,8 @@ button[type=roll].soak-dice::before
     padding-left: 2px
 
   // Roll20 overrides
+  // For soak dice, which use d6
+  // In Pug, use: button.soak-dice
+  button[type=roll].soak-dice::before
+    font-family: 'dicefontd6'
+    content: 'F '

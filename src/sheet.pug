@@ -1,21 +1,22 @@
 include containers
 
 .roll20-reset
-  .noctis#megalos-sheet
-    //- Page buttons, found in tabstoggle.js and tabstoggle.sass
-    input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
-    .sheet-tabs-listing
-      button(type="action" name="act_page1") Character
-      button(type="action" name="act_page2") Powers
-      button(type="action" name="act_page3") Conditions
-      button(type="action" name="act_page4") Help
+  #noctis
+    #megalos-sheet
+      //- Page buttons, found in tabstoggle.js and tabstoggle.sass
+      input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
+      .sheet-tabs-listing
+        button(type="action" name="act_page1") Character
+        button(type="action" name="act_page2") Powers
+        button(type="action" name="act_page3") Conditions
+        button(type="action" name="act_page4") Help
 
-    //- Include individual sheets in their entirety
-    include sheet-page1
-    include sheet-page2
-    include sheet-page3
-    .sheet.sheet-page4
-      include:markdown-it sheet-page4.md
+      //- Include individual sheets in their entirety
+      include sheet-page1
+      include sheet-page2
+      include sheet-page3
+      .sheet.sheet-page4
+        include:markdown-it sheet-page4.md
 
 //- Pull in datalists for auto completing text fields
 include datalists
