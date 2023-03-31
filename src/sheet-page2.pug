@@ -11,14 +11,14 @@
         .cell
           +box_current_max("Armor HP", "armor_hp")
         .cell
-          +box_value("RB", "rb")
+          +box_value("Recovery Base (RB)", "rb")
     .cell
       +section("Aether Current")
         textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
   .row
     each val in [1, 2, 3, 4, 5]
       .cell
-        +box_default(`AC ${val}`, "")
+        +box_default(`Aether Current ${val}`, "")
           select(name=`attr_aether_current_${val}`)
             option Available
             option Used
