@@ -6,7 +6,7 @@ mixin status(name)
       block
     .cell.fixed
       input(type="number" name=`attr_status_save_${name}`)
-      button.sheet-blank-button(type="action" name="act_save" data-status-name=name)
+      button.sheet-blank-button.noctis-button-yellow(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
   .row
@@ -16,7 +16,7 @@ mixin condition(name)
       block
     .cell.fixed
       input(type="number" name=`attr_condition_${name}`)
-      button(type="action" name="act_addcondition" data-condition-name=name) +
+      button.noctis-button-yellow(type="action" name="act_addcondition" data-condition-name=name) +
 
 .sheet.sheet-page3
   .row
@@ -65,6 +65,6 @@ mixin condition(name)
             +condition("shielded")
               p Gain +3 on Soak rolls.
 
-            button(type="action" name="act_clearconditions") One Round Passes
+            button.noctis-button-yellow(type="action" name="act_clearconditions") One Round Passes
 
 //- TODO: marks

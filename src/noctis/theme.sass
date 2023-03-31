@@ -11,6 +11,10 @@ $gradient-bottom: rgba(2,0,36,1)
 $gradient-top: rgba(160,212,255,1)
 $gradient-mid: #516A92
 
+$megalos-green: #4ABCAD
+$megalos-yellow: #E69C55
+$megalos-red: #9C3335
+
 @mixin input-open
   border-bottom: $form-border
 
@@ -42,3 +46,12 @@ $gradient-mid: #516A92
 
 @mixin outlined-font
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000
+
+@mixin green-background
+  background: $megalos-green
+
+@mixin yellow-background
+  background: $megalos-yellow
+
+@mixin red-background
+  background: $megalos-red
