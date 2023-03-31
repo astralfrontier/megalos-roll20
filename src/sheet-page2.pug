@@ -1,18 +1,3 @@
-mixin aether_current_die(number)
-  .column.centered.noctis-box
-    .cell.noctis-box-title
-      p= `AC ${number}`
-    .cell.centered
-      select(name=`attr_aether_current_${number}`)
-        option Available
-        option Used
-        option Throne Damage
-        option Astral Seal
-        option Umbral Seal
-        option Weak Charge
-        option Surging Charge
-      button.sheet-blank-button(type="action" name="act_aethercurrent" data-aethercurrent-number=number)
-
 .sheet.sheet-page2
   .row
     .cell
@@ -33,7 +18,17 @@ mixin aether_current_die(number)
   .row
     each val in [1, 2, 3, 4, 5]
       .cell
-        +aether_current_die(val)
+        +box_default(`AC ${val}`, "")
+          select(name=`attr_aether_current_${val}`)
+            option Available
+            option Used
+            option Throne Damage
+            option Astral Seal
+            option Umbral Seal
+            option Weak Charge
+            option Surging Charge
+          button.sheet-blank-button(type="action" name="act_aethercurrent" data-aethercurrent-number=val)
+
   .row
     .cell
       +section("Powers")

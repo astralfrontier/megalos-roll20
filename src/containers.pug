@@ -7,25 +7,36 @@ mixin section(title)
       .noctis-section-body
         block
 
-mixin box_value(label, attr_name)
+mixin box_default(label, help)
   .column.centered.noctis-box
     .cell.noctis-box-title
       p= label
     .cell.centered
-      input(type="number" name=`attr_${attr_name}` value="0")
-    .cell
-      p Value
+      if block
+        block
+    .cell.centered
+      p= help
+
+mixin box_value(label, attr_name)
+  +box_default(label, "Value")
+    input(type="number" name=`attr_${attr_name}` value="0")
+    if block
+      block
 
 //- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
   .column.noctis-box
     .cell.noctis-box-title
       p= label
-    .cell
+    .cell.centered
       .row.centered
-        .cell.centered
-          input(type="number" name=`attr_${attr_name}` value="0")
-          p.help Current
-        .cell.centered
-          input(type="number" name=`attr_${attr_name}_max` value="0")
-          p.help Max
+        .column.centered
+          .cell.centered
+            input(type="number" name=`attr_${attr_name}` value="0")
+          .cell.centered
+            p Current
+        .column.centered
+          .cell.centered
+            input(type="number" name=`attr_${attr_name}_max` value="0")
+          .cell.centered
+            p Max
