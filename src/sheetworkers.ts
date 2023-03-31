@@ -178,3 +178,31 @@ on('clicked:soak', (event) => {
     )
   })
 })
+
+on('clicked:addcondition', (event) => {
+  const condition = event.htmlAttributes['data-condition-name']
+  const O: any = {}
+  O[`condition_${condition}`] = '2'
+  setAttrs(O, {}, () => {})
+})
+
+const conditionNames = [
+  'blink',
+  'cloaked',
+  'cover',
+  'empowered',
+  'focused',
+  'haste',
+  'regen',
+  'shielded',
+].map((name) => `condition_${name}`)
+
+on('clicked:clearconditions', (event) => {
+  getAttrs(conditionNames, (v) => {
+    for (let condition of conditionNames) {
+      const value = parseInt(v[condition])
+      v[condition] = value > 1 ? `${value - 1}` : '0'
+    }
+    setAttrs(v, {}, () => {})
+  })
+})

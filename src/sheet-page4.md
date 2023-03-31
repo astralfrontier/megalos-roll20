@@ -37,3 +37,19 @@ Your Aether Current dice have several potential values:
 - **Weak Charge** and **Surging Charge** (for Witches)
 
 Clicking on the roll button will roll 1d6 in the chat log. If your class is set correctly, it will also automatically set the Aether Current value for you, based on the roll.
+
+Statuses
+--------
+
+Each status has a numeric field next to it. This is the save value for the status. When you gain the status effect, put its save value in the box.
+
+Beside the field is a die symbol. Click this button to roll a saving throw for that status.
+
+Conditions
+----------
+
+Each condition has a numeric field next to it. This is the number of rounds remaining on that condition.
+
+Beside the field is a plus sign. Click on it to set the field to 2, the default number of rounds a condition will last.
+
+At the bottom, there's a button labeled "One Round Passes". Click this to reduce all condition durations by 1 round.

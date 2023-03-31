@@ -16,6 +16,7 @@ mixin condition(name)
       block
     .cell.fixed
       input(type="number" name=`attr_condition_${name}`)
+      button(type="action" name="act_addcondition" data-condition-name=name) +
 
 .sheet.sheet-page3
   .row
@@ -63,5 +64,7 @@ mixin condition(name)
               p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
             +condition("shielded")
               p Gain +3 on Soak rolls.
+
+            button(type="action" name="act_clearconditions") One Round Passes
 
 //- TODO: marks
