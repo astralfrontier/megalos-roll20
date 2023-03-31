@@ -161,3 +161,17 @@ on('clicked:attack', (event) => {
     }
   )
 })
+
+on('clicked:soak', (event) => {
+  const label = event.htmlAttributes['data-soak-label']
+  const attr_name = event.htmlAttributes['data-soak-attr']
+  getAttrs(['role', attr_name], (v) => {
+    const dice = v['role'] == 'Tank' ? 2 : 1
+    startRoll(
+      `&{template:soak} {{name=${label}}} {{roll=[[${dice}d6kh1+@{${attr_name}}]]}}`,
+      (outcome) => {
+        finishRoll(outcome.rollId, {})
+      }
+    )
+  })
+})

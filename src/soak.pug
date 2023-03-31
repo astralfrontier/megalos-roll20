@@ -4,7 +4,4 @@
     - var attr_name = `soak_${val}`
     .cell
       +box_value(label, attr_name)
-        button.sheet-blank-button(type="roll" value=`&{template:soak} {{name=${label}}} {{roll=[[@{soak_dice}d6kh1+@{${attr_name}}]]}}` name="roll_soak")
-.row
-  .cell
-    +box_value("Soak Dice", "soak_dice")
+        button.sheet-blank-button(type="action" name="act_soak" data-soak-label=label data-soak-attr=attr_name)
