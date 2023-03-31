@@ -1,0 +1,36 @@
+//- Form elements
+
+$form-border: thin solid black
+
+.noctis
+  input,
+  textarea,
+  select,
+  button
+    box-sizing: border-box
+
+  // Remove spinners from text fields
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
+
+  input[type="text"]
+    border-bottom: $form-border
+    width: 100%
+
+  textarea
+    border: $form-border
+    width: 100%
+
+  input[type="checkbox"]
+    border: $form-border
+    width: 1em
+
+  input[type="number"]
+    border: $form-border
+    text-align: center
+    -moz-appearance: textfield
+
+  select
+    border: $form-border

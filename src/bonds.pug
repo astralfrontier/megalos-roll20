@@ -1,10 +1,8 @@
 //- Bonds
 
 fieldset.repeating_bonds
-  .columns.is-vcentered
-    .column
-      .field
-        .control
-          input.input.is-expanded(type="text" name="attr_bondname" placeholder="Bond name")
-    .column.is-narrow
+  .row
+    .cell.full
+      input(type="text" name="attr_bondname" placeholder="Bond name")
+    .cell
       input(type="checkbox" name="attr_bondstressed")

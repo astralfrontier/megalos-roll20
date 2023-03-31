@@ -1,42 +1,5 @@
-// Roll20 styling reset
+@use "./rolltemplate"
+@use "./tabstoggle"
 
-.ui-dialog #megalos-sheet select,
-.ui-dialog #megalos-sheet textarea,
-.ui-dialog #megalos-sheet input,
-.ui-dialog #megalos-sheet input[type="number"],
-.ui-dialog #megalos-sheet .uneditable-input,
-.ui-dialog #megalos-sheet label,
-.ui-dialog #megalos-sheet button
-  all: revert
-
-@import "../node_modules/bulma/bulma.sass"
-
-.fuck-you-roll20
-  width: 120px !important
-
-.sheet-blank-button[type="action"]::before
-  font-family: "dicefontd20"
-  content: "t"
-
-// For soak dice, which use d6
-// In Pug, use: button.soak-dice
-button[type=roll].soak-dice::before
-  font-family: 'dicefontd6'
-  content: 'F '
-
-.boxed-value
-  width: 7em !important
-
-/*Configure the tab buttons*/
-#megalos-sheet .sheet-page1,
-#megalos-sheet .sheet-page2,
-#megalos-sheet .sheet-page3
-  display: none
-
-/* show the selected tab */
-#megalos-sheet .sheet-tabstoggle[value="page1"] ~ .sheet-page1,
-#megalos-sheet .sheet-tabstoggle[value="page2"] ~ .sheet-page2,
-#megalos-sheet .sheet-tabstoggle[value="page3"] ~ .sheet-page3
-  display: block
-
-@import "./rolltemplate.sass"
+// Import our new framework
+@use "./noctis/noctis"

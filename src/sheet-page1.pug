@@ -1,42 +1,55 @@
-//- Helpers for blocking out sections of the sheet
-include containers
+.sheet.sheet-page1
+  .row
+    .cell
+      //- Top level
+      +section()
+        .row.centered
+          .cell
+            TODO MEGALOS ICON
+          .cell
+            +box_current_max("HP", "hp")
+          .cell
+            +box_current_max("Armor HP", "armor_hp")
+          .cell
+            +box_current_max("Recovery", "recovery")
 
-.sheet-page1
-  section#megalos-top
-    .columns
+  .row.centered
+    //- Left column
+    .cell
       .column
-        TODO MEGALOS ICON
+        .cell
+          +section("Character Profile")
+            include profile
+        .cell
+          +section("Bonds")
+            include bonds
+        .cell
+          +section("Weapon")
+            include weapon
+        .cell
+          +section("Armor")
+            include armor
+        .cell
+          +section("Soak")
+            include soak
+    //- Right column
+    .cell
       .column
-        +box_current_max("HP", "hp")
-      .column
-        +box_current_max("Armor HP", "armor_hp")
-      .column
-        +box_current_max("Recovery", "recovery")
-  section#megalos-main
-    .columns
-      .column.is-half#megalos-main-left
-        +section("Character Profile")
-          include profile
-        +section("Bonds")
-          include bonds
-        +section("Weapon")
-          include weapon
-        +section("Armor")
-          include armor
-        +section("Soak")
-          include soak
-      .column.is-half#megalos-main-right
-        .block
-          .columns
-            .column
-              +box_value("Level", "level")
-            .column
-              +box_value("XP", "xp")
-            .column
-              +box_value("RB", "rb")
-        +section("Skills")
-          include skills
-        +section("Traits")
-          include traits
-        +section("Inventory")
-          include inventory
+        .cell
+          +section()
+            .row.centered
+              .cell
+                +box_value("Level", "level")
+              .cell
+                +box_value("XP", "xp")
+              .cell
+                +box_value("RB", "rb")
+        .cell
+          +section("Skills")
+            include skills
+        .cell
+          +section("Traits")
+            include traits
+        .cell
+          +section("Inventory")
+            include inventory

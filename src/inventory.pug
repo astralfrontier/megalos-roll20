@@ -1,11 +1,10 @@
-.block
-  fieldset.repeating_inventory
-    input.input.is-full(type="text" name="attr_itemname" placeholder="Item name")
-.block
-  +box_current_max("Inventory Points (IP)", "ip")
-.content
-  ul
-    li Aether Point - 2 IP. You or an ally in range 0 may <i>Power Up!!</i> as a Free Action
-    li Elixir - 2 IP. You or an ally in range 0 Heal (RB * 2)
-    li Panacea - 2 IP. Gain Advantage on saves for the next 3 rounds
-    li Phoenix Ash - 3 IP. Raise (RB) on an ally in range 0
+fieldset.repeating_inventory
+  .row
+    .cell.full
+      input(type="text" name="attr_itemname" placeholder="Item name")
++box_current_max("Inventory Points (IP)", "ip")
+ul
+  li Aether Point - 2 IP. You or an ally in range 0 may <i>Power Up!!</i> as a Free Action
+  li Elixir - 2 IP. You or an ally in range 0 Heal (RB * 2)
+  li Panacea - 2 IP. Gain Advantage on saves for the next 3 rounds
+  li Phoenix Ash - 3 IP. Raise (RB) on an ally in range 0

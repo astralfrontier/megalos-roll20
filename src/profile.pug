@@ -1,19 +1,15 @@
 //- Character Profile, including name, pronouns, etc.
 
-//- Mixins for Bulma form elements
-mixin input(attr, label)
-  .field.is-horizontal
-    if label
-      .field-label
-        label.label= label
-    .field-body
-      .field
-        .control
-          input.input(type="text" name=attr)&attributes(attributes)
+mixin profilefield(attr, label)
+  .row
+    .cell.fixed
+      p= label
+    .cell.full
+      input(type="text" name=attr)&attributes(attributes)
 
-+input("attr_name", "Name")
-+input("attr_homeland", "Homeland")
-+input("attr_pronouns", "Pronouns")
-+input("attr_class", "Class")(list="classes")
-+input("attr_calling", "Calling")(list="callings")
-+input("attr_role", "Role")(list="roles")
++profilefield("attr_name", "Name")
++profilefield("attr_homeland", "Homeland")
++profilefield("attr_pronouns", "Pronouns")
++profilefield("attr_class", "Class")(list="classes")
++profilefield("attr_calling", "Calling")(list="callings")
++profilefield("attr_role", "Role")(list="roles")

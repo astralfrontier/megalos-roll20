@@ -39,6 +39,13 @@ You can use `npm` to install third party SASS/SCSS packages and include them in 
 If you push a tag starting with "v", e.g. "v1.0.0" to Github, a Github Action will create a release.
 It will publish the `sheet.json`, the HTML file, and the CSS file, as part of that release.
 
-You can copy the HTML and CSS into a game if you have a Pro account.
+You can copy the HTML and CSS into a game if you have a Pro account:
+
+1. Create a new game at https://app.roll20.net/campaigns/new
+2. For "pick a character sheet", choose "Custom" at the top, and click "Create game" at the bottom
+3. Download `megalos.css` and `megalos.html` from the releases page, https://github.com/astralfrontier/megalos-roll20/releases
+4. On your new game's front page, click Settings > Game Settings
+5. Paste the contents of `megalos.html` into the "HTML Layout" tab at the bottom, ditto `megalos.css` into "CSS Styling"
+6. Click "Save Changes"
 
 You can publish your sheets to Roll20's official library via Git: https://cybersphere.me/publishing-sheets-to-github/

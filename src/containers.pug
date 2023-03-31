@@ -1,37 +1,31 @@
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title)
-  section.block
-    .has-background-primary.p-2.mb-4
-      h3.title.is-3.has-text-white= title
+  section.noctis-section
+    if title
+      h3.noctis-section-title= title
     if block
-      block
+      .noctis-section-body
+        block
 
 mixin box_value(label, attr_name)
-  article.message.is-primary
-    .message-header
+  .column.centered.noctis-box
+    .cell.noctis-box-title
       p= label
-    .message-body
-      .columns.is-centered
-        .column
-          .field
-            .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}` value="0")
-            p.help Value
+    .cell.centered
+      input(type="number" name=`attr_${attr_name}` value="0")
+    .cell
+      p Value
 
 //- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
-  article.message.is-primary
-    .message-header
+  .column.noctis-box
+    .cell.noctis-box-title
       p= label
-    .message-body
-      .columns.is-centered
-        .column
-          .field
-            .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}` value="0")
-            p.help Current
-        .column
-          .field
-            .control
-              input.input.is-expanded.boxed-value(type="number" name=`attr_${attr_name}_max` value="0")
-            p.help Max
+    .cell
+      .row.centered
+        .cell.centered
+          input(type="number" name=`attr_${attr_name}` value="0")
+          p.help Current
+        .cell.centered
+          input(type="number" name=`attr_${attr_name}_max` value="0")
+          p.help Max
