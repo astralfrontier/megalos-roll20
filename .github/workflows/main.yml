@@ -17,6 +17,8 @@ jobs:
   publish_sheet:
     name: Publish Roll20 pagaes
     runs-on: ubuntu-latest
+    outputs:
+      changelog: ${{ steps.changelog.outputs.changelog }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,8 +27,14 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm start
+      - id: changelog
+        name: 'Generate release changelog'
+        uses: heinrichreimer/github-changelog-generator-action@v2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: softprops/action-gh-release@v1
         with:
+          body: ${{needs.publish_sheet.outputs.changelog}}
           files: |
             dist/sheet.json
             dist/megalos.html
