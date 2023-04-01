@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: softprops/action-gh-release@v1
         with:
-          body_path: /github/workspace/CHANGELOG.md
+          body_path: CHANGELOG.md
           files: |
             dist/sheet.json
             dist/megalos.html
