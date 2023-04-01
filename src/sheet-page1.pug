@@ -19,19 +19,19 @@
       .column
         .cell
           +section("Character Profile")
-            include profile
+            include sections/profile
         .cell
           +section("Bonds")
-            include bonds
+            include sections/bonds
         .cell
           +section("Weapon")
-            include weapon
+            include sections/weapon
         .cell
           +section("Armor")
-            include armor
+            include sections/armor
         .cell
           +section("Soak")
-            include soak
+            include sections/soak
     //- Right column
     .cell
       .column
@@ -46,10 +46,10 @@
                 +box_value("RB", "rb")
         .cell
           +section("Skills")
-            include skills
+            include sections/skills
         .cell
           +section("Traits")
-            include traits
+            include sections/traits
         .cell
           +section("Inventory")
-            include inventory
+            include sections/inventory

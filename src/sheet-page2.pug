@@ -16,33 +16,8 @@
       +section("Aether Current")
         textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
   .row
-    each val in [1, 2, 3, 4, 5]
-      .cell
-        +box_default(`Aether Current ${val}`, "")
-          select(name=`attr_aether_current_${val}`)
-            option Available
-            option Used
-            option Throne Damage
-            option Astral Seal
-            option Umbral Seal
-            option Weak Charge
-            option Surging Charge
-          button.sheet-blank-button.noctis-button-red(type="action" name="act_aethercurrent" data-aethercurrent-number=val)
-
+    include sections/aethercurrents
   .row
     .cell
       +section("Powers")
-        fieldset.repeating_powers
-          //- Hidden field to allow CSS selectors to work
-          input(type="hidden" name="attr_powertype" class="attr_powertype_key")
-          .attr_powertype_container
-            .row
-              .cell.fixed Name
-              .cell
-                input(type="text" name="attr_powername" placeholder="Power Name")
-              .cell.fixed Type
-              .cell
-                input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
-            .row
-              .cell
-                textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
+        include sections/powers
