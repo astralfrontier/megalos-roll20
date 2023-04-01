@@ -1,4 +1,4 @@
-const buttonlist = ['page1', 'page2', 'page3', 'page4']
+const buttonlist = ['page1', 'page2', 'page3']
 buttonlist.forEach((button) => {
   on(`clicked:${button}`, function () {
     setAttrs({
