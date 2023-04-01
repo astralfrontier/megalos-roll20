@@ -1,3 +1,5 @@
-**This is a test**
+**MEGALOS Sheet**
 
-You can put Markdown-formatted instructions here for how to use your sheet. Please try to keep it moderately-short (500 characters or less is preferred).
+Check the "Help" tab for details.
+
+Home page: https://github.com/astralfrontier/megalos-roll20
