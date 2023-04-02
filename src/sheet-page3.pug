@@ -1,25 +1,24 @@
 mixin status(name)
   .row
-    .cell
-      p
-        strong= name.toUpperCase()
+    .col-xs-8
+      strong= name.toUpperCase()
       block
-    .cell.fixed
+    .col-xs-4
       input(type="number" name=`attr_status_save_${name}`)
       button.sheet-blank-button.noctis-button-yellow(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
   .row
-    .cell
-      p
-        strong= name.toUpperCase()
+    .col-xs-8
+      strong= name.toUpperCase()
       block
-    .cell.fixed
+    .col-xs-4
       input(type="number" name=`attr_condition_${name}`)
       button.noctis-button-yellow(type="action" name="act_addcondition" data-condition-name=name) +
+
 .sheet.sheet-page3
   .row
-    .col
+    .col-xs-6
       +section("Statuses")
         +status("afraid")
           p Do -3 damage vs. whoever inflicted this on you.
@@ -41,7 +40,7 @@ mixin condition(name)
           p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
         +status("wounded")
           p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
-    .col
+    .col-xs-6
       +section("Conditions")
         +condition("blink")
           p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
