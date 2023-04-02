@@ -1,23 +1,17 @@
 .sheet.sheet-page2
   .row
-    .cell
-      .column
-        .cell
-          +box_current_max("HP", "hp")
-        .cell
-          +box_current_max("Recovery", "recovery")
-    .cell
-      .column
-        .cell
-          +box_current_max("Armor HP", "armor_hp")
-        .cell
-          +box_value("Recovery Base (RB)", "rb")
-    .cell
+    .col
+      +box_current_max("HP", "hp")
+      +box_current_max("Recovery", "recovery")
+    .col
+      +box_current_max("Armor HP", "armor_hp")
+      +box_value("Recovery Base (RB)", "rb")
+    .col
       +section("Aether Current")
         textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="6")
   .row
     include sections/aethercurrents
   .row
-    .cell
+    .col
       +section("Powers")
         include sections/powers
