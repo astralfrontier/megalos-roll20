@@ -2,9 +2,8 @@
 
 mixin profilefield(attr, label)
   .row
-    .cell.fixed
-      p= label
-    .cell.full
+    .col-xs-3= label
+    .col-xs-9
       input(type="text" name=attr)&attributes(attributes)
 
 +profilefield("attr_name", "Name")

@@ -1,7 +1,8 @@
-@use "./flexbox"
 @use "./form"
 @use "./sheets"
 @use "./theme"
+
+@import "../../node_modules/@drewbot/sass-flexbox-grid/public/sass-flexbox/scss/main.scss"
 
 // Roll20 style reset
 .roll20-reset
@@ -29,14 +30,23 @@
 #noctis
   font-family: "Verdana", "Arial"
 
+  .repositioned *
+    position: inherit !important
+
+  .narrow
+    padding: 0.5rem
+
   .noctis-box
     color: black
     background: white
+    text-align: center
+    margin: auto
 
   .noctis-section
     color: black
     background: white
     padding: 0.5em
+    width: 100%
 
   .noctis-section-title
     @include theme.white-black-border

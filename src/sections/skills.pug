@@ -9,16 +9,16 @@ mixin skillrank(attr)
   input.input.boxed-value(type="number" name=attr placeholder="Rank" min="1" max="5")&attributes(attributes)
 
 fieldset.repeating_skills
-  .row
-    .cell.full
+  .row.repositioned
+    .col-xs-9.repositioned
       +skillname("attr_skillname")
-    .cell
+    .col-xs-2.repositioned
       +skillrank("attr_skillrank")
-    .cell
+    .col-xs-1.repositioned
       button.sheet-blank-button.noctis-button-green(type="action" name="act_skill")
         
 .row
-  .cell.full
+  .col-xs-11
     +skillname("default_skillname")(value="All Others" disabled=true)
-  .cell
+  .col-xs-1
     button.sheet-blank-button.noctis-button-green(type="action" name="act_skilldefault")

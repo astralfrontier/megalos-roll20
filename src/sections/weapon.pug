@@ -1,16 +1,15 @@
 .row
-  .cell
-    p Name
-  .cell.full
+  .col-xs-3 Name
+  .col-xs-9
     input(type="text" name="attr_weapon_name")
 .row
-  .cell.full
+  .col
     textarea(name="attr_weapon_desc" rows="3")
 .row
-  .cell
+  .col.narrow
     +box_value("Core Dmg", "weapon_core_damage")
-  .cell
+  .col.narrow
     +box_value("Range", "weapon_range")
-  .cell
+  .col.narrow
     +box_value("Wpn Dice", "weapon_dice")
       button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")

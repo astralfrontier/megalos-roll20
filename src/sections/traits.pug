@@ -2,11 +2,10 @@
 
 mixin trait(attr, label)
   .row
-    .cell.fixed
-      p= label
-    .cell.full
+    .col-xs-3= label
+    .col-xs-8
       input(type="text" name=attr)
-    .cell
+    .col-xs-1
       button.sheet-blank-button.noctis-button-green(type="action" name="act_trait")
 
 +trait("attr_talent_background", "Background")

@@ -1,17 +1,16 @@
 .row
-  .cell
-    p Name
-  .cell.full
+  .col-xs-3 Name
+  .col-xs-9
     input(type="text" name="attr_armor_name")
 .row
-  .cell.full
+  .col
     textarea(name="attr_armor_desc" rows="3")
 .row
-  .cell
+  .col
     +box_value("Dodge", "armor_dodge")
-  .cell
+  .col
     +box_value("Ward", "armor_ward")
-  //- .cell
+  //- .col
   //-   +box_value("Soak", "armor_soak")
-  //- .cell
+  //- .col
   //-   +box_value("AHP", "armor_hp")
