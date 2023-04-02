@@ -2,13 +2,13 @@ fieldset.repeating_powers
   //- Hidden field to allow CSS selectors to work
   input(type="hidden" name="attr_powertype" class="attr_powertype_key")
   .attr_powertype_container
-    .row
-      .col-xs-2 Name
-      .col-xs-4
+    .row.repositioned
+      .col-xs-2.repositioned Name
+      .col-xs-4.repositioned
         input(type="text" name="attr_powername" placeholder="Power Name")
-      .col-xs-2 Type
-      .col-xs-4
+      .col-xs-2.repositioned Type
+      .col-xs-4.repositioned
         input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
-    .row
-      .col
+    .row.repositioned
+      .col.repositioned
         textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")

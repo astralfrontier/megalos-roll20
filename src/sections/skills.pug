@@ -9,12 +9,12 @@ mixin skillrank(attr)
   input.input.boxed-value(type="number" name=attr placeholder="Rank" min="1" max="5")&attributes(attributes)
 
 fieldset.repeating_skills
-  .row
-    .col-xs-9
+  .row.repositioned
+    .col-xs-9.repositioned
       +skillname("attr_skillname")
-    .col-xs-2
+    .col-xs-2.repositioned
       +skillrank("attr_skillrank")
-    .col-xs-1
+    .col-xs-1.repositioned
       button.sheet-blank-button.noctis-button-green(type="action" name="act_skill")
         
 .row
