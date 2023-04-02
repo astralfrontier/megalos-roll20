@@ -1,8 +1,10 @@
 // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 #noctis
-  .row, .column
+  .row, .column, .cell
     display: flex
+
+  .row, .column
     width: 100%
     flex-wrap: nowrap
     gap: 1em
@@ -18,18 +20,16 @@
     justify-content: start
     align-items: center
 
-  .row.centered, .column.centered
+  .row.centered, .column.centered, .cell.centered
     justify-content: center
     align-content: center
+    align-items: center
 
   .row.locked, .column.locked
     flex-wrap: nowrap
 
   .cell
     flex: 0 1 auto
-
-  .cell.centered
-    display: flex
 
   .cell.fixed
     flex: 0 1 6em
