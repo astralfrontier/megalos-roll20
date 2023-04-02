@@ -4,18 +4,19 @@
   .row, .column
     display: flex
     width: 100%
-    flex: 1 1 auto
     flex-wrap: nowrap
-    justify-content: flex-start
-    align-content: flex-start
     gap: 1em
 
   .row
     flex-direction: row
     margin-bottom: 1em
+    justify-content: space-evenly
+    align-items: flex-start
 
   .column
     flex-direction: column
+    justify-content: start
+    align-items: center
 
   .row.centered, .column.centered
     justify-content: center
@@ -29,9 +30,6 @@
 
   .cell.centered
     display: flex
-    justify-content: center
-    align-content: center
-    align-items: center
 
   .cell.fixed
     flex: 0 1 6em
