@@ -3,12 +3,18 @@
     //- Top level
     +section()
       .row
-        #sheet-logo MEGALOS
-        +box_current_max("HP", "hp")
-        +box_current_max("Armor HP", "armor_hp")
-        +box_current_max("Recovery", "recovery")
+        .col-xs-4
+          #sheet-logo MEGALOS
+        .col
+          .row
+            .col-xs-4
+              +box_current_max("HP", "hp")
+            .col-xs-4
+              +box_current_max("Armor HP", "armor_hp")
+            .col-xs-4
+              +box_current_max("Recovery", "recovery")
   .row
-    .col
+    .col-xs-6
       //- Left column
       +section("Character Profile")
         include sections/profile
@@ -20,13 +26,16 @@
         include sections/armor
       +section("Soak")
         include sections/soak
-    .col
+    .col-xs-6
       //- Right column
       +section()
         .row
-          +box_value("Level", "level")
-          +box_value("XP", "xp")
-          +box_value("RB", "rb")
+          .col-xs-4
+            +box_value("Level", "level")
+          .col-xs-4
+            +box_value("XP", "xp")
+          .col-xs-4
+            +box_value("RB", "rb")
       +section("Skills")
         include sections/skills
       +section("Traits")
