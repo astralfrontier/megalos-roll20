@@ -2,7 +2,7 @@
 mixin section(title, icon)
   section.noctis-section
     if icon
-      span.noctis-section-icon= icon
+      span.noctis-section-icon!= icon
     if title
       if icon
         h3.noctis-section-title.noctis-section-offset= title
