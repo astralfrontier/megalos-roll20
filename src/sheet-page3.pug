@@ -19,7 +19,7 @@ mixin condition(name)
 .sheet.sheet-page3
   .row
     .col-xs-6
-      +section("Statuses")
+      +section("Statuses", "🔴")
         +status("afraid")
           p Do -3 damage vs. whoever inflicted this on you.
         +status("agony")
@@ -41,7 +41,7 @@ mixin condition(name)
         +status("wounded")
           p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
     .col-xs-6
-      +section("Conditions")
+      +section("Conditions", "🟢")
         +condition("blink")
           p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
         +condition("cloaked")
