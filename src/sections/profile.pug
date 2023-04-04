@@ -6,7 +6,8 @@ mixin profilefield(attr, label)
     .col-xs-9
       input(type="text" name=attr)&attributes(attributes)
 
-+profilefield("attr_name", "Name")
+//- "character_name" is the canonical attribute for the character object overall, so use it
++profilefield("attr_character_name", "Name")
 +profilefield("attr_homeland", "Homeland")
 +profilefield("attr_pronouns", "Pronouns")
 +profilefield("attr_class", "Class")(list="classes")
