@@ -1,0 +1,18 @@
++section()
+  div
+    input(type="checkbox" name="attr_show_combat_effects")
+    label Show Combat Effects
+  input.show-combat-effects-toggle(type="hidden" name="attr_show_combat_effects")
+  .show-combat-effects-section
+    .row
+      .col.narrow
+        input(type="checkbox" name="attr_ce_toggle_advantage")
+        label Enabled
+      .col
+        p Advantage stacks
+      .col
+        input(type="number" name="attr_ce_advantage" min="0" value="0")
+      .col
+        p Disadvantage stacks
+      .col
+        input(type="number" name="attr_ce_disadvantage" min="0" value="0")

@@ -2,6 +2,39 @@
 
 // Documentation: https://wiki.roll20.net/Sheet_Worker_Scripts
 
+const ce_advantage_attrs = [
+  'ce_toggle_advantage',
+  'ce_advantage',
+  'ce_disadvantage',
+]
+
+// Return a string (e.g. 3d20) to roll
+// Look for advantage & disadvantage values in the retrieved attributes
+// If enabled, modify input by those numbers
+// If disabled, return the input unmodified
+function modifiedDiceCount(
+  diecount: any,
+  diesize: any,
+  v: GetAttrsCallbackValues,
+  keep_highest = false
+): string {
+  if (v['ce_toggle_advantage'] != 'on') {
+    return `${diecount}d${diesize}${keep_highest ? 'kh1' : ''}`
+  }
+  const updatedDieCount =
+    parseInt(diecount) +
+    parseInt(v['ce_advantage'] || '0') -
+    parseInt(v['ce_disadvantage'] || '0')
+  const rollstring =
+    updatedDieCount < 1
+      ? `2d${diesize}kl1`
+      : `${updatedDieCount}d${diesize}${keep_highest ? 'kh1' : ''}`
+  console.log(
+    `Updated die count is ${updatedDieCount} rollstring is ${rollstring}`
+  )
+  return rollstring
+}
+
 function finishSkillRoll(outcome: StartRollCallbackValues) {
   const {
     rollId,
@@ -9,12 +42,18 @@ function finishSkillRoll(outcome: StartRollCallbackValues) {
       roll: { dice, expression },
     },
   } = outcome
-  const [_dicestmt, diff] = expression.split('>')
+  const [dicestmt, diff] = expression.split('>')
+  let hits: number = 0
   const diffN = parseInt(diff)
-  const hits = dice.reduce(
-    (hits, die) => hits + (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0),
-    0
-  )
+  if (dicestmt.endsWith('kl1')) {
+    const die = Math.min(...dice)
+    hits = (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0)
+  } else {
+    hits = dice.reduce(
+      (hits, die) => hits + (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0),
+      0
+    )
+  }
   let message
   if (hits == 0) {
     message = 'FAIL'
@@ -30,16 +69,26 @@ function finishSkillRoll(outcome: StartRollCallbackValues) {
   })
 }
 
-function startSkillRoll(skillname: string, skillrank: number) {
+function startSkillRoll(
+  skillname: string,
+  skillrank: number,
+  v: GetAttrsCallbackValues
+) {
+  const diestring = modifiedDiceCount(skillrank, 20, v)
   startRoll(
-    `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${skillrank}d20>?{Difficulty|15}]]}} {{message=[[0]]}}`,
+    `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Difficulty|15}]]}} {{message=[[0]]}}`,
     finishSkillRoll
   )
 }
 
-function startSaveRoll(status: string, difficulty: number) {
+function startSaveRoll(
+  status: string,
+  difficulty: number,
+  v: GetAttrsCallbackValues
+) {
+  const diestring = modifiedDiceCount(1, 20, v)
   startRoll(
-    `&{template:save} {{name=${status}}} {{roll=[[1d20>${difficulty}]]}} {{message=[[0]]}}`,
+    `&{template:save} {{name=${status}}} {{roll=[[${diestring}>${difficulty}]]}} {{message=[[0]]}}`,
     finishSkillRoll
   )
 }
@@ -47,10 +96,12 @@ function startSaveRoll(status: string, difficulty: number) {
 function startAttackRoll(
   weaponname: string,
   weapondice: number,
-  weapondamage: number
+  weapondamage: number,
+  v: GetAttrsCallbackValues
 ) {
+  const diestring = modifiedDiceCount(weapondice, 20, v)
   startRoll(
-    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${weapondice}d20>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}}`,
+    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}}`,
     finishSkillRoll
   )
 }
@@ -58,27 +109,33 @@ function startAttackRoll(
 on('clicked:repeating_skills:skill', (event) => {
   const { sourceAttribute } = event
   // SourceAttribute: repeating_skills_-NRFjaNa3LW-sC6ntcBd_skill
-  getAttrs([`${sourceAttribute}name`, `${sourceAttribute}rank`], (v) => {
-    const skillname = v[`${sourceAttribute}name`]
-    const skillrank = parseInt(v[`${sourceAttribute}rank`])
-    startSkillRoll(skillname, skillrank)
-  })
+  getAttrs(
+    [`${sourceAttribute}name`, `${sourceAttribute}rank`, ...ce_advantage_attrs],
+    (v) => {
+      const skillname = v[`${sourceAttribute}name`]
+      const skillrank = parseInt(v[`${sourceAttribute}rank`])
+      startSkillRoll(skillname, skillrank, v)
+    }
+  )
 })
 
 on('clicked:skilldefault', (event) => {
-  startSkillRoll('Untrained Skill', 1)
+  getAttrs(ce_advantage_attrs, (v) => {
+    startSkillRoll('Untrained Skill', 1, v)
+  })
 })
 
+// TODO get trait name from event
 on('clicked:trait', (event) => {
-  startSkillRoll('Trait Reroll', 1)
+  startSkillRoll('Trait Reroll', 1, {})
 })
 
 on('clicked:save', (event) => {
   const status = event.htmlAttributes['data-status-name']
   const attrname = `status_save_${status}`
-  getAttrs([attrname], (v) => {
+  getAttrs([attrname, ...ce_advantage_attrs], (v) => {
     const diff = parseInt(v[attrname]) || 10
-    startSaveRoll(`${status.toUpperCase()}(${diff})`, diff)
+    startSaveRoll(`${status.toUpperCase()}(${diff})`, diff, v)
   })
 })
 
@@ -140,6 +197,7 @@ on('clicked:attack', (event) => {
       'aether_current_3',
       'aether_current_4',
       'aether_current_5',
+      ...ce_advantage_attrs,
     ],
     (v) => {
       const {
@@ -159,8 +217,12 @@ on('clicked:attack', (event) => {
         (aether_current_3 == 'Throne Damage' ? 1 : 0) +
         (aether_current_4 == 'Throne Damage' ? 1 : 0) +
         (aether_current_5 == 'Throne Damage' ? 1 : 0)
-      // TODO: other sources of damage?
-      startAttackRoll(weapon_name, parseInt(weapon_dice), weapon_final_damage)
+      startAttackRoll(
+        weapon_name,
+        parseInt(weapon_dice),
+        weapon_final_damage,
+        v
+      )
     }
   )
 })
@@ -168,10 +230,11 @@ on('clicked:attack', (event) => {
 on('clicked:soak', (event) => {
   const label = event.htmlAttributes['data-soak-label']
   const attr_name = event.htmlAttributes['data-soak-attr']
-  getAttrs(['role', attr_name], (v) => {
+  getAttrs(['role', attr_name, ...ce_advantage_attrs], (v) => {
     const dice = v['role'] == 'Tank' ? 2 : 1
+    const diestring = modifiedDiceCount(dice, 6, v, true)
     startRoll(
-      `&{template:soak} {{name=${label}}} {{roll=[[${dice}d6kh1+@{${attr_name}}]]}}`,
+      `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}]]}}`,
       (outcome) => {
         finishRoll(outcome.rollId, {})
       }

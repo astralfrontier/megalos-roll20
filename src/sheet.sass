@@ -9,6 +9,12 @@
   font-size: 64px
   border-bottom: thick dotted gray
 
+.show-combat-effects-section
+  display: none
+
+.show-combat-effects-toggle[value="on"] ~ .show-combat-effects-section
+  display: block
+
 // Uncomment to support styling individual powers based on power type
 
 // .attr_powertype_key[value="Talent"] ~ .attr_powertype_container
