@@ -4,13 +4,13 @@ mixin trait(attr, label)
   .row
     .col-xs-3= label
     .col-xs-8
-      input(type="text" name=attr)
+      input(type="text" name=`attr_${attr}`)
     .col-xs-1
-      button.sheet-blank-button.noctis-button-green(type="action" name="act_trait")
+      button.sheet-blank-button.noctis-button-green(type="action" name="act_trait" data-trait-attr=attr)
 
-+trait("attr_talent_background", "Background")
-+trait("attr_talent_physical", "Physical")
-+trait("attr_talent_mental", "Mental")
-+trait("attr_talent_special", "Special")
++trait("talent_background", "Background")
++trait("talent_physical", "Physical")
++trait("talent_mental", "Mental")
++trait("talent_special", "Special")
 
     

@@ -125,9 +125,11 @@ on('clicked:skilldefault', (event) => {
   })
 })
 
-// TODO get trait name from event
 on('clicked:trait', (event) => {
-  startSkillRoll('Trait Reroll', 1, {})
+  const trait = event.htmlAttributes['data-trait-attr']
+  getAttrs([trait], (v) => {
+    startSkillRoll(v[trait], 1, {})
+  })
 })
 
 on('clicked:save', (event) => {
