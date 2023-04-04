@@ -1,5 +1,6 @@
 each val in [1, 2, 3, 4, 5]
-  .col
+  input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
+  div(class=`col ac_die_${val}`)
     +box_default(`AC ${val}`, "")
       select(name=`attr_aether_current_${val}`)
         option Available
