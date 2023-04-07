@@ -22,36 +22,38 @@ const CONDITION_LIST: string[] = [
   'shielded',
 ].map((name) => `condition_${name}`)
 
-// attr_status_tracker
-// attr_condition_tracker
-function update_status_tracker() {
-  getAttrs(STATUS_LIST, (v) => {
+function update_tracker(
+  attributes: string[],
+  tracker: string,
+  prefix: string,
+  message: string
+) {
+  getAttrs(attributes, (v) => {
     const O: any = {}
-    O['status_tracker'] =
-      STATUS_LIST.map((name) => [
-        name.replace('status_save_', '').toUpperCase(),
-        parseInt(v[name]),
-      ])
+    O[tracker] =
+      attributes
+        .map((name): [string, number] => [
+          name.replace(prefix, '').toUpperCase(),
+          parseInt(v[name]),
+        ])
         .filter((tuple) => tuple[1] > 0)
         .map((tuple) => ` {{${tuple[0]}=(${tuple[1]})}}`)
-        .join('') || ' {{text=No Statuses}}'
+        .join('') || ` {{text=${message}}}`
     setAttrs(O)
   })
 }
 
+function update_status_tracker() {
+  update_tracker(STATUS_LIST, 'status_tracker', 'status_save_', 'No Statuses')
+}
+
 function update_condition_tracker() {
-  getAttrs(CONDITION_LIST, (v) => {
-    const O: any = {}
-    O['condition_tracker'] =
-      CONDITION_LIST.map((name) => [
-        name.replace('condition_', '').toUpperCase(),
-        parseInt(v[name]),
-      ])
-        .filter((tuple) => tuple[1] > 0)
-        .map((tuple) => ` {{${tuple[0]}=(${tuple[1]})}}`)
-        .join('') || ' {{text=No Conditions}}'
-    setAttrs(O)
-  })
+  update_tracker(
+    CONDITION_LIST,
+    'condition_tracker',
+    'condition_',
+    'No Conditions'
+  )
 }
 
 for (let status of STATUS_LIST) {
