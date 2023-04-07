@@ -24,6 +24,11 @@ mixin condition(name)
     .col-xs-6
       //- 🔴
       +section("Statuses", "&#x1F534;")
+        .row
+          .col-xs-8
+            p Announce Marked
+          .col-xs-4
+            button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
         +status("afraid")
           p Do -3 damage vs. whoever inflicted this on you.
         +status("agony")
@@ -45,11 +50,15 @@ mixin condition(name)
         +status("wounded")
           p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
         input(type="hidden" name="attr_status_tracker")
-        button.button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
 
     .col-xs-6
       //- 🟢
       +section("Conditions", "&#x1F7E2;")
+        .row
+          .col-xs-8
+            p Announce Marked
+          .col-xs-4
+            button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
         +condition("blink")
           p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
         +condition("cloaked")
@@ -67,7 +76,6 @@ mixin condition(name)
         +condition("shielded")
           p Gain +3 on Soak rolls.
         input(type="hidden" name="attr_condition_tracker")
-        button.button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
 
         button.noctis-button-yellow(type="action" name="act_clearconditions") One Round Passes
 
