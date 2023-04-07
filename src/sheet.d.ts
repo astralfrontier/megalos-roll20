@@ -40,8 +40,8 @@ declare function getAttrs(
 
 declare function setAttrs(
   attributes: Record<string, string>,
-  options: any,
-  callback: () => void
+  options?: any,
+  callback?: () => void
 )
 
 declare function startRoll(

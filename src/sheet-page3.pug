@@ -44,6 +44,9 @@ mixin condition(name)
           p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
         +status("wounded")
           p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
+        input(type="hidden" name="attr_status_tracker")
+        button.button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
+
     .col-xs-6
       //- 🟢
       +section("Conditions", "&#x1F7E2;")
@@ -63,6 +66,8 @@ mixin condition(name)
           p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
         +condition("shielded")
           p Gain +3 on Soak rolls.
+        input(type="hidden" name="attr_condition_tracker")
+        button.button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
 
         button.noctis-button-yellow(type="action" name="act_clearconditions") One Round Passes
 
