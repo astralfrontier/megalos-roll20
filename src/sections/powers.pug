@@ -7,8 +7,10 @@ fieldset.repeating_powers
       .col-xs-4.repositioned
         input(type="text" name="attr_powername" placeholder="Power Name")
       .col-xs-2.repositioned Type
-      .col-xs-4.repositioned
+      .col-xs-3.repositioned
         input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
+      .col-xs-1.repositioned
+        button.button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
     .row.repositioned
       .col.repositioned
         textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")

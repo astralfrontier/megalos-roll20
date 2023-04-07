@@ -1,7 +1,9 @@
 .row
   .col-xs-3 Name
-  .col-xs-9
+  .col-xs-8
     input(type="text" name="attr_weapon_name")
+  .col-xs-1
+    button.button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{weapon_name}}} {{text=@{weapon_desc}}} {{CD=@{weapon_core_damage}}} {{Range=@{weapon_range}}}")
 .row
   .col
     textarea(name="attr_weapon_desc" rows="3")

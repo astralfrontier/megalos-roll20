@@ -51,3 +51,14 @@ rolltemplate.sheet-rolltemplate-soak
     h3= "{{name}}"
   .sheet-rolltemplate-outcome
     +outcome("Soak", "{{roll}}")
+
+//- Usage: &{template:announce} {{name=Physical}} {{text=Some Text}}
+
+rolltemplate.sheet-rolltemplate-announce
+  .sheet-rolltemplate-header
+    h3= "{{name}}"
+  .sheet-rolltemplate-outcome
+    != "{{#allprops() name text}}"
+    +outcome('{{key}}', '{{value}}')
+    != "{{/allprops() name text}}"
+    p= "{{text}}"
