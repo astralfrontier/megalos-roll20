@@ -3,12 +3,7 @@ include containers
 .roll20-reset
   #noctis
     #megalos-sheet
-      //- Page buttons, found in tabstoggle.js and tabstoggle.sass
-      input.sheet-tabstoggle(type="hidden" name="attr_sheetTab" value="page1")
-      .sheet-tabs-listing
-        button(type="action" name="act_page1") Character
-        button(type="action" name="act_page2") Powers
-        button(type="action" name="act_page3") Conditions
+      include tabstoggle
 
       //- Include individual sheets in their entirety
       include sheet-page1
@@ -18,7 +13,6 @@ include containers
 //- Pull in datalists for auto completing text fields
 include datalists
 
-//- TODO: convert to typescript
 script(type="text/worker")
   include:typescript sheetworkers.ts
   include:typescript conditions-statuses.ts

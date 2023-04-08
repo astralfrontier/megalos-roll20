@@ -1,9 +1,6 @@
-const buttonlist: string[] = ['page1', 'page2', 'page3']
-
-buttonlist.forEach((button) => {
-  on(`clicked:${button}`, function () {
-    setAttrs({
-      sheetTab: button,
-    })
+on(`clicked:page`, function (event) {
+  const button = event.htmlAttributes['data-tab']
+  setAttrs({
+    sheetTab: button,
   })
 })
