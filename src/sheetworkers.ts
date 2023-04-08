@@ -43,25 +43,32 @@ function finishSkillRoll(outcome: StartRollCallbackValues) {
     },
   } = outcome
   const [dicestmt, diff] = expression.split('>')
-  let hits: number = 0
-  const diffN = parseInt(diff)
-  if (dicestmt.endsWith('kl1')) {
-    const die = Math.min(...dice)
-    hits = (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0)
-  } else {
-    hits = dice.reduce(
-      (hits, die) => hits + (die >= diffN ? 1 : 0) + (die == 20 ? 1 : 0),
-      0
-    )
+
+  // Discard the highest die if we rolled with disadvantage
+  let mydice: number[] = dice
+  if (dice.length == 2 && dicestmt.endsWith('kl1')) {
+    mydice = [Math.min(...dice)]
   }
+
+  // A hit is anything that beats difficulty or is a nat 20, a strong hit is any nat 20 that beats difficulty
+  const target = parseInt(diff)
+  const hitmap = mydice.map(
+    (die) => (die >= target ? 1 : 0) + (die == 20 ? 1 : 0)
+  )
+
+  // Calculate total hits
+  const hittotal = hitmap.reduce((sum, hits) => sum + hits, 0)
+
   let message
-  if (hits == 0) {
+  if (hittotal == 0) {
     message = 'FAIL'
-  } else if (dice.includes(20)) {
-    message = `STRONG HIT (${hits})`
+  } else if (hitmap.includes(2)) {
+    // Found a nat20 that beat the difficulty
+    message = `STRONG HIT (${hittotal})`
   } else {
-    message = `HIT (${hits})`
+    message = `HIT (${hittotal})`
   }
+
   finishRoll(rollId, {
     diff: `${diff}`,
     roll: dice.map((die) => `${die}`).join(' '),
