@@ -19,6 +19,11 @@ rolltemplate.sheet-rolltemplate-aether
     +outcome("Message", "{{computed::message}}")
 
 //- Usage: &{template:attack} {{name=Sword}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}} {{damage=[[0]]}}
+//-        {{afraid=[[@{status_save_afraid}]]}}
+//-        {{dazed=[[@{status_save_dazed}]]}}
+//-        {{taunted=[[@{status_save_taunted}]]}}
+//-        {{empowered=[[@{condition_empowered}]]}}
+//-        {{focused=[[@{condition_focused}]]}}
 
 rolltemplate.sheet-rolltemplate-attack
   .sheet-rolltemplate-header
@@ -28,6 +33,16 @@ rolltemplate.sheet-rolltemplate-attack
     +outcome("Roll", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
     +outcome("Damage", "{{damage}}")
+    +conditional("afraid")
+      +outcome("AFRAID", "Do -3 damage vs. whoever inflicted this on you.")
+    +conditional("dazed")
+      +outcome("DAZED", "Disadvantage on attack rolls & skill tests.")
+    +conditional("taunted")
+      +outcome("TAUNTED", "Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.")
+    +conditional("empowered")
+      +outcome("EMPOWERED", "Do +3 damage with single-target attacks, +1 with AOE/multitarget.")
+    +conditional("focused")
+      +outcome("FOCUSED", "Gain Advantage on attacks.")
 
 //- Usage: &{template:check} {{name=Attune}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}}
 //-        {{dazed=[[@{status_save_dazed}]]}}

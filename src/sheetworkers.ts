@@ -102,7 +102,7 @@ function startAttackRoll(
 ) {
   const diestring = modifiedDiceCount(weapondice, 20, v)
   startRoll(
-    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}}`,
+    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}} {{afraid=[[@{status_save_afraid}]]}} {{dazed=[[@{status_save_dazed}]]}} {{taunted=[[@{status_save_taunted}]]}} {{empowered=[[@{condition_empowered}]]}} {{focused=[[@{condition_focused}]]}}`,
     finishSkillRoll
   )
 }
