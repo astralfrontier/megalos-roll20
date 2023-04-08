@@ -1,13 +1,9 @@
 @use "noctis/theme"
 
 @for $page from 1 through 3
-  /*Configure the tab buttons*/
-  #megalos-sheet .sheet-page#{$page}
-    display: none
-
   /* show the selected tab */
-  #megalos-sheet .sheet-tabstoggle[value="page#{$page}"] ~ .sheet.sheet-page#{$page}
-    display: block
+  #megalos-sheet .sheet-tabstoggle:not([value="page#{$page}"]) ~ .sheet.sheet-page#{$page}
+    display: none
 
   #megalos-sheet .sheet-tabstoggle[value="page#{$page}"] ~ .sheet-tabs-listing button[name="act_page#{$page}"]
     color: goldenrod
