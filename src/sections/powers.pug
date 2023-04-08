@@ -1,3 +1,4 @@
+input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
 fieldset.repeating_powers
   //- Hidden field to allow CSS selectors to work
   input(type="hidden" name="attr_powertype" class="attr_powertype_key")
@@ -11,6 +12,16 @@ fieldset.repeating_powers
         input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
       .col-xs-1.repositioned
         button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
+    input.powertype_toggle(type="hidden" name="attr_powertype")
+    .row.repositioned.aether-current-charges
+      .col.repositioned Charges
+      each val in [1, 2, 3, 4, 5]
+        //- Remove _x_ once we figure out how to reach out of the repeating section
+        //- and access a global attribute
+        div(class=`col ac_die_x_${val}`)
+          label
+            input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
+            span= `AC #${val}`
     .row.repositioned
       .col.repositioned
         textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")

@@ -14,11 +14,14 @@
 .show-combat-effects-toggle[value="on"] ~ .show-combat-effects-section
   display: block
 
-.ac_die_5
+.unlock_ac5_toggle:not([value="on"]) ~ .ac_die_5
   display: none
 
-.unlock_ac5_toggle[value="on"] ~ .ac_die_5
-  display: block
+.aether-current-charges col
+  padding-top: 0px
+
+.powertype_toggle:not([value="Cantrip"]) ~ .aether-current-charges
+  display: none
 
 // Uncomment to support styling individual powers based on power type
 
