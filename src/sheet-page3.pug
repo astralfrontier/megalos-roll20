@@ -4,7 +4,7 @@ mixin status(name)
       strong= name.toUpperCase()
       block
     .col-xs-4
-      input(type="number" name=`attr_status_save_${name}`)
+      input(type="number" name=`attr_status_save_${name}` value="0")
       button.sheet-blank-button.noctis-button-yellow(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
@@ -13,7 +13,7 @@ mixin condition(name)
       strong= name.toUpperCase()
       block
     .col-xs-4
-      input(type="number" name=`attr_condition_${name}`)
+      input(type="number" name=`attr_condition_${name}` value="0")
       button.noctis-button-yellow(type="action" name="act_addcondition" data-condition-name=name) +
 
 .sheet.sheet-page3
