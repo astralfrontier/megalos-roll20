@@ -18,3 +18,20 @@
   //-   +box_value("Soak", "armor_soak")
   //- .col
   //-   +box_value("AHP", "armor_hp")
+.row
+  .col
+    .guard-block
+      input.defense-warning-trigger(type="hidden" name="attr_status_save_immobilized")
+      p.defense-warning-message IMMOBILIZED: Unable to move, -3 to Dodge.
+    .guard-block
+      input.defense-warning-trigger(type="hidden" name="attr_status_save_sick")
+      p.defense-warning-message SICK: Disadvantage on saves, -3 to Dodge &amp; Ward
+    .guard-block
+      input.defense-warning-trigger(type="hidden" name="attr_condition_blink")
+      p.defense-warning-message BLINK: Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
+    .guard-block
+      input.defense-warning-trigger(type="hidden" name="attr_condition_cloaked")
+      p.defense-warning-message CLOAKED: Unhittable by single target attacks, advantage on Sneaks, +3 to Dodge &amp; Ward vs. AOE attacks.
+    .guard-block
+      input.defense-warning-trigger(type="hidden" name="attr_condition_cover")
+      p.defense-warning-message COVER: +3 to Dodge &amp; Ward.
