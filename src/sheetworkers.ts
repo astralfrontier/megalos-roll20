@@ -236,7 +236,7 @@ on('clicked:soak', (event) => {
     const dice = v['role'] == 'Tank' ? 2 : 1
     const diestring = modifiedDiceCount(dice, 6, v, true)
     startRoll(
-      `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}]]}}`,
+      `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}]]}} {{barrier=[[@{barrier}]]}}`,
       (outcome) => {
         finishRoll(outcome.rollId, {})
       }

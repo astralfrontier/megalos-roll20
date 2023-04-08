@@ -44,13 +44,16 @@ rolltemplate.sheet-rolltemplate-save
     +outcome("Save", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
 
-//- Usage: &{template:soak} {{name=Physical}} {{roll=[[1d6]]}}
+//- Usage: &{template:soak} {{name=Physical}} {{roll=[[1d6]]}} {{barrier=[[@{barrier}]]}}
 
 rolltemplate.sheet-rolltemplate-soak
   .sheet-rolltemplate-header
     h3= "{{name}}"
   .sheet-rolltemplate-outcome
     +outcome("Soak", "{{roll}}")
+    != "{{#rollGreater() barrier 0}}"
+    +outcome("Barrier", "{{barrier}}")
+    != "{{/rollGreater() barrier 0}}"
 
 //- Usage: &{template:announce} {{name=Physical}} {{text=Some Text}}
 
