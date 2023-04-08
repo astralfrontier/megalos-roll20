@@ -16,9 +16,9 @@ fieldset.repeating_powers
     .row.repositioned.aether-current-charges
       .col.repositioned Charges
       each val in [1, 2, 3, 4, 5]
-        //- Remove _x_ once we figure out how to reach out of the repeating section
-        //- and access a global attribute
-        div(class=`col ac_die_x_${val}`)
+        if val == 5
+          input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
+        div(class=`col ac_die_${val}`)
           label
             input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
             span= `AC #${val}`

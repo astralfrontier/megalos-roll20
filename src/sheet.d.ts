@@ -53,3 +53,8 @@ declare function finishRoll(
   rollId: string,
   computedValues: Record<string, string>
 )
+
+declare function getSectionIDs(
+  section: string,
+  callback: (idarray: string[]) => void
+)
