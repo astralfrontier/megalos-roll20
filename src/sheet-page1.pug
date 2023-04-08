@@ -6,11 +6,11 @@
         .row
           .col
             #sheet-logo MEGALOS
-          .col.narrow
+          .col
             +box_current_max("HP", "hp")
-          .col.narrow
+          .col
             +box_current_max("Armor HP", "armor_hp")
-          .col.narrow
+          .col
             +box_current_max("Recovery", "recovery")
   .row
     .col
@@ -37,11 +37,11 @@
       //- Right column
       +section()
         .row
-          .col-xs-4.narrow
+          .col-xs-4
             +box_value("Level", "level")
-          .col-xs-4.narrow
-            +box_value("XP", "xp")
-          .col-xs-4.narrow
+          .col-xs-4
+            +box_value("XP", "xp")(style={width: '4em'})
+          .col-xs-4
             +box_value("RB", "rb")
       //- 📗
       +section("Skills", "&#x1F4D7;")

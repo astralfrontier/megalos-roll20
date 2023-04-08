@@ -1,13 +1,14 @@
 +section()
-  div
+  label
     input(type="checkbox" name="attr_show_combat_effects")
-    label Show Combat Effects
+    span Show Combat Effects
   input.show-combat-effects-toggle(type="hidden" name="attr_show_combat_effects")
   .show-combat-effects-section
     .row
-      .col.narrow
-        input(type="checkbox" name="attr_ce_toggle_advantage")
-        label Enabled
+      .col
+        label
+          input(type="checkbox" name="attr_ce_toggle_advantage")
+          span Enabled
       .col
         p Advantage stacks
       .col
