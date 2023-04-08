@@ -30,6 +30,7 @@ rolltemplate.sheet-rolltemplate-attack
     +outcome("Damage", "{{damage}}")
 
 //- Usage: &{template:check} {{name=Attune}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}}
+//-        {{dazed=[[@{status_save_dazed}]]}}
 
 rolltemplate.sheet-rolltemplate-check
   .sheet-rolltemplate-header
@@ -38,6 +39,8 @@ rolltemplate.sheet-rolltemplate-check
     +outcome("Difficulty", "{{computed::diff}}")
     +outcome("Roll", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
+    +conditional("dazed")
+      +outcome("DAZED", "Disadvantage on attack rolls & skill tests.")
 
 //- Usage: &{template:save} {{name=WOUNDED(10)}} {{roll=[[1d20]]}}
 

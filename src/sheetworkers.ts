@@ -72,13 +72,14 @@ function finishSkillRoll(outcome: StartRollCallbackValues) {
 function startSkillRoll(
   skillname: string,
   skillrank: number,
-  v: GetAttrsCallbackValues
+  v: GetAttrsCallbackValues,
+  includeStatus = true
 ) {
   const diestring = modifiedDiceCount(skillrank, 20, v)
-  startRoll(
-    `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Difficulty|15}]]}} {{message=[[0]]}}`,
-    finishSkillRoll
-  )
+  const template = `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Difficulty|15}]]}} {{message=[[0]]}}${
+    includeStatus ? ' {{dazed=[[@{status_save_dazed}]]}}' : ''
+  }`
+  startRoll(template, finishSkillRoll)
 }
 
 function startSaveRoll(
@@ -128,7 +129,7 @@ on('clicked:skilldefault', (event) => {
 on('clicked:trait', (event) => {
   const trait = event.htmlAttributes['data-trait-attr']
   getAttrs([trait], (v) => {
-    startSkillRoll(v[trait], 1, {})
+    startSkillRoll(v[trait], 1, {}, false)
   })
 })
 
