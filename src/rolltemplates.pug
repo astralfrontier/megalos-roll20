@@ -43,6 +43,7 @@ rolltemplate.sheet-rolltemplate-check
       +outcome("DAZED", "Disadvantage on attack rolls & skill tests.")
 
 //- Usage: &{template:save} {{name=WOUNDED(10)}} {{roll=[[1d20]]}}
+//-        {{sick=[[@{status_save_sick}]]}}
 
 rolltemplate.sheet-rolltemplate-save
   .sheet-rolltemplate-header
@@ -50,6 +51,8 @@ rolltemplate.sheet-rolltemplate-save
   .sheet-rolltemplate-outcome
     +outcome("Save", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
+    +conditional("sick")
+      +outcome("SICK", "Disadvantage on saves, -3 to Dodge & Ward.")
 
 //- Usage: &{template:soak} {{name=Physical}} {{roll=[[1d6]]}} {{barrier=[[@{barrier}]]}}
 //-        {{exposed=[[@{status_save_exposed}]]}}

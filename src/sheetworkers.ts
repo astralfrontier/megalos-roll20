@@ -89,7 +89,7 @@ function startSaveRoll(
 ) {
   const diestring = modifiedDiceCount(1, 20, v)
   startRoll(
-    `&{template:save} {{name=${status}}} {{roll=[[${diestring}>${difficulty}]]}} {{message=[[0]]}}`,
+    `&{template:save} {{name=${status}}} {{roll=[[${diestring}>${difficulty}]]}} {{message=[[0]]}} {{sick=[[@{status_save_sick}]]}}`,
     finishSkillRoll
   )
 }
