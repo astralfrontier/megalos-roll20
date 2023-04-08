@@ -22,9 +22,9 @@ mixin box_default(label, help)
           if help
             p= help
 
-mixin box_value(label, attr_name)
-  +box_default(label, "Value")
-    input(type="number" name=`attr_${attr_name}` value="0")
+mixin box_value(label, attr_name, help = "Value")
+  +box_default(label, help)
+    input(type="number" name=`attr_${attr_name}` value="0")&attributes(attributes)
     if block
       block
 
