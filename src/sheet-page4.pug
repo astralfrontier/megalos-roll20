@@ -63,9 +63,10 @@ mixin mini_current_max(label, attr_name)
           .col-xs-6
             strong= "Name: "
             span(name="attr_powername")
-            p
-              span(name="attr_powerdesc" style="white-space: pre-line")
           .col-xs-5
             span(name="attr_powertype")
           .col-xs-1
             button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
+        .row
+          .col
+            span(name="attr_powerdesc" style="white-space: pre-line")
