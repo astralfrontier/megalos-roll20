@@ -1,21 +1,20 @@
-.sheet.sheet-page2
-  .row
-    .col
-      +box_current_max("HP", "hp")
-      +box_current_max("Recovery", "recovery")
-    .col
-      +box_current_max("Armor HP", "armor_hp")
-      +box_value("Recovery Base (RB)", "rb")
-    .col
-      +section("Aether Current")
-        textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="4")
-        div
-          input(type="checkbox" name="attr_unlock_ac5")
-          label Unlock fifth AC die
-  .row
-    include sections/aethercurrents
-  .row
-    .col
-      //- ⚡
-      +section("Powers", "&#x26A1;")
-        include sections/powers
+.row
+  .col
+    +box_current_max("HP", "hp")
+    +box_current_max("Recovery", "recovery")
+  .col
+    +box_current_max("Armor HP", "armor_hp")
+    +box_value("Recovery Base (RB)", "rb")
+  .col
+    +section("Aether Current")
+      textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="4")
+      div
+        input(type="checkbox" name="attr_unlock_ac5")
+        label Unlock fifth AC die
+.row
+  include sections/aethercurrents
+.row
+  .col
+    //- ⚡
+    +section("Powers", "&#x26A1;")
+      include sections/powers

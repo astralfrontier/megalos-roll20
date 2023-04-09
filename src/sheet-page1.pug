@@ -1,54 +1,53 @@
-.sheet.sheet-page1
-  .row
-    .col
-      //- Top level
-      +section()
-        .row
-          .col
-            #sheet-logo MEGALOS
-          .col
-            +box_current_max("HP", "hp")
-          .col
-            +box_current_max("Armor HP", "armor_hp")
-          .col
-            +box_current_max("Recovery", "recovery")
-  .row
-    .col
-      include sections/combat-effects
-  .row
-    .col-xs-6
-      //- Left column
-      //- 🧑
-      +section("Character Profile", "&#x1F9D1;")
-        include sections/profile
-      //- 👥
-      +section("Bonds", "&#x1F465;")
-        include sections/bonds
-      //- ⚔
-      +section("Weapon", "&#x2694;")
-        include sections/weapon
-      //- 🛡️
-      +section("Armor", "&#x1F6E1;")
-        include sections/armor
-      //- ❤️
-      +section("Soak", "&#x2764;")
-        include sections/soak
-    .col-xs-6
-      //- Right column
-      +section()
-        .row
-          .col-xs-4
-            +box_value("Level", "level")
-          .col-xs-4
-            +box_value("XP", "xp")(style={width: '4em'})
-          .col-xs-4
-            +box_value("RB", "rb")
-      //- 📗
-      +section("Skills", "&#x1F4D7;")
-        include sections/skills
-      //- ♻️
-      +section("Traits", "&#x267B;")
-        include sections/traits
-      //- 💎
-      +section("Inventory", "&#x1F48E;")
-        include sections/inventory
+.row
+  .col
+    //- Top level
+    +section()
+      .row
+        .col
+          #sheet-logo MEGALOS
+        .col
+          +box_current_max("HP", "hp")
+        .col
+          +box_current_max("Armor HP", "armor_hp")
+        .col
+          +box_current_max("Recovery", "recovery")
+.row
+  .col
+    include sections/combat-effects
+.row
+  .col-xs-6
+    //- Left column
+    //- 🧑
+    +section("Character Profile", "&#x1F9D1;")
+      include sections/profile
+    //- 👥
+    +section("Bonds", "&#x1F465;")
+      include sections/bonds
+    //- ⚔
+    +section("Weapon", "&#x2694;")
+      include sections/weapon
+    //- 🛡️
+    +section("Armor", "&#x1F6E1;")
+      include sections/armor
+    //- ❤️
+    +section("Soak", "&#x2764;")
+      include sections/soak
+  .col-xs-6
+    //- Right column
+    +section()
+      .row
+        .col-xs-4
+          +box_value("Level", "level")
+        .col-xs-4
+          +box_value("XP", "xp")(style={width: '4em'})
+        .col-xs-4
+          +box_value("RB", "rb")
+    //- 📗
+    +section("Skills", "&#x1F4D7;")
+      include sections/skills
+    //- ♻️
+    +section("Traits", "&#x267B;")
+      include sections/traits
+    //- 💎
+    +section("Inventory", "&#x1F48E;")
+      include sections/inventory
