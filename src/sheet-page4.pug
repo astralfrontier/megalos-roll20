@@ -1,0 +1,71 @@
+mixin mini_default(label, help)
+  strong(style="width: 6rem")= `${label}: `
+  if block
+    block
+
+mixin mini_value(label, attr_name, help = "Value")
+  +mini_default(label, help)
+    input(type="number" name=`attr_${attr_name}` value="0")&attributes(attributes)
+    if block
+      block
+
+mixin mini_current_max(label, attr_name)
+  +mini_default(label)
+    input(type="number" name=`attr_${attr_name}` value="0")
+    span= " / "
+    input(type="number" name=`attr_${attr_name}_max` value="0")
+
+.row
+  .col
+    //- Top level
+    +section()
+      .row
+        .col
+          strong
+            span(name="attr_character_name")
+          span= " - "
+          span(name="attr_class")
+          span= " ("
+          span(name="attr_calling")
+          span= ")"
+        .col
+          strong Movement:
+          span TODO
+      .row
+        .col
+          +mini_current_max("HP", "hp")
+        .col
+          +mini_value("RB", "rb")
+        .col
+          +mini_value("Dodge", "armor_dodge")
+        .col
+          +mini_value("Ward", "armor_ward")
+      .row
+        each val in ["physical", "astral", "umbral", "toxic"]
+          - var label = val.charAt(0).toUpperCase() + val.slice(1)
+          - var attr_name = `soak_${val}`
+          .col
+            +mini_value(label, attr_name)
+              button.sheet-blank-button.noctis-button-yellow(type="action" name="act_soak" data-soak-label=label data-soak-attr=attr_name)
+      .row
+        .col
+          +mini_value("Auto-Atk", "weapon_auto_attack")
+        .col
+          +mini_value("Core Dmg", "weapon_core_damage")
+        .col
+          +mini_value("Range", "weapon_range")
+        .col
+          +mini_value("Wpn Dice", "weapon_dice")
+            button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
+    +section("Talents and Powers")
+      fieldset.repeating_powers
+        .row
+          .col-xs-6
+            strong= "Name: "
+            span(name="attr_powername")
+            p
+              span(name="attr_powerdesc" style="white-space: pre-line")
+          .col-xs-5
+            span(name="attr_powertype")
+          .col-xs-1
+            button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
