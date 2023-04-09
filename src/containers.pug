@@ -30,8 +30,9 @@ mixin box_value(label, attr_name, help = "Value")
 
 //- Show two framed boxes of current and maximum values, e.g. HP
 mixin box_current_max(label, attr_name)
-  +box_default(label)
-    .row.center
+  .noctis-box
+    h4.noctis-box-title= label
+    .row.center.minimal
       .col.center
         input(type="number" name=`attr_${attr_name}` value="0")
         p Current
