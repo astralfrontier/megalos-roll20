@@ -228,7 +228,7 @@ on('clicked:attack', (event) => {
         (aether_current_4 == 'Throne Damage' ? 1 : 0) +
         (aether_current_5 == 'Throne Damage' ? 1 : 0)
       startAttackRoll(
-        weapon_name,
+        weapon_name || '@{character_name}',
         parseInt(weapon_dice),
         weapon_final_damage,
         v
