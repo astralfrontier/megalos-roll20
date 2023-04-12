@@ -14,6 +14,8 @@ include containers
         include sheet-page3
       .sheet.sheet-page4
         include sheet-page4
+      .sheet.sheet-page5
+        include sheet-page5
 
 //- Pull in datalists for auto completing text fields
 include datalists
@@ -23,6 +25,7 @@ script(type="text/worker")
   include:typescript conditions-statuses.ts
   include:typescript tabstoggle.ts
   include:typescript aethercurrents.ts
+  include:typescript jsonimport.ts
 
 //- Roll templates
 include rolltemplates

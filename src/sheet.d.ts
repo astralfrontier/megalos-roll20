@@ -58,3 +58,7 @@ declare function getSectionIDs(
   section: string,
   callback: (idarray: string[]) => void
 )
+
+declare function generateRowID(): string
+
+declare function removeRepeatingRow(row: string): void
