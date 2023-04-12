@@ -5,6 +5,9 @@
 $gutter: 0.8rem
 @import "./flexbox/main.scss"
 
+@mixin emoji
+  font-family: 'Noto Color Emoji', sans-serif
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap')
 
 // Roll20 style reset
@@ -36,6 +39,9 @@ $gutter: 0.8rem
   .repositioned *
     position: inherit !important
 
+  .noctis-emoji
+    @include emoji
+
   .noctis-box
     color: black
     background: white
@@ -49,6 +55,7 @@ $gutter: 0.8rem
     width: 100%
 
   .noctis-section-icon
+    @include emoji
     position: absolute
     background: white
     border: thick solid goldenrod
@@ -56,7 +63,6 @@ $gutter: 0.8rem
     width: 1.5em
     text-align: center
     box-shadow: 2px 2px
-    font-family: 'Noto Color Emoji', sans-serif
 
   .noctis-section-title
     @include theme.white-black-border
