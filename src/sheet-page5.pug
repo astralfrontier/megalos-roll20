@@ -1,7 +1,8 @@
 .row
   .col
     +section("Import")
-      p Paste the Export from the MEGALOS character maker here, then click "Import".
+      p You can use the MEGALOS character maker: https://megalos.astralfrontier.org/character
+      p On the "Sheet" tab of that tool, click "Export". Copy the JSON into this text field. Click "Import".
       p WARNING: this will delete ALL existing character data!
-      textarea(name="attr_jsonimport" rows="8")
+      textarea(name="attr_jsonimport" rows="8" style="white-space: pre-line")
       button.noctis-button-red(type="action" name="act_jsonimport") Import
