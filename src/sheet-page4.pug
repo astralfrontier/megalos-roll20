@@ -20,7 +20,7 @@ mixin mini_current_max(label, attr_name)
     //- Top level
     +section()
       .row
-        .col
+        .col-xs-6
           strong
             span(name="attr_character_name")
           span= " - "
@@ -28,9 +28,10 @@ mixin mini_current_max(label, attr_name)
           span= " ("
           span(name="attr_calling")
           span= ")"
-        .col
+        .col-xs-2
           strong Movement:
-          span TODO
+        .col-xs-4
+          input(type="text" name="attr_movement" list="movement")
       .row
         .col
           +mini_current_max("HP", "hp")
