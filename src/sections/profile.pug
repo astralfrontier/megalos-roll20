@@ -1,15 +1,25 @@
 //- Character Profile, including name, pronouns, etc.
 
+- var announce_profile = "Nice to meet you! I'm from @{homeland}. My pronouns are @{pronouns}. My class is @{class}, my calling is @{calling}, and my role is @{role}."
+
 mixin profilefield(attr, label)
   .row
     .col-xs-3= label
     .col-xs-9
       input(type="text" name=attr)&attributes(attributes)
 
+mixin profilewithannounce(attr, label)
+  .row
+    .col-xs-3= label
+    .col-xs-7
+      input(type="text" name=attr)&attributes(attributes)
+    .col-xs-2
+      button.noctis-button-announce(type="roll" name="announce_profile" value=`&{template:announce} {{name=@{character_name}}} {{text=${announce_profile}}}`)
+
 //- "character_name" is the canonical attribute for the character object overall, so use it
 +profilefield("attr_character_name", "Name")
 +profilefield("attr_homeland", "Homeland")
-+profilefield("attr_pronouns", "Pronouns")
++profilewithannounce("attr_pronouns", "Pronouns")
 +profilefield("attr_class", "Class")(list="classes")
 +profilefield("attr_calling", "Calling")(list="callings")
 +profilefield("attr_role", "Role")(list="roles")

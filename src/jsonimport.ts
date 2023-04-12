@@ -95,7 +95,7 @@ on('clicked:jsonimport', function () {
     O['talent_special'] = character.traits.special
 
     // Inventory
-    O['ip'] = '0'
+    O['ip'] = `${character.armor.finalInventoryPoints}`
     O['ip_max'] = `${character.armor.finalInventoryPoints}`
 
     // Aether Current
