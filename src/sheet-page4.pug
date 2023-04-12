@@ -59,14 +59,12 @@ mixin mini_current_max(label, attr_name)
             button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
     +section("Talents and Powers")
       fieldset.repeating_powers
-        .row
-          .col-xs-6
+        .row.repositioned
+          .col-xs-6.repositioned
             strong= "Name: "
             span(name="attr_powername")
-          .col-xs-5
+          .col-xs-6.repositioned
             span(name="attr_powertype")
-          .col-xs-1
-            button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
-        .row
-          .col
+        .row.repositioned
+          .col.repositioned
             span(name="attr_powerdesc" style="white-space: pre-line")
