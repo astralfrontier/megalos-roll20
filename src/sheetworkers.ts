@@ -8,6 +8,8 @@ const ce_advantage_attrs = [
   'ce_disadvantage',
 ]
 
+const ce_soak_attrs = ['ce_toggle_soak', 'ce_soak_bonus', 'condition_shielded']
+
 // Return a string (e.g. 3d20) to roll
 // Look for advantage & disadvantage values in the retrieved attributes
 // If enabled, modify input by those numbers
@@ -240,16 +242,26 @@ on('clicked:attack', (event) => {
 on('clicked:soak', (event) => {
   const label = event.htmlAttributes['data-soak-label']
   const attr_name = event.htmlAttributes['data-soak-attr']
-  getAttrs(['role', attr_name, ...ce_advantage_attrs], (v) => {
-    const dice = v['role'] == 'Tank' ? 2 : 1
-    const diestring = modifiedDiceCount(dice, 6, v, true)
-    startRoll(
-      `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}]]}} {{barrier=[[@{barrier}]]}} {{exposed=[[@{status_save_exposed}]]}} {{shielded=[[@{condition_shielded}]]}}`,
-      (outcome) => {
-        finishRoll(outcome.rollId, {})
+  getAttrs(
+    ['role', attr_name, ...ce_advantage_attrs, ...ce_soak_attrs],
+    (v) => {
+      const dice = v['role'] == 'Tank' ? 2 : 1
+      const diestring = modifiedDiceCount(dice, 6, v, true)
+      let bonuses = 0
+      if (v['ce_toggle_soak'] == 'on') {
+        bonuses += parseInt(v['ce_soak_bonus'])
       }
-    )
-  })
+      if (parseInt(v['condition_shielded']) > 0) {
+        bonuses += 3
+      }
+      startRoll(
+        `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}+${bonuses}]]}} {{barrier=[[@{barrier}]]}} {{exposed=[[@{status_save_exposed}]]}} {{shielded=[[@{condition_shielded}]]}}`,
+        (outcome) => {
+          finishRoll(outcome.rollId, {})
+        }
+      )
+    }
+  )
 })
 
 on('clicked:addcondition', (event) => {
