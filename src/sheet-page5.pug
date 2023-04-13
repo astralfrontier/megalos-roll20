@@ -6,15 +6,21 @@
       p WARNING: this will delete ALL existing character data!
       textarea(name="attr_jsonimport" rows="8" style="white-space: pre-line")
       button.noctis-button-red(type="action" name="act_jsonimport") Import
-    +section("Avatar Reactions")
-      fieldset.repeating_reactions
-        .row.repositioned
-          .col-xs-1.repositioned
-            input(type="text" name="attr_reaction_emoji" placeholder="Emoji")
-          .col-xs-3.repositioned
-            input(type="text" name="attr_reaction_name" placeholder="Reaction Name")
-          .col-xs-6.repositioned
-            input(type="text" name="attr_reaction_url" placeholder="Avatar URL")
-          .col-xs-2.repositioned
-            button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
-              span.noctis-emoji(name="attr_reaction_emoji")
+    //- Configured in variables.json
+    if avatar_reactions_enabled
+      +section("Avatar Reactions")
+        fieldset.repeating_reactions
+          .row.repositioned
+            .col-xs-1.repositioned
+              input(type="text" name="attr_reaction_emoji" placeholder="Emoji")
+            .col-xs-3.repositioned
+              input(type="text" name="attr_reaction_name" placeholder="Reaction Name")
+            .col-xs-6.repositioned
+              input(type="text" name="attr_reaction_url" placeholder="Avatar URL")
+            .col-xs-2.repositioned
+              button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
+                span.noctis-emoji(name="attr_reaction_emoji")
+    +section()
+      hr
+      p(style="text-align: center")
+        i= `This is version ${package.version} of the MEGALOS character sheet, created by ${package.author}`
