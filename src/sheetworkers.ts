@@ -10,6 +10,8 @@ const ce_advantage_attrs = [
 
 const ce_soak_attrs = ['ce_toggle_soak', 'ce_soak_bonus', 'condition_shielded']
 
+const ce_ac_attrs = ['ce_toggle_ac_bonus', 'ce_ac_bonus']
+
 // Return a string (e.g. 3d20) to roll
 // Look for advantage & disadvantage values in the retrieved attributes
 // If enabled, modify input by those numbers
@@ -153,10 +155,14 @@ on('clicked:save', (event) => {
 
 on('clicked:aethercurrent', (event) => {
   const number = event.htmlAttributes['data-aethercurrent-number']
-  getAttrs(['class'], (v) => {
+  getAttrs(['class', ...ce_ac_attrs], (v) => {
     const className = v.class
+    let roll = '1d6'
+    if (v['ce_toggle_ac_bonus'] == 'on') {
+      roll = `1d6+${parseInt(v['ce_ac_bonus'])}`
+    }
     startRoll(
-      `&{template:aether} {{name=Aether Current (${number})}} {{roll=[[1d6]]}} {{message=[[0]]}}`,
+      `&{template:aether} {{name=Aether Current (${number})}} {{roll=[[${roll}]]}} {{message=[[0]]}}`,
       (outcome) => {
         const {
           rollId,
