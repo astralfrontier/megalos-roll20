@@ -100,6 +100,7 @@ on('clicked:jsonimport', function () {
 
     // Aether Current
     O['aether_current'] = character.class.aetherCurrentRules.join('\n')
+    O['unlock_ac5'] = character.features.fifthAetherCurrentDie ? 'on' : '0'
 
     // Powers
     for (let power of character.powers) {
