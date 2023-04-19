@@ -10,14 +10,14 @@ fieldset.repeating_powers
       .repeating-section.column.is-narrow Type
       .repeating-section.column
         input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
-      .repeating-section.column.is-narrow
+      .repeating-section.column.is-narrow.pt-0
         button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
     input.powertype_toggle(type="hidden" name="attr_powertype")
-    .repeating-section.columns.aether-current-charges
+    .repeating-section.columns.aether-current-charges.pt-0
       each val in [1, 2, 3, 4, 5]
         if val == 5
           input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
-        .repeating-section.column(class=`ac_die_${val}`)
+        .repeating-section.column.pt-0(class=`ac_die_${val}`)
           label
             input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
             span(name=`attr_aether_current_${val}`)
