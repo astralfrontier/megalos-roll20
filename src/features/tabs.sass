@@ -1,5 +1,3 @@
-@use "../noctis/theme"
-
 // Use some ridiculously high number of pages.
 // Anything that's not actually used will get ignored
 @for $page from 1 through 99
@@ -18,9 +16,9 @@
   justify-content: center
 
   button
-    @include theme.white-black-border
-    @include theme.blue-solid
-    @include theme.outlined-font
+    @include white-black-border
+    @include blue-solid
+    @include outlined-font
     padding-left: 2px
     padding-right: 2px
     padding-top: 2px
