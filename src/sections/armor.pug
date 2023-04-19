@@ -1,25 +1,25 @@
-.row
-  .col-xs-3 Name
-  .col-xs-7
+.columns.is-vcentered
+  .column.is-narrow Name
+  .column
     input(type="text" name="attr_armor_name")
-  .col-xs-2
+  .column.is-narrow
     button.noctis-button-announce(type="roll" name="announce_armor" value="&{template:announce} {{name=@{armor_name}}} {{text=@{armor_desc}}} {{Dodge=@{armor_dodge}}} {{Ward=@{armor_ward}}}")
-.row
-  .col
+.columns
+  .column
     textarea(name="attr_armor_desc" rows="3")
-.row
-  .col
+.columns
+  .column
     +box_value("Dodge", "armor_dodge")
-  .col
+  .column
     +box_value("Ward", "armor_ward")
-  .col
+  .column
     +box_value("Barrier", "barrier", "Uses")
   //- .col
   //-   +box_value("Soak", "armor_soak")
   //- .col
   //-   +box_value("AHP", "armor_hp")
-.row
-  .col
+.columns
+  .column
     .guard-block
       input.defense-warning-trigger(type="hidden" name="attr_status_save_immobilized" value="0")
       p.defense-warning-message IMMOBILIZED: Unable to move, -3 to Dodge.

@@ -1,30 +1,28 @@
-.row
-  .col
+.columns
+  .column
     +box_current_max("HP", "hp")
     +box_current_max("Recovery", "recovery")
-  .col
+  .column
     +box_current_max("Armor HP", "armor_hp")
     +box_value("Recovery Base (RB)", "rb", "HP/4")
-  .col
+  .column
     +section("Aether Current")
       textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="4")
       div
         input(type="checkbox" name="attr_unlock_ac5")
         label Unlock fifth AC die
-.row
+.columns
   include sections/aethercurrents
-.row
-  .col
+.columns
+  .column
     +box_value("Auto-Atk", "weapon_auto_attack")
-  .col
+  .column
     +box_value("Core Dmg", "weapon_core_damage")
-  .col
+  .column
     +box_value("Range", "weapon_range")
-  .col
+  .column
     +box_value("Wpn Dice", "weapon_dice")
       button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
-.row
-  .col
-    //- ⚡
-    +section("Powers", "&#x26A1;")
-      include sections/powers
+//- ⚡
++section("Powers", "&#x26A1;")
+  include sections/powers

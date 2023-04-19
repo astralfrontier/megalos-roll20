@@ -2,24 +2,47 @@
 
 - var announce_profile = "Nice to meet you! I'm **@{character_name}** from **@{homeland}**. My pronouns are **@{pronouns}**. My class is **@{class}**, my calling is **@{calling}**, and my role is **@{role}**."
 
-mixin profilefield(attr, label)
-  .row
-    .col-xs-3= label
-    .col-xs-9
-      input(type="text" name=attr)&attributes(attributes)
-
-mixin profilewithannounce(attr, label)
-  .row
-    .col-xs-3= label
-    .col-xs-7
-      input(type="text" name=attr)&attributes(attributes)
-    .col-xs-2
-      button.noctis-button-announce(type="roll" name="announce_profile" value=`&{template:announce} {{name=@{character_name}}} {{text=${announce_profile}}}`)
-
 //- "character_name" is the canonical attribute for the character object overall, so use it
-+profilefield("attr_character_name", "Name")
-+profilefield("attr_homeland", "Homeland")
-+profilewithannounce("attr_pronouns", "Pronouns")
-+profilefield("attr_class", "Class")(list="classes")
-+profilefield("attr_calling", "Calling")(list="callings")
-+profilefield("attr_role", "Role")(list="roles")
+-
+  var profile_attributes = [
+    {
+      attr: "attr_character_name",
+      label: "Name"
+    },
+    {
+      attr: "attr_homeland",
+      label: "Homeland"
+    },
+    {
+      attr: "attr_pronouns",
+      label: "Pronouns",
+      announce: true
+    },
+    {
+      attr: "attr_class",
+      label: "Class",
+      list: "classes"
+    },
+    {
+      attr: "attr_calling",
+      label: "Calling",
+      list: "callings"
+    },
+    {
+      attr: "attr_role",
+      label: "Role",
+      list: "roles"
+    }
+  ]
+
+each entry in profile_attributes
+  .columns
+    .column.is-one-fifth= entry.label
+    .column
+      if entry.list
+        input(type="text" name=entry.attr list=entry.list)
+      else
+        input(type="text" name=entry.attr list=entry.list)
+    if entry.announce
+      .column.is-narrow 
+        button.noctis-button-announce(type="roll" name="announce_profile" value=`&{template:announce} {{name=@{character_name}}} {{text=${announce_profile}}}`)

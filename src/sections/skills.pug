@@ -1,24 +1,18 @@
-- var roll_syntax = "d20>?{Difficulty|15}"
-- var skill_roll_syntax = `/roll @{skillrank}${roll_syntax}`
-- var default_roll_syntax = `/roll 1${roll_syntax}`
-
-mixin skillname(attr)
-  input(type="text" name=attr placeholder="Skill name" list="skillnames")&attributes(attributes)
-
-mixin skillrank(attr)
-  input(type="number" name=attr placeholder="Rank" min="1" max="5" value="2")&attributes(attributes)
+//- TODO repeating_section
 
 fieldset.repeating_skills
-  .row.repositioned
-    .col-xs-9.repositioned
-      +skillname("attr_skillname")
-    .col-xs-2.repositioned
-      +skillrank("attr_skillrank")
-    .col-xs-1.repositioned
+  .columns
+    .column
+      input(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
+    .column.is-narrow
+      input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5" value="2")
+    .column.is-narrow
       button.sheet-blank-button.noctis-button-green(type="action" name="act_skill")
         
-.row
-  .col-xs-11
-    +skillname("default_skillname")(value="All Others" disabled=true)
-  .col-xs-1
+.columns
+  .column
+    input(type="text" value="All Others" readonly)
+  .column.is-narrow
+    input(type="number" value="1" readonly)
+  .column.is-narrow
     button.sheet-blank-button.noctis-button-green(type="action" name="act_skilldefault")

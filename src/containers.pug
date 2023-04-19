@@ -16,8 +16,8 @@ mixin box_default(label, help)
   .noctis-box
     h4.noctis-box-title= label
     if block
-      .row.center
-        .col.center
+      .columns.is-centered
+        .column.is-narrow
           block
           if help
             p= help
@@ -32,10 +32,10 @@ mixin box_value(label, attr_name, help = "Value")
 mixin box_current_max(label, attr_name)
   .noctis-box
     h4.noctis-box-title= label
-    .row.center.minimal
-      .col.center
+    .columns.is-centered
+      .column.is-narrow
         input(type="number" name=`attr_${attr_name}` value="0")
         p Current
-      .col.center
+      .column.is-narrow
         input(type="number" name=`attr_${attr_name}_max` value="0")
         p Max
