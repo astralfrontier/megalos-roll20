@@ -15,54 +15,55 @@ mixin mini_current_max(label, attr_name)
     span= " / "
     input(type="number" name=`attr_${attr_name}_max` value="0")
 
-.row
-  .col
+.columns
+  .column
     //- Top level
     +section()
-      .row
-        .col-xs-6
+      .columns
+        .column.is-6
           strong
             span(name="attr_character_name")
           span= " - "
           span(name="attr_class")
-        .col-xs-2
+        .column.is-2
           strong Movement:
-        .col-xs-4
+        .column.is-3
           input(type="text" name="attr_movement" list="movement")
-      .row
-        .col
+      .columns
+        .column
           +mini_current_max("HP", "hp")
-        .col
+        .column
           +mini_value("RB", "rb")
-        .col
+        .column
           +mini_value("Dodge", "armor_dodge")
-        .col
+        .column
           +mini_value("Ward", "armor_ward")
-      .row
+      .columns
         each val in ["physical", "astral", "umbral", "toxic"]
           - var label = val.charAt(0).toUpperCase() + val.slice(1)
           - var attr_name = `soak_${val}`
-          .col
+          .column
             +mini_value(label, attr_name)
               button.sheet-blank-button.noctis-button-yellow(type="action" name="act_soak" data-soak-label=label data-soak-attr=attr_name)
-      .row
-        .col
+      .columns
+        .column
           +mini_value("Auto-Atk", "weapon_auto_attack")
-        .col
+        .column
           +mini_value("Core Dmg", "weapon_core_damage")
-        .col
+        .column
           +mini_value("Range", "weapon_range")
-        .col
+        .column
           +mini_value("Wpn Dice", "weapon_dice")
             button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
     +section("Talents and Powers")
       fieldset.repeating_powers
-        .row.repositioned
-          .col-xs-6.repositioned
-            strong= "Name: "
-            span(name="attr_powername")
-          .col-xs-6.repositioned
-            span(name="attr_powertype")
-        .row.repositioned
-          .col.repositioned
+        .columns
+          .column.is-6
+            strong
+              span(name="attr_powername")
+          .column.is-6
+            strong
+              span(name="attr_powertype")
+        .columns
+          .column
             span(name="attr_powerdesc" style="white-space: pre-line")
