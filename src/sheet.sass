@@ -1,14 +1,11 @@
 // Must come first, since Noctis declarations depend on it
 @import "./features/emoji"
-
-// Import our new framework
-@import "./noctis"
-
 // Standard features
 @import "./features/roll20-reset"
+// @import "./features/tooltip"
+// Import our new framework
+@import "./noctis"
 @import "./features/tabs"
-@import "./features/tooltip"
-
 @import "./rolltemplates"
 
 #megalos-sheet
@@ -28,17 +25,17 @@
   border-bottom: thick dotted gray
 
 .show-combat-effects-toggle:not([value="on"]) ~ .show-combat-effects-section
-  display: none
+  display: none !important
 
 .unlock_ac5_toggle:not([value="on"]) ~ .ac_die_5
-  display: none
+  display: none !important
 
 .powertype_toggle:not([value="Cantrip"]) ~ .aether-current-charges
-  display: none
+  display: none !important
 
 .defense-warning-trigger[value="0"] ~ .defense-warning-message,
 .defense-warning-trigger[value=""] ~ .defense-warning-message
-  display: none
+  display: none !important
 
 // Uncomment to support styling individual powers based on power type
 
