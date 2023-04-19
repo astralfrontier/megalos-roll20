@@ -3,7 +3,7 @@
   .column
     input(type="text" name="attr_weapon_name")
   .column.is-narrow
-    button.noctis-button-announce(type="roll" name="announce_weapon" value="&{template:announce} {{name=@{weapon_name}}} {{text=@{weapon_desc}}} {{CD=@{weapon_core_damage}}} {{Range=@{weapon_range}}}")
+    button.noctis-button-announce(type="roll" name="announce_weapon" value="&{template:announce} {{name=@{weapon_name}}} {{text=@{weapon_desc}}} {{Auto-Attack=@{weapon_auto_attack}}} {{Core Damage=@{weapon_core_damage}}} {{Range=@{weapon_range}}}")
 .columns
   .column
     textarea(name="attr_weapon_desc" rows="3")
