@@ -1,17 +1,20 @@
 //- Top level
-+section()
-  .columns
-    .column.is-one-quarter
-      #sheet-logo MEGALOS
-    .column.is-one-quarter
-      +box_current_max("HP", "hp")
-    .column.is-one-quarter
-      +box_current_max("Armor HP", "armor_hp")
-    .column.is-one-quarter
-      +box_current_max("Recovery", "recovery")
 .columns
   .column
-    include sections/combat-effects
+    +section()
+      .columns
+        .column
+          #sheet-logo MEGALOS
+        .column.is-narrow
+          +box_current_max("HP", "hp")
+        .column.is-narrow
+          +box_current_max("Armor HP", "armor_hp")
+        .column.is-narrow
+          +box_current_max("Recovery", "recovery")
+.columns
+  .column
+    +section()
+      include sections/combat-effects
 .columns
   .column.is-one-half
     //- Left column

@@ -18,15 +18,13 @@
   @import "../node_modules/bulma/sass/layout/_all"
 
 #sheet-logo
+  text-align: center
   font-family: "Shadows Into Light", "Arial"
   font-size: 64px
   border-bottom: thick dotted gray
 
-.show-combat-effects-section
+.show-combat-effects-toggle:not([value="on"]) ~ .show-combat-effects-section
   display: none
-
-.show-combat-effects-toggle[value="on"] ~ .show-combat-effects-section
-  display: block
 
 .unlock_ac5_toggle:not([value="on"]) ~ .ac_die_5
   display: none
