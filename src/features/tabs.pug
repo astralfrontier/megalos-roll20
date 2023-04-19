@@ -10,7 +10,7 @@ mixin tabs(attr, tabdata)
     .tabs-buttons
       - var tabnumber = 0
       while tabnumber < tabdata.length
-        button.button.is-large.m-2(class=tabdata[tabnumber].textclass type="action" name=`act_changetab` data-tab-attr=attr data-tab=`tab${tabnumber + 1}`)!= tabdata[tabnumber].name
+        button.button.is-large(class=tabdata[tabnumber].textclass type="action" name=`act_changetab` data-tab-attr=attr data-tab=`tab${tabnumber + 1}`)!= tabdata[tabnumber].name
         - tabnumber++
     if block
       block
