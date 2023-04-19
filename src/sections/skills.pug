@@ -1,12 +1,10 @@
-//- TODO repeating_section
-
 fieldset.repeating_skills
-  .columns
-    .column
+  .repeating-section.columns
+    .repeating-section.column
       input(type="text" name="attr_skillname" placeholder="Skill name" list="skillnames")
-    .column.is-narrow
+    .repeating-section.column.is-narrow
       input(type="number" name="attr_skillrank" placeholder="Rank" min="1" max="5" value="2")
-    .column.is-narrow
+    .repeating-section.column.is-narrow
       button.sheet-blank-button.noctis-button-green(type="action" name="act_skill")
         
 .columns

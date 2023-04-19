@@ -1,4 +1,3 @@
-//- TODO repeating section
 .columns
   .column
     +section("Import")
@@ -11,14 +10,14 @@
     if avatar_reactions_enabled
       +section("Avatar Reactions")
         fieldset.repeating_reactions
-          .columns
-            .column.is-narrow
+          .repeating-section.columns
+            .repeating-section.column.is-narrow
               input(type="text" name="attr_reaction_emoji" placeholder="Emoji")
-            .column
+            .repeating-section.column
               input(type="text" name="attr_reaction_name" placeholder="Reaction Name")
-            .column
+            .repeating-section.column
               input(type="text" name="attr_reaction_url" placeholder="Avatar URL")
-            .column.is-narrow
+            .repeating-section.column.is-narrow
               button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
                 span.emoji(name="attr_reaction_emoji")
     +section()
