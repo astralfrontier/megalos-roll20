@@ -44,5 +44,5 @@ each entry in profile_attributes
       else
         input(type="text" name=entry.attr list=entry.list)
     if entry.announce
-      .column.is-narrow 
+      .column.is-narrow.pt-0
         button.noctis-button-announce(type="roll" name="announce_profile" value=`&{template:announce} {{name=@{character_name}}} {{text=${announce_profile}}}`)
