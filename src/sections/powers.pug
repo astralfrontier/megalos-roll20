@@ -1,27 +1,29 @@
+//- TODO repeating_section
+
 input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
 fieldset.repeating_powers
   //- Hidden field to allow CSS selectors to work
   input(type="hidden" name="attr_powertype" class="attr_powertype_key")
   .attr_powertype_container
-    .row.repositioned
-      .col-xs-1.repositioned Name
-      .col-xs-6.repositioned
+    .columns
+      .column.is-narrow Name
+      .column
         input(type="text" name="attr_powername" placeholder="Power Name")
-      .col-xs-1.repositioned Type
-      .col-xs-3.repositioned
+      .column.is-narrow Type
+      .column
         input(type="text" name="attr_powertype" placeholder="Power Type" size="24" list="powertypes")
-      .col-xs-1.repositioned
+      .column.is-narrow
         button.noctis-button-announce(type="roll" name="announce_power" value="&{template:announce} {{name=@{powername}}} {{text=@{powerdesc}}} {{Type=@{powertype}}}")
     input.powertype_toggle(type="hidden" name="attr_powertype")
-    .row.repositioned.aether-current-charges
-      .col.repositioned Charges
+    .columns.aether-current-charges
+      .column.repositioned Charges
       each val in [1, 2, 3, 4, 5]
         if val == 5
           input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
-        div(class=`col ac_die_${val}`)
+        .column(class=`ac_die_${val}`)
           label
             input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
             span= `AC #${val}`
-    .row.repositioned
-      .col.repositioned
+    .columns
+      .column
         textarea(name="attr_powerdesc" placeholder="Power Description" rows="3")
