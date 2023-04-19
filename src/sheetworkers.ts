@@ -172,16 +172,16 @@ on('clicked:aethercurrent', (event) => {
         } = outcome
         let newAetherCurrent = ''
         let message = ''
-        switch (className) {
-          case 'Invoker':
+        switch (className.toUpperCase()) {
+          case 'INVOKER':
             newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
             message = newAetherCurrent
             break
-          case 'Throne':
+          case 'THRONE':
             newAetherCurrent = 'Used'
             message = 'Inflict damage'
             break
-          case 'Witch':
+          case 'WITCH':
             newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
             message = newAetherCurrent
             break
@@ -251,7 +251,7 @@ on('clicked:soak', (event) => {
   getAttrs(
     ['role', attr_name, ...ce_advantage_attrs, ...ce_soak_attrs],
     (v) => {
-      const dice = v['role'] == 'Tank' ? 2 : 1
+      const dice = v['role'].toUpperCase() == 'TANK' ? 2 : 1
       const diestring = modifiedDiceCount(dice, 6, v, true)
       let bonuses = 0
       if (v['ce_toggle_soak'] == 'on') {
