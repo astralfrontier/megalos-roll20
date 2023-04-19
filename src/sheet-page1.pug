@@ -1,21 +1,22 @@
-.row
-  .col
-    //- Top level
+//- Top level
+.columns
+  .column
     +section()
-      .row
-        .col
+      .columns
+        .column
           #sheet-logo MEGALOS
-        .col
+        .column.is-narrow
           +box_current_max("HP", "hp")
-        .col
+        .column.is-narrow
           +box_current_max("Armor HP", "armor_hp")
-        .col
+        .column.is-narrow
           +box_current_max("Recovery", "recovery")
-.row
-  .col
-    include sections/combat-effects
-.row
-  .col-xs-6
+.columns
+  .column
+    +section()
+      include sections/combat-effects
+.columns
+  .column.is-one-half
     //- Left column
     //- 🧑
     +section("Character Profile", "&#x1F9D1;")
@@ -32,15 +33,15 @@
     //- ❤️
     +section("Soak", "&#x2764;")
       include sections/soak
-  .col-xs-6
+  .column.is-one-half
     //- Right column
     +section()
-      .row
-        .col-xs-4
+      .columns
+        .column
           +box_value("Level", "level")
-        .col-xs-4
+        .column
           +box_value("XP", "xp")(style={width: '4em'})
-        .col-xs-4
+        .column
           +box_value("RB", "rb", "HP/4")
     //- 📗
     +section("Skills", "&#x1F4D7;")

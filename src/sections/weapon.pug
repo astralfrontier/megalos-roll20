@@ -1,19 +1,19 @@
-.row
-  .col-xs-3 Name
-  .col-xs-7
+.columns.is-vcentered
+  .column.is-narrow Name
+  .column
     input(type="text" name="attr_weapon_name")
-  .col-xs-2
-    button.noctis-button-announce(type="roll" name="announce_weapon" value="&{template:announce} {{name=@{weapon_name}}} {{text=@{weapon_desc}}} {{CD=@{weapon_core_damage}}} {{Range=@{weapon_range}}}")
-.row
-  .col
+  .column.is-narrow.pt-0
+    button.noctis-button-announce(type="roll" name="announce_weapon" value="&{template:announce} {{name=@{weapon_name}}} {{text=@{weapon_desc}}} {{Auto-Attack=@{weapon_auto_attack}}} {{Core Damage=@{weapon_core_damage}}} {{Range=@{weapon_range}}}")
+.columns
+  .column
     textarea(name="attr_weapon_desc" rows="3")
-.row
-  .col
+.columns
+  .column
     +box_value("Auto-Atk", "weapon_auto_attack")
-  .col
+  .column
     +box_value("Core Dmg", "weapon_core_damage")
-  .col
+  .column
     +box_value("Range", "weapon_range")
-  .col
+  .column
     +box_value("Wpn Dice", "weapon_dice")
       button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")

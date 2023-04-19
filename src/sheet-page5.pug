@@ -1,5 +1,5 @@
-.row
-  .col
+.columns
+  .column
     +section("Import")
       p You can use the MEGALOS character maker: https://megalos.astralfrontier.org/character
       p On the "Sheet" tab of that tool, click "Export". Copy the JSON into this text field. Click "Import".
@@ -10,16 +10,16 @@
     if avatar_reactions_enabled
       +section("Avatar Reactions")
         fieldset.repeating_reactions
-          .row.repositioned
-            .col-xs-1.repositioned
+          .repeating-section.columns
+            .repeating-section.column.is-narrow
               input(type="text" name="attr_reaction_emoji" placeholder="Emoji")
-            .col-xs-3.repositioned
+            .repeating-section.column
               input(type="text" name="attr_reaction_name" placeholder="Reaction Name")
-            .col-xs-6.repositioned
+            .repeating-section.column
               input(type="text" name="attr_reaction_url" placeholder="Avatar URL")
-            .col-xs-2.repositioned
+            .repeating-section.column.is-narrow
               button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
-                span.noctis-emoji(name="attr_reaction_emoji")
+                span.emoji(name="attr_reaction_emoji")
     +section()
       hr
       p(style="text-align: center")

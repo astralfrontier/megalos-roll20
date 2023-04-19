@@ -1,32 +1,29 @@
 mixin status(name)
-  .row
-    .col-xs-8
+  .columns
+    .column
       strong= name.toUpperCase()
       block
-    .col-xs-4
+    .column.is-narrow
       input(type="number" name=`attr_status_save_${name}` value="0")
       button.sheet-blank-button.noctis-button-yellow(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
-  .row
-    .col-xs-8
+  .columns
+    .column
       strong= name.toUpperCase()
       block
-    .col-xs-4
+    .column.is-narrow
       input(type="number" name=`attr_condition_${name}` value="0")
       button.noctis-button-yellow(type="action" name="act_addcondition" data-condition-name=name) +
 
-.row
-  .col
-    include sections/combat-effects
-.row
-  .col-xs-6
+include sections/combat-effects
+.columns
+  .column.is-one-half
     //- 🔴
     +section("Statuses", "&#x1F534;")
-      .row
-        .col-xs-8
-          p Announce Marked
-        .col-xs-4
+      .columns
+        .column Announce Marked
+        .column.is-narrow
           button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
       +status("afraid")
         p Do -3 damage vs. whoever inflicted this on you.
@@ -50,13 +47,12 @@ mixin condition(name)
         p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
       input(type="hidden" name="attr_status_tracker")
 
-  .col-xs-6
+  .column.is-one-half
     //- 🟢
     +section("Conditions", "&#x1F7E2;")
-      .row
-        .col-xs-8
-          p Announce Marked
-        .col-xs-4
+      .columns
+        .column Announce Marked
+        .column.is-narrow
           button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
       +condition("blink")
         p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.

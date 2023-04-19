@@ -1,11 +1,11 @@
 //- Show a section of the character sheet, wrapped in a frame, with a given title
 mixin section(title, icon)
-  section.noctis-section
+  section.noctis-section.block
     if icon
       span.noctis-section-icon!= icon
     if title
       if icon
-        h3.noctis-section-title.noctis-section-offset= title
+        h3.is-size-3.noctis-section-title.noctis-section-offset= title
       else
         h3.noctis-section-title= title
     if block
@@ -16,11 +16,12 @@ mixin box_default(label, help)
   .noctis-box
     h4.noctis-box-title= label
     if block
-      .row.center
-        .col.center
-          block
-          if help
-            p= help
+      .columns.is-centered
+        .column
+          .p-3
+            block
+            if help
+              p= help
 
 mixin box_value(label, attr_name, help = "Value")
   +box_default(label, help)
@@ -32,10 +33,12 @@ mixin box_value(label, attr_name, help = "Value")
 mixin box_current_max(label, attr_name)
   .noctis-box
     h4.noctis-box-title= label
-    .row.center.minimal
-      .col.center
-        input(type="number" name=`attr_${attr_name}` value="0")
-        p Current
-      .col.center
-        input(type="number" name=`attr_${attr_name}_max` value="0")
-        p Max
+    .columns.is-centered
+      .column.is-one-half
+        .p-3
+          input(type="number" name=`attr_${attr_name}` value="0")
+          p Current
+      .column.is-one-half
+        .p-3
+          input(type="number" name=`attr_${attr_name}_max` value="0")
+          p Max

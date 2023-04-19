@@ -1,29 +1,39 @@
+include features/emoji
+include features/tabs
+
 include containers
 
-.roll20-reset
-  #noctis
-    #megalos-sheet
-      include tabstoggle
-
-      //- Include individual sheets in their entirety
-      .sheet.sheet-page1
-        include sheet-page1
-      .sheet.sheet-page2
-        include sheet-page2
-      .sheet.sheet-page3
-        include sheet-page3
-      .sheet.sheet-page4
-        include sheet-page4
-      .sheet.sheet-page5
-        include sheet-page5
+.roll20reset
+  #megalos-sheet
+    #noctis
+      .container 
+        +tabs("tabs", [
+          {"name": "Character"},
+          {"name": "Powers"},
+          {"name": "Conditions"},
+          {"name": "&#x1F479;", "textclass": "emoji"},
+          {"name": "&#x2699;",  "textclass": "emoji"}
+        ])
+          .sheet.sheet-tab1
+            include sheet-page1
+          .sheet.sheet-tab2
+            include sheet-page2
+          .sheet.sheet-tab3
+            include sheet-page3
+          .sheet.sheet-tab4
+            include sheet-page4
+          .sheet.sheet-tab5
+            include sheet-page5
 
 //- Pull in datalists for auto completing text fields
 include datalists
 
 script(type="text/worker")
+  | const variables =
+  include variables.json
+  include:typescript features/tabs.ts
   include:typescript sheetworkers.ts
   include:typescript conditions-statuses.ts
-  include:typescript tabstoggle.ts
   include:typescript aethercurrents.ts
   include:typescript jsonimport.ts
 
@@ -31,4 +41,4 @@ script(type="text/worker")
 include rolltemplates
 
 //- Include some CSS classes that will be injected by Roll20, so that PurgeCSS doesn't cleanse them
-.btn.pictos.repcontrol_add.repcontrol_edit.repcontrol_move.repcontrol_del.aether-current-charges
+.btn.repcontrol_add.repcontrol_edit.repcontrol_move.repcontrol_del.aether-current-charges.pictos
