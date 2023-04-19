@@ -2,25 +2,8 @@
 @import "./form"
 @import "./sheets"
 
-$gutter: 0.8rem
-@import "./flexbox/main.scss"
-
-@mixin emoji
-  font-family: 'Noto Color Emoji', sans-serif
-
-@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap')
-
-// Roll20 style reset
-.roll20-reset
-  select, textarea, input[type="text"], input[type="number"], .uneditable-input, label, button
-    all: initial
-
-  // Restore some basic defaults
-  button
-    cursor: pointer
-
-  .pictos
-    font-family: "Pictos"
+.pictos
+  font-family: "Pictos"
 
   .btn.repcontrol_add, .btn.repcontrol_edit, .btn.repcontrol_move, .btn.repcontrol_del
     @include theme.white-black-border
