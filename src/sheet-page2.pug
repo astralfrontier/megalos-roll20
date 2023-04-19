@@ -5,6 +5,7 @@
   .column
     +box_current_max("Armor HP", "armor_hp")
     +box_value("Recovery Base (RB)", "rb", "HP/4")
+      button.emoji(type="action" name="act_heal")!= "&#x1F48A;"
   .column
     +section("Aether Current")
       textarea(name="attr_aether_current" placeholder="Aether Current Rules" rows="4")
@@ -21,7 +22,7 @@ include sections/aethercurrents
     +box_value("Range", "weapon_range")
   .column
     +box_value("Wpn Dice", "weapon_dice")
-      button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
+      button.noctis-button-red.d20(type="action" name="act_attack")
 //- ⚡
 +section("Powers", "&#x26A1;")
   include sections/powers

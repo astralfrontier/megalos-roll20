@@ -5,7 +5,7 @@ mixin status(name)
       block
     .column.is-narrow
       input(type="number" name=`attr_status_save_${name}` value="0")
-      button.sheet-blank-button.noctis-button-yellow(type="action" name="act_save" data-status-name=name)
+      button.noctis-button-yellow.d20(type="action" name="act_save" data-status-name=name)
 
 mixin condition(name)
   .columns
@@ -24,7 +24,7 @@ include sections/combat-effects
       .columns
         .column Announce Marked
         .column.is-narrow
-          button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
+          button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
       +status("afraid")
         p Do -3 damage vs. whoever inflicted this on you.
       +status("agony")
@@ -53,7 +53,7 @@ include sections/combat-effects
       .columns
         .column Announce Marked
         .column.is-narrow
-          button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
+          button.noctis-button-announce(type="roll" name="announce_conditions" value="&{template:announce} {{name=Conditions}}@{condition_tracker}")
       +condition("blink")
         p Teleport 1 at the start or end of your turn as a Free action, +3 to Dodge &amp; Ward.
       +condition("cloaked")

@@ -18,7 +18,7 @@
             .repeating-section.column
               input(type="text" name="attr_reaction_url" placeholder="Avatar URL")
             .repeating-section.column.is-narrow
-              button.sheet-blank-button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
+              button.noctis-button-announce(type="roll" name="announce_reaction" value=`&{template:announce} {{text=[@{reaction_name}](@{reaction_url})}}`)
                 span.emoji(name="attr_reaction_emoji")
     +section()
       hr

@@ -44,7 +44,7 @@ mixin mini_current_max(label, attr_name)
           - var attr_name = `soak_${val}`
           .column
             +mini_value(label, attr_name)
-              button.sheet-blank-button.noctis-button-yellow(type="action" name="act_soak" data-soak-label=label data-soak-attr=attr_name)
+              button.noctis-button-yellow.d6(type="action" name="act_soak" data-soak-label=label data-soak-attr=attr_name)
       .columns
         .column
           +mini_value("Auto-Atk", "weapon_auto_attack")
@@ -54,7 +54,7 @@ mixin mini_current_max(label, attr_name)
           +mini_value("Range", "weapon_range")
         .column
           +mini_value("Wpn Dice", "weapon_dice")
-            button.sheet-blank-button.noctis-button-red(type="action" name="act_attack")
+            button.noctis-button-red.d20(type="action" name="act_attack")
     +section("Talents and Powers")
       fieldset.repeating_powers
         .columns

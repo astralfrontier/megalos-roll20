@@ -297,3 +297,15 @@ on('clicked:clearconditions', (event) => {
     setAttrs(v, {}, () => {})
   })
 })
+
+on('clicked:heal', (_event) => {
+  getAttrs(['hp', 'hp_max', 'rb'], (v) => {
+    const hp = Math.min(
+      parseInt(v['hp_max']),
+      parseInt(v['hp']) + parseInt(v['rb'])
+    )
+    const O: any = {}
+    O['hp'] = `${hp}`
+    setAttrs(O)
+  })
+})
