@@ -48,7 +48,7 @@ $power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": #E69C55, "Bonus": #E69C55
 @each $name, $color in $power-type-keys
   .attr_powertype_key[value="#{$name}"] ~ .attr_powertype_container
     .powertype-display
-      background: linear-gradient(to right, #{$color}, rgba(255,0,0,0))
+      background: linear-gradient(to right, #{$color} 80%, rgba(255,0,0,0))
       color: white
 
       span

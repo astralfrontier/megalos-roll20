@@ -104,11 +104,49 @@ on('clicked:jsonimport', function () {
 
     // Powers
     for (let power of character.powers) {
-      const row = generateRowID()
-      O[`repeating_powers_${row}_powername`] = power.name
-      O[`repeating_powers_${row}_powertype`] = power.type
-      O[`repeating_powers_${row}_powerdesc`] = power.description.join('')
-      O[`repeating_powers_${row}_readonly`] = 'on'
+      const description: string = power.description.join('')
+      if (power.type == 'Invocation') {
+        // Split description into Astral and Umbral invocations
+        const splitPoint = description.indexOf('> Umbral Power')
+        if (splitPoint > -1) {
+          const regex = /^> (Astral|Umbral) Power - ([^\n]+)\n+/m
+          for (let subpower of [
+            description.substring(0, splitPoint - 1),
+            description.substring(splitPoint),
+          ]) {
+            const matchData = subpower.match(regex)
+            if (matchData) {
+              const powername = matchData[2]
+              const remaining = (matchData.input || '').replace(
+                matchData[0],
+                ''
+              )
+              const row = generateRowID()
+              O[
+                `repeating_powers_${row}_powername`
+              ] = `${power.name} - ${powername}`
+              O[
+                `repeating_powers_${row}_powertype`
+              ] = `${matchData[1]} ${power.type}`
+              O[`repeating_powers_${row}_powerdesc`] = remaining
+              O[`repeating_powers_${row}_readonly`] = 'on'
+            }
+          }
+        } else {
+          // We couldn't find the expected split point, add the power as-is
+          const row = generateRowID()
+          O[`repeating_powers_${row}_powername`] = power.name
+          O[`repeating_powers_${row}_powertype`] = power.type
+          O[`repeating_powers_${row}_powerdesc`] = description
+          O[`repeating_powers_${row}_readonly`] = 'on'
+        }
+      } else {
+        const row = generateRowID()
+        O[`repeating_powers_${row}_powername`] = power.name
+        O[`repeating_powers_${row}_powertype`] = power.type
+        O[`repeating_powers_${row}_powerdesc`] = description
+        O[`repeating_powers_${row}_readonly`] = 'on'
+      }
     }
 
     setAttrs(O)
