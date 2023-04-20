@@ -108,6 +108,7 @@ on('clicked:jsonimport', function () {
       O[`repeating_powers_${row}_powername`] = power.name
       O[`repeating_powers_${row}_powertype`] = power.type
       O[`repeating_powers_${row}_powerdesc`] = power.description.join('')
+      O[`repeating_powers_${row}_readonly`] = 'on'
     }
 
     setAttrs(O)
