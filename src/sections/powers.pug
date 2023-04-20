@@ -41,6 +41,8 @@ fieldset.repeating_powers
       if val == 5
         input.unlock_ac5_toggle(type="hidden" name="attr_unlock_ac5")
       .repeating-section.column.pt-0(class=`ac_die_${val}`)
-        label
-          input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
-          span(name=`attr_aether_current_${val}`)
+        span.tag.is-primary.is-medium
+          label
+            input(type="checkbox" name=`attr_aether_current_assigned_${val}`)
+            != "&nbsp;"
+            span.has-text-white(name=`attr_aether_current_${val}`)
