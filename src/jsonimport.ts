@@ -89,10 +89,10 @@ on('clicked:jsonimport', function () {
     }
 
     // Traits
-    O['talent_background'] = character.traits.background
-    O['talent_physical'] = character.traits.physical
-    O['talent_mental'] = character.traits.mental
-    O['talent_special'] = character.traits.special
+    O['trait_background'] = character.traits.background
+    O['trait_physical'] = character.traits.physical
+    O['trait_mental'] = character.traits.mental
+    O['trait_special'] = character.traits.special
 
     // Inventory
     O['ip'] = `${character.armor.finalInventoryPoints}`
