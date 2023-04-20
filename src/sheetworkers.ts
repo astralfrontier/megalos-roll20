@@ -19,7 +19,7 @@ const ce_ac_attrs = ['ce_toggle_ac_bonus', 'ce_ac_bonus']
 function modifiedDiceCount(
   diecount: any,
   diesize: any,
-  v: GetAttrsCallbackValues,
+  v: AttributeBundle,
   keep_highest = false
 ): string {
   if (v['ce_toggle_advantage'] != 'on') {
@@ -83,7 +83,7 @@ function finishSkillRoll(outcome: StartRollCallbackValues) {
 function startSkillRoll(
   skillname: string,
   skillrank: number,
-  v: GetAttrsCallbackValues,
+  v: AttributeBundle,
   includeStatus = true
 ) {
   const diestring = modifiedDiceCount(skillrank, 20, v)
@@ -93,11 +93,7 @@ function startSkillRoll(
   startRoll(template, finishSkillRoll)
 }
 
-function startSaveRoll(
-  status: string,
-  difficulty: number,
-  v: GetAttrsCallbackValues
-) {
+function startSaveRoll(status: string, difficulty: number, v: AttributeBundle) {
   const diestring = modifiedDiceCount(1, 20, v)
   startRoll(
     `&{template:save} {{name=${status}}} {{roll=[[${diestring}>${difficulty}]]}} {{message=[[0]]}} {{sick=[[@{status_save_sick}]]}}`,
@@ -109,7 +105,7 @@ function startAttackRoll(
   weaponname: string,
   weapondice: number,
   weapondamage: number,
-  v: GetAttrsCallbackValues
+  v: AttributeBundle
 ) {
   const diestring = modifiedDiceCount(weapondice, 20, v)
   startRoll(
@@ -307,5 +303,16 @@ on('clicked:heal', (_event) => {
     const O: any = {}
     O['hp'] = `${hp}`
     setAttrs(O)
+  })
+})
+
+on('clicked:repeating_powers:togglepower', (event) => {
+  const attr_editable = (event.sourceAttribute || '').replace(
+    /_togglepower$/,
+    '_readonly'
+  )
+  getAttrs([attr_editable], (v) => {
+    v[attr_editable] = v[attr_editable] == 'on' ? '0' : 'on'
+    setAttrs(v)
   })
 })

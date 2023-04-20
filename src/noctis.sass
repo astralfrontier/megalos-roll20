@@ -185,5 +185,19 @@ $megalos-blue: #4e8eb2
     font-family: "Pictos"
     content: "w "
 
+  .noctis-button-lock, .noctis-button-unlock
+    @include white-black-border
+    @include blue-background
+
+  .noctis-button-unlock:before
+    color: white
+    font-family: "Pictos"
+    content: ") "
+
+  .noctis-button-lock:before
+    color: white
+    font-family: "Pictos"
+    content: "( "
+
 .pictos
   font-family: "Pictos" !important

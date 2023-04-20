@@ -56,14 +56,4 @@ mixin mini_current_max(label, attr_name)
           +mini_value("Wpn Dice", "weapon_dice")
             button.noctis-button-red.d20(type="action" name="act_attack")
     +section("Talents and Powers")
-      fieldset.repeating_powers
-        .columns
-          .column.is-6
-            strong
-              span(name="attr_powername")
-          .column.is-6
-            strong
-              span(name="attr_powertype")
-        .columns
-          .column
-            span(name="attr_powerdesc" style="white-space: pre-line")
+      include sections/powers

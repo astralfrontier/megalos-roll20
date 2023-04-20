@@ -37,6 +37,12 @@
 .defense-warning-trigger[value=""] ~ .defense-warning-message
   display: none !important
 
+input[name="attr_readonly"]:not([value="on"]) ~ .power-block-readonly
+  display: none
+
+input[name="attr_readonly"][value="on"] ~ .power-block-editable
+  display: none
+
 // Uncomment to support styling individual powers based on power type
 
 // .attr_powertype_key[value="Talent"] ~ .attr_powertype_container

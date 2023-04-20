@@ -8,11 +8,11 @@ interface Roll20Event {
   triggerName?: string
 }
 
+type AttributeBundle = Record<string, string>
+
 type Roll20EventCallback = (event: Roll20Event) => void
 
-type GetAttrsCallbackValues = Record<string, string>
-
-type GetAttrsCallback = (values: GetAttrsCallbackValues) => void
+type GetAttrsCallback = (values: AttributeBundle) => void
 
 interface StartRollCallbackValuesRoll {
   result: number
@@ -39,7 +39,7 @@ declare function getAttrs(
 ): void
 
 declare function setAttrs(
-  attributes: Record<string, string>,
+  attributes: AttributeBundle,
   options?: any,
   callback?: () => void
 )
