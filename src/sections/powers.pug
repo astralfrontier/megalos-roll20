@@ -3,12 +3,13 @@ fieldset.repeating_powers
   input(type="hidden" name="attr_readonly")
   .power-block-readonly
     input(type="hidden" name="attr_powertype" class="attr_powertype_key")
-    .attr_powertype_container
+    .attr_powertype_container.block
       .columns
-        .column
+        .column.powertype-display
           strong
             span(name="attr_powername")
-          span= " - "
+          |
+          | - 
           strong
             span(name="attr_powertype")
         .column.is-narrow

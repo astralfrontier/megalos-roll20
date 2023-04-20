@@ -45,18 +45,11 @@ input[name="attr_readonly"][value="on"] ~ .power-block-editable
 
 // Uncomment to support styling individual powers based on power type
 
-// .attr_powertype_key[value="Talent"] ~ .attr_powertype_container
-//   background: red
+.powertype-display, .powertype-display span
+  color: white
 
-// .attr_powertype_key[value="Calling Bonus"] ~ .attr_powertype_container
-//   background: blue
+$power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": #E69C55, "Invocation": #70BC63, "Astral Invocation": #70BC63, "Umbral Invocation": #70BC63, "Arcana": #9C3335, "Charged Strike": #9C3335, "Combo Strike": #70BC63, "Counter": #E69C55, "Finisher": #4B74BA, "Sorcery": #9C3335, "Cantrip": #70BC63, "Artifact": #B17E6E)
 
-// .attr_powertype_key[value="Invocation"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Arcana"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Charged Strike"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Combo Strike"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Counter"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Finisher"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Sorcery"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Cantrip"] ~ .attr_powertype_container
-// .attr_powertype_key[value="Artifact"] ~ .attr_powertype_container
+@each $name, $color in $power-type-keys
+  .attr_powertype_key[value="#{$name}"] ~ .attr_powertype_container .powertype-display
+    background: linear-gradient(to right, #{$color}, rgba(255,0,0,0))
