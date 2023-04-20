@@ -43,13 +43,13 @@ input[name="attr_readonly"]:not([value="on"]) ~ .power-block-readonly
 input[name="attr_readonly"][value="on"] ~ .power-block-editable
   display: none
 
-// Uncomment to support styling individual powers based on power type
-
-.powertype-display, .powertype-display span
-  color: white
-
-$power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": #E69C55, "Invocation": #70BC63, "Astral Invocation": #70BC63, "Umbral Invocation": #70BC63, "Arcana": #9C3335, "Charged Strike": #9C3335, "Combo Strike": #70BC63, "Counter": #E69C55, "Finisher": #4B74BA, "Sorcery": #9C3335, "Cantrip": #70BC63, "Artifact": #B17E6E)
+$power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": #E69C55, "Bonus": #E69C55, "Invocation": #70BC63, "Astral Invocation": #70BC63, "Umbral Invocation": #70BC63, "Arcana": #9C3335, "Charged Strike": #9C3335, "Combo Strike": #70BC63, "Counter": #E69C55, "Finisher": #4B74BA, "Sorcery": #9C3335, "Cantrip": #70BC63, "Artifact": #B17E6E)
 
 @each $name, $color in $power-type-keys
-  .attr_powertype_key[value="#{$name}"] ~ .attr_powertype_container .powertype-display
-    background: linear-gradient(to right, #{$color}, rgba(255,0,0,0))
+  .attr_powertype_key[value="#{$name}"] ~ .attr_powertype_container
+    .powertype-display
+      background: linear-gradient(to right, #{$color}, rgba(255,0,0,0))
+      color: white
+
+      span
+        color: white
