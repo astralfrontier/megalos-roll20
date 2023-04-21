@@ -12,10 +12,33 @@ const ce_soak_attrs = ['ce_toggle_soak', 'ce_soak_bonus', 'condition_shielded']
 
 const ce_ac_attrs = ['ce_toggle_ac_bonus', 'ce_ac_bonus']
 
-// Return a string (e.g. 3d20) to roll
-// Look for advantage & disadvantage values in the retrieved attributes
-// If enabled, modify input by those numbers
-// If disabled, return the input unmodified
+/**
+ * Turns a template name and a bag of properties into a properly formatted Roll20 string.
+ *
+ * @param template the template name, e.g. "attack"
+ * @param props a collection of keys and values, e.g. {"roll": "[[1d6]]"}
+ * @returns a Roll20 template string, e.g. &{template:attack} {{roll=[[1d6]]}}
+ */
+function propsToRollTemplate(
+  template: string,
+  props: Record<string, string>
+): string {
+  const props_s = Object.keys(props).map((prop) => `{{${prop}=${props[prop]}}}`)
+  return `&{template:${template}} ${props_s.join(' ')}`
+}
+
+/**
+ * Take a die count and size.
+ * Look for advantage & disadvantage combat effects in the retrieved attributes.
+ * If enabled, apply advantage/disadvantage stacks.
+ * Return the final die command.
+ *
+ * @param diecount the starting numbre of dice to roll
+ * @param diesize the die size, e.g 6 or 20
+ * @param v a properties bag
+ * @param keep_highest whether the die roll should keep the highest result
+ * @returns a Roll20 die rolling command, e.g. "3d20kh2"
+ */
 function modifiedDiceCount(
   diecount: any,
   diesize: any,
@@ -87,18 +110,30 @@ function startSkillRoll(
   includeStatus = true
 ) {
   const diestring = modifiedDiceCount(skillrank, 20, v)
-  const template = `&{template:check} {{name=${skillname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Difficulty|15}]]}} {{message=[[0]]}}${
-    includeStatus ? ' {{dazed=[[@{status_save_dazed}]]}}' : ''
-  }`
+  let extraProperties = {}
+  if (includeStatus) {
+    extraProperties = {
+      dazed: '[[@{status_save_dazed}]]',
+    }
+  }
+  const template = propsToRollTemplate('check', {
+    name: skillname,
+    diff: '[[0]]',
+    roll: `[[${diestring}>?{Difficulty|15}]]`,
+    message: '[[0]]',
+    ...extraProperties,
+  })
   startRoll(template, finishSkillRoll)
 }
 
 function startSaveRoll(status: string, difficulty: number, v: AttributeBundle) {
   const diestring = modifiedDiceCount(1, 20, v)
-  startRoll(
-    `&{template:save} {{name=${status}}} {{roll=[[${diestring}>${difficulty}]]}} {{message=[[0]]}} {{sick=[[@{status_save_sick}]]}}`,
-    finishSkillRoll
-  )
+  const template = propsToRollTemplate('save', {
+    name: status,
+    roll: `[[${diestring}>${difficulty}]]`,
+    sick: '[[@{status_save_sick}]]',
+  })
+  startRoll(template, finishSkillRoll)
 }
 
 function startAttackRoll(
@@ -108,10 +143,20 @@ function startAttackRoll(
   v: AttributeBundle
 ) {
   const diestring = modifiedDiceCount(weapondice, 20, v)
-  startRoll(
-    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=[[${weapondamage} + @{throne_damage}]]}} {{throne=[[@{throne_damage}]]}} {{afraid=[[@{status_save_afraid}]]}} {{dazed=[[@{status_save_dazed}]]}} {{taunted=[[@{status_save_taunted}]]}} {{empowered=[[@{condition_empowered}]]}} {{focused=[[@{condition_focused}]]}}`,
-    finishSkillRoll
-  )
+  const template = propsToRollTemplate('attack', {
+    name: weaponname,
+    diff: '[[0]]',
+    roll: `[[${diestring}>?{Defense|15}]]`,
+    message: '[[0]]',
+    damage: `[[${weapondamage} + @{throne_damage}]]`,
+    throne: '[[@{throne_damage}]]',
+    afraid: '[[@{status_save_afraid}]]',
+    dazed: '[[@{status_save_dazed}]]',
+    taunted: '[[@{status_save_taunted}]]',
+    empowered: '[[@{condition_empowered}]]',
+    focused: '[[@{condition_focused}]]',
+  })
+  startRoll(template, finishSkillRoll)
 }
 
 on('clicked:repeating_skills:skill', (event) => {
@@ -157,46 +202,48 @@ on('clicked:aethercurrent', (event) => {
     if (v['ce_toggle_ac_bonus'] == 'on') {
       roll = `1d6+${parseInt(v['ce_ac_bonus'])}`
     }
-    startRoll(
-      `&{template:aether} {{name=Aether Current (${number})}} {{roll=[[${roll}]]}} {{message=[[0]]}}`,
-      (outcome) => {
-        const {
-          rollId,
-          results: {
-            roll: { result },
-          },
-        } = outcome
-        let newAetherCurrent = ''
-        let message = ''
-        switch (className.toUpperCase()) {
-          case 'INVOKER':
-            newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
-            message = newAetherCurrent
-            break
-          case 'THRONE':
-            newAetherCurrent = 'Used'
-            message = 'Inflict damage'
-            break
-          case 'WITCH':
-            newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
-            message = newAetherCurrent
-            break
-        }
-        if (newAetherCurrent) {
-          const setObj: any = {}
-          setObj[`aether_current_${number}`] = newAetherCurrent
-          setAttrs(setObj, {}, () => {
-            finishRoll(rollId, {
-              message,
-            })
-          })
-        } else {
+    const template = propsToRollTemplate('aether', {
+      name: `Aether Current (${number})`,
+      roll: `[[${roll}]]`,
+      message: '[[0]]',
+    })
+    startRoll(template, (outcome) => {
+      const {
+        rollId,
+        results: {
+          roll: { result },
+        },
+      } = outcome
+      let newAetherCurrent = ''
+      let message = ''
+      switch (className.toUpperCase()) {
+        case 'INVOKER':
+          newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
+          message = newAetherCurrent
+          break
+        case 'THRONE':
+          newAetherCurrent = 'Used'
+          message = 'Inflict damage'
+          break
+        case 'WITCH':
+          newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
+          message = newAetherCurrent
+          break
+      }
+      if (newAetherCurrent) {
+        const setObj: any = {}
+        setObj[`aether_current_${number}`] = newAetherCurrent
+        setAttrs(setObj, {}, () => {
           finishRoll(rollId, {
             message,
           })
-        }
+        })
+      } else {
+        finishRoll(rollId, {
+          message,
+        })
       }
-    )
+    })
   })
 })
 
@@ -230,12 +277,16 @@ on('clicked:soak', (event) => {
       if (parseInt(v['condition_shielded']) > 0) {
         bonuses += 3
       }
-      startRoll(
-        `&{template:soak} {{name=${label}}} {{roll=[[${diestring}+@{${attr_name}}+${bonuses}]]}} {{barrier=[[@{barrier}]]}} {{exposed=[[@{status_save_exposed}]]}} {{shielded=[[@{condition_shielded}]]}}`,
-        (outcome) => {
-          finishRoll(outcome.rollId, {})
-        }
-      )
+      const template = propsToRollTemplate('soak', {
+        name: label,
+        roll: `[[${diestring}+@{${attr_name}}+${bonuses}]]`,
+        barrier: '[[@{barrier}]]',
+        exposed: '[[@{status_save_exposed}]]',
+        shielded: '[[@{condition_shielded}]]',
+      })
+      startRoll(template, (outcome) => {
+        finishRoll(outcome.rollId, {})
+      })
     }
   )
 })
