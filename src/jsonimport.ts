@@ -6,6 +6,14 @@ function clearExistingRows(name: string) {
   })
 }
 
+function sanitizeCopyableText(text: string): string {
+  const lines = (text || '').split('\n')
+  // Remove the name (assumed to be the first line)
+  lines.splice(0, 1)
+  // Trim leading whitespace and rejoin
+  return lines.map((line) => line.trim()).join('\n')
+}
+
 on('clicked:jsonimport', function () {
   getAttrs(['jsonimport'], (v) => {
     const character = JSON.parse(v['jsonimport'])
@@ -36,7 +44,7 @@ on('clicked:jsonimport', function () {
 
     // Weapon
     O['weapon_name'] = character.weapon.weaponName
-    O['weapon_desc'] = character.weapon.weaponDesc
+    O['weapon_desc'] = sanitizeCopyableText(character.weapon.copyableWeaponText)
     O['weapon_auto_attack'] = `${character.calling.benefits.baseDamage}`
     O['weapon_core_damage'] = `${
       character.calling.benefits.baseDamage + character.weapon.finalDamageBonus
@@ -46,7 +54,7 @@ on('clicked:jsonimport', function () {
 
     // Armor
     O['armor_name'] = character.armor.outfitName
-    O['armor_desc'] = character.armor.outfitDesc
+    O['armor_desc'] = sanitizeCopyableText(character.armor.copyableOutfitText)
     O['armor_dodge'] = `${
       character.calling.benefits.baseDodge +
       character.armor.finalDefenseBonus +
