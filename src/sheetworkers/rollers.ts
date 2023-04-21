@@ -338,3 +338,21 @@ on('clicked:repeating_powers:togglepower', (event) => {
     setAttrs(v)
   })
 })
+
+on('clicked:introduction', () => {
+  getAttrs(
+    ['character_avatar', 'character_token', 'introduction_text'],
+    (v) => {
+      const introduction_text = v['introduction_text'].replace(
+        '@AVATAR',
+        `[x](${v['character_avatar'].replace(/\?\d+$/, '')})`
+      )
+      startRoll(
+        `&{template:announce} {{name=@{character_name}}} {{text=${introduction_text}}}`,
+        (outcome) => {
+          finishRoll(outcome.rollId, {})
+        }
+      )
+    }
+  )
+})

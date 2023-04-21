@@ -120,6 +120,7 @@ on('sheet:opened', (_event) => {
       'condition_tracker',
       'status_tracker',
       ...[1, 2, 3, 4, 5].map((n) => `aether_current_${n}`),
+      'introduction_text',
     ],
     (v) => {
       let defaults: AttributeBundle = {
@@ -131,6 +132,8 @@ on('sheet:opened', (_event) => {
         aether_current_3: 'Used',
         aether_current_4: 'Used',
         aether_current_5: 'Used',
+        introduction_text:
+          "Nice to meet you! I'm **@{character_name}** from **@{homeland}**. My pronouns are **@{pronouns}**. My class is **@{class}**, my calling is **@{calling}**, and my role is **@{role}**.",
       }
       for (let key of Object.keys(defaults)) {
         if (v[key]) {

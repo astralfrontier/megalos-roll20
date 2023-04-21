@@ -6,6 +6,13 @@
       p WARNING: this will delete ALL existing character data!
       textarea(name="attr_jsonimport" rows="8" style="white-space: pre-line")
       button.noctis-button-red(type="action" name="act_jsonimport") Import
+    +section("Introduction")
+      p You can customize your introduction text here!
+      p Use <code>@{attribute_name}</code> to substitute attribute names.
+      p Use **text** to bold, _text_ to italicize, etc.
+      p You can even use images, with <code>[Image alt tag](https://image-url/)</code>, as long as the name ends in <code>.jpg</code> or <code>.png</code>.
+      p Use <code>@AVATAR</code> to add your Roll20 character's own avatar as an image.
+      textarea(name="attr_introduction_text" rows="8" style="white-space: pre-line")
     //- Configured in variables.json
     if avatar_reactions_enabled
       +section("Avatar Reactions")
