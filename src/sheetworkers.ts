@@ -8,7 +8,7 @@ const ce_advantage_attrs = [
   'ce_disadvantage',
 ]
 
-const ce_soak_attrs = ['ce_toggle_soak', 'ce_soak_bonus', 'condition_shielded']
+const ce_soak_attrs = ['ce_toggle_soak', 'ce_soak_bonus']
 
 const ce_ac_attrs = ['ce_toggle_ac_bonus', 'ce_ac_bonus']
 
@@ -273,9 +273,6 @@ on('clicked:soak', (event) => {
       let bonuses = 0
       if (v['ce_toggle_soak'] == 'on') {
         bonuses += parseInt(v['ce_soak_bonus'])
-      }
-      if (parseInt(v['condition_shielded']) > 0) {
-        bonuses += 3
       }
       const template = propsToRollTemplate('soak', {
         name: label,
