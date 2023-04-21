@@ -32,10 +32,9 @@ script(type="text/worker")
   | const variables =
   include variables.json
   include:typescript features/tabs.ts
-  include:typescript sheetworkers.ts
-  include:typescript conditions-statuses.ts
-  include:typescript aethercurrents.ts
-  include:typescript jsonimport.ts
+  include:typescript sheetworkers/rollers.ts
+  include:typescript sheetworkers/calculations.ts
+  include:typescript sheetworkers/jsonimport.ts
 
 //- Roll templates
 include rolltemplates
