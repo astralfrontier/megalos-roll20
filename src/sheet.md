@@ -1,3 +1,1 @@
-**MEGALOS Sheet**
-
 Sheet Help is available online: https://github.com/astralfrontier/megalos-roll20/wiki/Player%27s-Guide
