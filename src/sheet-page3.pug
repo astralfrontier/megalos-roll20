@@ -1,16 +1,24 @@
-mixin status(name)
+mixin status_condition_stacks(name)
+  each val in [1, 2, 3, 4]
+    input(type="radio" name=`attr_stacks_${name}` value=val)
+
+mixin status(name, has_stacks)
   .columns
     .column
       strong= name.toUpperCase()
+      if has_stacks
+        +status_condition_stacks(name)
       block
     .column.is-narrow
       input(type="number" name=`attr_status_save_${name}` value="0")
       button.noctis-button-yellow.d20(type="action" name="act_save" data-status-name=name)
 
-mixin condition(name)
+mixin condition(name, has_stacks)
   .columns
     .column
       strong= name.toUpperCase()
+      if has_stacks
+        +status_condition_stacks(name)
       block
     .column.is-narrow
       input(type="number" name=`attr_condition_${name}` value="0")
@@ -43,7 +51,7 @@ include sections/combat-effects
         p Lose one ◆ on your turn, automatically cleansed after 1 turn.
       +status("taunted")
         p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
-      +status("wounded")
+      +status("wounded", true)
         p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
       input(type="hidden" name="attr_status_tracker")
 
@@ -66,7 +74,7 @@ include sections/combat-effects
         p Gain Advantage on attacks.
       +condition("haste")
         p Gain +1 ◆ on your turn.
-      +condition("regen")
+      +condition("regen", true)
         p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
       +condition("shielded")
         p Gain +3 on Soak rolls.

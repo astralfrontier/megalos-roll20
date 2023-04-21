@@ -22,6 +22,20 @@ const CONDITION_LIST: string[] = [
   'shielded',
 ].map((name) => `condition_${name}`)
 
+function statusConditionNameWithStacks(
+  attribute: string,
+  prefix: string,
+  v: AttributeBundle
+): string {
+  const nameWithoutPrefix = attribute.replace(prefix, '')
+  const stacksName = `stacks_${nameWithoutPrefix}`
+  let suffix = ''
+  if (v[stacksName]) {
+    suffix = ` [${v[stacksName]}]`
+  }
+  return `${nameWithoutPrefix.toUpperCase()}${suffix}`
+}
+
 function update_tracker(
   attributes: string[],
   tracker: string,
@@ -32,8 +46,9 @@ function update_tracker(
     const O: any = {}
     O[tracker] =
       attributes
+        .filter((attr) => attr.startsWith(prefix))
         .map((name): [string, number] => [
-          name.replace(prefix, '').toUpperCase(),
+          statusConditionNameWithStacks(name, prefix, v),
           parseInt(v[name]),
         ])
         .filter((tuple) => tuple[1] > 0)
@@ -44,22 +59,33 @@ function update_tracker(
 }
 
 function update_status_tracker() {
-  update_tracker(STATUS_LIST, 'status_tracker', 'status_save_', 'No Statuses')
+  update_tracker(
+    [...STATUS_LIST, 'stacks_wounded'],
+    'status_tracker',
+    'status_save_',
+    'No Statuses'
+  )
 }
 
 function update_condition_tracker() {
   update_tracker(
-    CONDITION_LIST,
+    [...CONDITION_LIST, 'stacks_regen'],
     'condition_tracker',
     'condition_',
     'No Conditions'
   )
 }
 
-for (let status of STATUS_LIST) {
-  on(`change:${status}`, update_status_tracker)
-}
+on(
+  `change:stacks_wounded ${STATUS_LIST.map((attr) => `change:${attr}`).join(
+    ' '
+  )}`,
+  update_status_tracker
+)
 
-for (let condition of CONDITION_LIST) {
-  on(`change:${condition}`, update_condition_tracker)
-}
+on(
+  `change:stacks_regen ${CONDITION_LIST.map((attr) => `change:${attr}`).join(
+    ' '
+  )}`,
+  update_condition_tracker
+)
