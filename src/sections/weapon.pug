@@ -11,7 +11,18 @@
   .column
     +box_value("Auto-Atk", "weapon_auto_attack")
   .column
-    +box_value("Core Dmg", "weapon_core_damage")
+    //- Do this manually because we're including a dynamic element in the "help" section
+    .noctis-box
+      h4.noctis-box-title Core Dmg
+      .columns.is-centered
+        .column
+          .p-3
+            input(type="number" name="attr_weapon_core_damage" value="0")
+            p 
+              | +
+              span(name="attr_throne_damage")
+              |
+              | Throne
   .column
     +box_value("Range", "weapon_range")
   .column

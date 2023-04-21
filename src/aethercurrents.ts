@@ -1,15 +1,22 @@
-on(
-  'change:unlock_ac5 change:aether_current_1 change:aether_current_2 change:aether_current_3 change:aether_current_4 change:aether_current_5',
-  (event) => {
-    const attr = event.sourceAttribute || ''
+const aethercurrents_attributes = [
+  'unlock_ac5',
+  ...[1, 2, 3, 4, 5].map((n) => `aether_current_${n}`),
+]
+on(aethercurrents_attributes.map((s) => `change:${s}`).join(' '), (event) => {
+  const attr = event.sourceAttribute || ''
+  getAttrs(aethercurrents_attributes, (v) => {
+    const output: AttributeBundle = {}
+    const throne_damage = Object.keys(v).reduce(
+      (total, key) => total + (v[key] == 'Throne Damage' ? 1 : 0),
+      0
+    )
+    output['throne_damage'] = `${throne_damage}`
     getSectionIDs('repeating_powers', (idarray) => {
-      getAttrs([attr], (v) => {
-        const output: any = {}
-        idarray.forEach((id) => {
-          output[`repeating_powers_${id}_${attr}`] = v[attr]
-        })
-        setAttrs(output)
+      // Update
+      idarray.forEach((id) => {
+        output[`repeating_powers_${id}_${attr}`] = v[attr]
       })
+      setAttrs(output)
     })
-  }
-)
+  })
+})

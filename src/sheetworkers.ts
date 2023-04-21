@@ -109,7 +109,7 @@ function startAttackRoll(
 ) {
   const diestring = modifiedDiceCount(weapondice, 20, v)
   startRoll(
-    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=${weapondamage}}} {{afraid=[[@{status_save_afraid}]]}} {{dazed=[[@{status_save_dazed}]]}} {{taunted=[[@{status_save_taunted}]]}} {{empowered=[[@{condition_empowered}]]}} {{focused=[[@{condition_focused}]]}}`,
+    `&{template:attack} {{name=${weaponname}}} {{diff=[[0]]}} {{roll=[[${diestring}>?{Defense|15}]]}} {{message=[[0]]}} {{damage=[[${weapondamage} + @{throne_damage}]]}} {{throne=[[@{throne_damage}]]}} {{afraid=[[@{status_save_afraid}]]}} {{dazed=[[@{status_save_dazed}]]}} {{taunted=[[@{status_save_taunted}]]}} {{empowered=[[@{condition_empowered}]]}} {{focused=[[@{condition_focused}]]}}`,
     finishSkillRoll
   )
 }
@@ -202,39 +202,13 @@ on('clicked:aethercurrent', (event) => {
 
 on('clicked:attack', (event) => {
   getAttrs(
-    [
-      'weapon_name',
-      'weapon_dice',
-      'weapon_core_damage',
-      'aether_current_1',
-      'aether_current_2',
-      'aether_current_3',
-      'aether_current_4',
-      'aether_current_5',
-      ...ce_advantage_attrs,
-    ],
+    ['weapon_name', 'weapon_dice', 'weapon_core_damage', ...ce_advantage_attrs],
     (v) => {
-      const {
-        weapon_name,
-        weapon_dice,
-        weapon_core_damage,
-        aether_current_1,
-        aether_current_2,
-        aether_current_3,
-        aether_current_4,
-        aether_current_5,
-      } = v
-      let weapon_final_damage =
-        parseInt(weapon_core_damage) +
-        (aether_current_1 == 'Throne Damage' ? 1 : 0) +
-        (aether_current_2 == 'Throne Damage' ? 1 : 0) +
-        (aether_current_3 == 'Throne Damage' ? 1 : 0) +
-        (aether_current_4 == 'Throne Damage' ? 1 : 0) +
-        (aether_current_5 == 'Throne Damage' ? 1 : 0)
+      const { weapon_name, weapon_dice, weapon_core_damage } = v
       startAttackRoll(
         weapon_name || '@{character_name}',
         parseInt(weapon_dice),
-        weapon_final_damage,
+        parseInt(weapon_core_damage),
         v
       )
     }

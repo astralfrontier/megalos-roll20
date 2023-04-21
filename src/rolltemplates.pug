@@ -33,6 +33,8 @@ rolltemplate.sheet-rolltemplate-attack
     +outcome("Roll", "{{computed::roll}}")
     +outcome("Outcome", "{{computed::message}}")
     +outcome("Damage", "{{damage}}")
+    +conditional("throne")
+      +outcome("Throne Bonus", "{{throne}}")
     +conditional("afraid")
       +outcome("AFRAID", "Do -3 damage vs. whoever inflicted this on you.")
     +conditional("dazed")
