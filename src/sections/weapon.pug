@@ -28,3 +28,17 @@
   .column
     +box_value("Wpn Dice", "weapon_dice")
       button.noctis-button-red.d20(type="action" name="act_attack")
+.columns
+  .column
+    -
+      var guards = {
+        "attr_status_save_afraid": "AFRAID: Do -3 damage vs. whoever inflicted this on you.",
+        "attr_status_save_dazed": "DAZED: Disadvantage on attack rolls & skill tests.",
+        "attr_status_save_taunted": "TAUNTED: Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.",
+        "attr_condition_empowered": "EMPOWERED: Do +3 damage with single-target attacks, +1 with AOE/multitarget.",
+        "attr_condition_focused": "FOCUSED: Gain Advantage on attacks.",
+      }
+    each message, attr in guards
+      .guard-block
+        input.defense-warning-trigger(type="hidden" name=attr value="0")
+        p.defense-warning-message= message
