@@ -112,3 +112,32 @@ on(aethercurrents_attributes.map((s) => `change:${s}`).join(' '), (event) => {
     })
   })
 })
+
+on('sheet:opened', (_event) => {
+  getAttrs(
+    [
+      'throne_damage',
+      'condition_tracker',
+      'status_tracker',
+      ...[1, 2, 3, 4, 5].map((n) => `aether_current_${n}`),
+    ],
+    (v) => {
+      let defaults: AttributeBundle = {
+        throne_damage: '0',
+        condition_tracker: ' {{text=No Conditions}}',
+        status_tracker: ' {{text=No Statuses}}',
+        aether_current_1: 'Used',
+        aether_current_2: 'Used',
+        aether_current_3: 'Used',
+        aether_current_4: 'Used',
+        aether_current_5: 'Used',
+      }
+      for (let key of Object.keys(defaults)) {
+        if (v[key]) {
+          delete defaults[key]
+        }
+      }
+      setAttrs(defaults)
+    }
+  )
+})
