@@ -179,10 +179,9 @@ on('clicked:skilldefault', (event) => {
 })
 
 on('clicked:trait', (event) => {
-  const trait = event.htmlAttributes['data-trait-attr'].replace(/^attr_/, '')
-  getAttrs([trait], (v) => {
-    startSkillRoll(v[trait], 1, {}, false)
-  })
+  // e.g. "trait_physical"
+  const trait = event.htmlAttributes['data-trait-attr']
+  startSkillRoll(`@{${trait}}`, 1, {}, false)
 })
 
 on('clicked:save', (event) => {
