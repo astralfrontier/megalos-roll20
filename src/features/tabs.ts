@@ -3,7 +3,7 @@
 on(`clicked:changetab`, function (event) {
   const tabattr = event.htmlAttributes['data-tab-attr']
   const tabvalue = event.htmlAttributes['data-tab']
-  const O: any = {}
+  const O: AttributeBundle = {}
   O[tabattr] = tabvalue
   setAttrs(O)
 })
