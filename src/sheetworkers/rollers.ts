@@ -230,9 +230,9 @@ on('clicked:aethercurrent', (event) => {
           break
       }
       if (newAetherCurrent) {
-        const setObj: any = {}
-        setObj[`aether_current_${number}`] = newAetherCurrent
-        setAttrs(setObj, {}, () => {
+        const O: AttributeBundle = {}
+        O[`aether_current_${number}`] = newAetherCurrent
+        setAttrs(O, {}, () => {
           finishRoll(rollId, {
             message,
           })
@@ -289,7 +289,7 @@ on('clicked:soak', (event) => {
 
 on('clicked:addcondition', (event) => {
   const condition = event.htmlAttributes['data-condition-name']
-  const O: any = {}
+  const O: AttributeBundle = {}
   O[`condition_${condition}`] = '2'
   setAttrs(O, {}, () => {})
 })
@@ -321,7 +321,7 @@ on('clicked:heal', (_event) => {
       parseInt(v['hp_max']),
       parseInt(v['hp']) + parseInt(v['rb'])
     )
-    const O: any = {}
+    const O: AttributeBundle = {}
     O['hp'] = `${hp}`
     setAttrs(O)
   })

@@ -43,7 +43,7 @@ function update_tracker(
   message: string
 ) {
   getAttrs(attributes, (v) => {
-    const O: any = {}
+    const O: AttributeBundle = {}
     O[tracker] =
       attributes
         .filter((attr) => attr.startsWith(prefix))

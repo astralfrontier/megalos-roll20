@@ -23,7 +23,7 @@ on('clicked:jsonimport', function () {
     clearExistingRows('powers')
     clearExistingRows('skills')
 
-    const O: any = {}
+    const O: AttributeBundle = {}
 
     // Take us back to page 1 when import finishes
     O['sheetTab'] = 'page1'
@@ -87,7 +87,7 @@ on('clicked:jsonimport', function () {
     O['armor_hp_max'] = `${character.armor.finalArmorHP}`
     O['recovery'] = character.calling.benefits.recovery
     O['recovery_max'] = character.calling.benefits.recovery
-    O['rb'] = Math.ceil(character.calling.benefits.baseHp / 4)
+    O['rb'] = `${Math.ceil(character.calling.benefits.baseHp / 4)}`
 
     // Skills
     for (let skill of character.skills) {
