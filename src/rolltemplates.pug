@@ -15,8 +15,9 @@ rolltemplate.sheet-rolltemplate-aether
   .sheet-rolltemplate-header
     h3= "{{name}}"
   .sheet-rolltemplate-outcome
-    +outcome("Roll", "{{roll}}")
-    +outcome("Message", "{{computed::message}}")
+    each ac_die in [1, 2, 3, 4, 5]
+      +conditional(`ac_die_${ac_die}`)
+        +outcome(`AC Die ${ac_die}`, `{{computed::ac_die_${ac_die}}}`)
 
 //- Usage: &{template:attack} {{name=Sword}} {{diff=[[0]]}} {{roll=[[1d20]]}} {{message=[[0]]}} {{damage=[[0]]}}
 //-        {{afraid=[[@{status_save_afraid}]]}}

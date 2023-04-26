@@ -194,54 +194,85 @@ on('clicked:save', (event) => {
 })
 
 on('clicked:aethercurrent', (event) => {
-  const number = event.htmlAttributes['data-aethercurrent-number']
-  getAttrs(['class', ...ce_ac_attrs], (v) => {
-    const className = v.class
-    let roll = '1d6'
-    if (v['ce_toggle_ac_bonus'] == 'on') {
-      roll = `1d6+${parseInt(v['ce_ac_bonus'])}`
+  getAttrs(['class', 'unlock_ac5', ...ce_ac_attrs], (v) => {
+    // Which die are we rolling?
+    const ac_die = parseInt(event.htmlAttributes['data-aethercurrent-number'])
+
+    // Create an array of the AC slots to be rolled
+    let ac_dice: number[] = [ac_die]
+    if (ac_die == 0) {
+      ac_dice = [1, 2, 3, 4]
+      if (v['unlock_ac5'] == 'on') {
+        ac_dice.push(5)
+      }
     }
-    const template = propsToRollTemplate('aether', {
-      name: `Aether Current (${number})`,
-      roll: `[[${roll}]]`,
-      message: '[[0]]',
-    })
+
+    // What do we add to each roll?
+    const ac_bonus =
+      v['ce_toggle_ac_bonus'] == 'on' ? parseInt(v['ce_ac_bonus']) : 0
+
+    const className = v.class.toUpperCase()
+
+    const rollprops = ac_dice.reduce(
+      (props, die) => {
+        props[`ac_die_${die}`] = `[[1d6+${ac_bonus}]]`
+        return props
+      },
+      {
+        name: 'Aether Current',
+      } as Record<string, string>
+    )
+
+    const template = propsToRollTemplate('aether', rollprops)
     startRoll(template, (outcome) => {
-      const {
-        rollId,
-        results: {
-          roll: { result },
-        },
-      } = outcome
-      let newAetherCurrent = ''
-      let message = ''
-      switch (className.toUpperCase()) {
-        case 'INVOKER':
-          newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
-          message = newAetherCurrent
-          break
-        case 'THRONE':
-          newAetherCurrent = 'Used'
-          message = 'Inflict damage'
-          break
-        case 'WITCH':
-          newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
-          message = newAetherCurrent
-          break
+      const { rollId, results } = outcome
+
+      console.dir(outcome)
+
+      const O: AttributeBundle = {}
+      const messages: Record<string, string> = {}
+      for (let die of ac_dice) {
+        const result = results[`ac_die_${die}`].result
+        let newAetherCurrent = ''
+        let message = ''
+        switch (className) {
+          case 'INVOKER':
+            newAetherCurrent = result % 2 ? 'Umbral Seal' : 'Astral Seal'
+            message = newAetherCurrent
+            break
+          case 'THRONE':
+            if (ac_die > 0) {
+              newAetherCurrent = 'Used'
+              message = `${result} damage`
+            } else {
+              newAetherCurrent = 'Throne Damage'
+              message = '+1 Core Damage'
+            }
+            break
+          case 'WITCH':
+            newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
+            message = newAetherCurrent
+            break
+          default:
+            if (ac_die == 0) {
+              newAetherCurrent = 'Available'
+              message = 'Available'
+            } else {
+              message = `${result}`
+            }
+            break
+        }
+        if (newAetherCurrent) {
+          O[`aether_current_${die}`] = newAetherCurrent
+        }
+        messages[`ac_die_${die}`] = message
       }
-      if (newAetherCurrent) {
-        const O: AttributeBundle = {}
-        O[`aether_current_${number}`] = newAetherCurrent
-        setAttrs(O, {}, () => {
-          finishRoll(rollId, {
-            message,
-          })
-        })
-      } else {
-        finishRoll(rollId, {
-          message,
-        })
+
+      if (Object.keys(O)) {
+        setAttrs(O)
       }
+
+      finishRoll(rollId, messages)
     })
   })
 })
