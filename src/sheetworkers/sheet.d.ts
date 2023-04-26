@@ -22,13 +22,9 @@ interface StartRollCallbackValuesRoll {
   message: any
 }
 
-interface StartRollCallbackValuesResults {
-  roll: StartRollCallbackValuesRoll
-}
-
 interface StartRollCallbackValues {
   rollId: string
-  results: StartRollCallbackValuesResults
+  results: Record<string, StartRollCallbackValuesRoll>
 }
 
 declare function on(trigger: string, callback: Roll20EventCallback): void
