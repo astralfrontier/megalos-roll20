@@ -7,6 +7,9 @@
           #sheet-logo MEGALOS
         .column.is-narrow
           +box_current_max("HP", "hp")
+            p
+              input(type="hidden" name="attr_injured")
+              span(name="attr_injured")
         .column.is-narrow
           +box_current_max("Armor HP", "armor_hp")
         .column.is-narrow

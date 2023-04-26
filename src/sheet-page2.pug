@@ -1,6 +1,9 @@
 .columns
   .column
     +box_current_max("HP", "hp")
+      p
+        input(type="hidden" name="attr_injured")
+        span(name="attr_injured")
     +box_current_max("Recovery", "recovery")
   .column
     +box_current_max("Armor HP", "armor_hp")

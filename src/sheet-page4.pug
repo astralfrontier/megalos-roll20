@@ -14,6 +14,9 @@ mixin mini_current_max(label, attr_name)
     input(type="number" name=`attr_${attr_name}` value="0")
     span= " / "
     input(type="number" name=`attr_${attr_name}_max` value="0")
+    if block
+      span= " "
+      block
 
 .columns
   .column
@@ -32,6 +35,8 @@ mixin mini_current_max(label, attr_name)
       .columns
         .column
           +mini_current_max("HP", "hp")
+            input.mini-hp(type="hidden" name="attr_injured" readonly)
+            span(name="attr_injured")
         .column
           +mini_value("RB", "rb")
         .column
