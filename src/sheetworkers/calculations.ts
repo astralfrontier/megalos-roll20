@@ -113,6 +113,22 @@ on(aethercurrents_attributes.map((s) => `change:${s}`).join(' '), (event) => {
   })
 })
 
+function isInjured(hp: number, hp_max: number): string {
+  if (hp_max > 0) {
+    return hp / hp_max <= 0.5 ? 'Injured' : 'Current'
+  } else {
+    return 'Current'
+  }
+}
+
+on('change:hp change:hp_max', (_event) => {
+  getAttrs(['hp', 'hp_max'], (v) => {
+    const O: AttributeBundle = {}
+    O['injured'] = isInjured(parseInt(v['hp']) || 0, parseInt(v['hp_max']) || 0)
+    setAttrs(O)
+  })
+})
+
 on('sheet:opened', (_event) => {
   getAttrs(
     [
@@ -121,6 +137,8 @@ on('sheet:opened', (_event) => {
       'status_tracker',
       ...[1, 2, 3, 4, 5].map((n) => `aether_current_${n}`),
       'introduction_text',
+      'hp',
+      'hp_max',
     ],
     (v) => {
       let defaults: AttributeBundle = {
@@ -140,6 +158,10 @@ on('sheet:opened', (_event) => {
           delete defaults[key]
         }
       }
+      defaults['injured'] = isInjured(
+        parseInt(v['hp']) || 0,
+        parseInt(v['hp_max']) || 0
+      )
       setAttrs(defaults)
     }
   )
