@@ -51,7 +51,11 @@ input[name="attr_injured"][value="Injured"] ~ span[name="attr_injured"]
 .mini-hp[value="Current"] ~ span[name="attr_injured"]
   display: none
 
-$power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": #E69C55, "Bonus": #E69C55, "Invocation": #70BC63, "Astral Invocation": #70BC63, "Umbral Invocation": #70BC63, "Arcana": #9C3335, "Charged Strike": #9C3335, "Combo Strike": #70BC63, "Counter": #E69C55, "Finisher": #4B74BA, "Sorcery": #9C3335, "Cantrip": #70BC63, "Artifact": #B17E6E)
+$power-type-red: #9C3335
+$power-type-yellow: #E69C55
+$power-type-green: #70BC63
+
+$power-type-keys: ("Talent": #8E7CC3, "Calling Bonus": $power-type-yellow, "Bonus": $power-type-yellow, "Invocation": $power-type-green, "Astral Invocation": $power-type-green, "Umbral Invocation": $power-type-green, "Arcana": $power-type-red, "Charged Strike": $power-type-red, "Combo Strike": $power-type-green, "Counter": #E69C55, "Finisher": #4B74BA, "Sorcery": $power-type-red, "Cantrip": $power-type-green, "Artifact": #B17E6E, "Major Action (◆◆)": $power-type-red, "Minor Action (◆)": $power-type-green, "Reaction (◇)": $power-type-yellow)
 
 @each $name, $color in $power-type-keys
   .attr_powertype_key[value="#{$name}"] ~ .attr_powertype_container
