@@ -250,8 +250,13 @@ on('clicked:aethercurrent', (event) => {
             }
             break
           case 'WITCH':
-            newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
-            message = newAetherCurrent
+            if (ac_die > 0) {
+              newAetherCurrent = result > 4 ? 'Surging Charge' : 'Weak Charge'
+              message = newAetherCurrent
+            } else {
+              newAetherCurrent = 'Available'
+              message = 'Available'
+            }
             break
           default:
             if (ac_die == 0) {
