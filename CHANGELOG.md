@@ -1,3 +1,9 @@
+## v1.3.4 (2023-07-07)
+
+### Fix
+
+- Fix version number in package.json
+
 ## v1.2.1 (2023-07-07)
 
 ### Fix
