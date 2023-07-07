@@ -131,6 +131,7 @@ function startSaveRoll(status: string, difficulty: number, v: AttributeBundle) {
   const template = propsToRollTemplate('save', {
     name: status,
     roll: `[[${diestring}>${difficulty}]]`,
+    message: '[[0]]',
     sick: '[[@{status_save_sick}]]',
   })
   startRoll(template, finishSkillRoll)
