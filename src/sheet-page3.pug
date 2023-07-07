@@ -2,22 +2,27 @@ mixin status_condition_stacks(name)
   each val in [1, 2, 3, 4]
     input(type="radio" name=`attr_stacks_${name}` value=val)
 
-mixin status(name, has_stacks)
+mixin status_condition_target(name)
+  input.limited(type="text" name=`attr_target_${name}` placeholder="Target name")
+
+mixin status(name, flags={})
   .columns
     .column
       strong= name.toUpperCase()
-      if has_stacks
+      if flags.stacks
         +status_condition_stacks(name)
+      if flags.target
+        +status_condition_target(name)
       block
     .column.is-narrow
       input(type="number" name=`attr_status_save_${name}` value="0")
       button.noctis-button-yellow.d20(type="action" name="act_save" data-status-name=name)
 
-mixin condition(name, has_stacks)
+mixin condition(name, flags={})
   .columns
     .column
       strong= name.toUpperCase()
-      if has_stacks
+      if flags.stacks
         +status_condition_stacks(name)
       block
     .column.is-narrow
@@ -33,7 +38,7 @@ include sections/combat-effects
         .column Announce Marked
         .column.is-narrow
           button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
-      +status("afraid")
+      +status("afraid", {target: true})
         p Do -3 damage vs. whoever inflicted this on you.
       +status("agony")
         p Don't regain HP. Cleansed by the first healing effect you receive.
@@ -49,9 +54,9 @@ include sections/combat-effects
         p No Charged actions, all terrain is difficult, only Slow actions, only receive ◆◆ action budget.
       +status("stunned")
         p Lose one ◆ on your turn, automatically cleansed after 1 turn.
-      +status("taunted")
+      +status("taunted", {target: true})
         p Unable to make attacks that don't include the taunter, do your best to attack/auto-attack them.
-      +status("wounded", true)
+      +status("wounded", {stacks: true})
         p Take 3 piercing at the start of your turn, +1 per extra stack of WOUNDED.
       input(type="hidden" name="attr_status_tracker")
 
@@ -74,7 +79,7 @@ include sections/combat-effects
         p Gain Advantage on attacks.
       +condition("haste")
         p Gain +1 ◆ on your turn.
-      +condition("regen", true)
+      +condition("regen", {stacks: true})
         p Heal 3 at the start of your turn, +1 per extra stack of REGEN.
       +condition("shielded")
         p Gain +3 on Soak rolls.
