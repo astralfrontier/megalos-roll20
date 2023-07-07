@@ -1,3 +1,9 @@
+## v1.4.0 (2023-07-07)
+
+### Feat
+
+- #77: track targets of AFRAID and TAUNTED status
+
 ## v1.3.4 (2023-07-07)
 
 ### Fix
