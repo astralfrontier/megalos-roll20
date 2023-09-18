@@ -28,7 +28,7 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.1",
+    "@types/fs-extra": "^11.0.2",
     "@types/pug": "^2.0.6",
     "@types/sass": "^1.45.0",
     "purgecss": "^5.0.0",
