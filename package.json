@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
-    "@types/pug": "^2.0.6",
+    "@types/pug": "^2.0.7",
     "@types/sass": "^1.45.0",
     "purgecss": "^5.0.0",
     "ts-node": "^10.9.1"
