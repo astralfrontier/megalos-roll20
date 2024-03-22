@@ -142,6 +142,7 @@ on('sheet:opened', (_event) => {
     ],
     (v) => {
       let defaults: AttributeBundle = {
+        xp: '0',
         throne_damage: '0',
         condition_tracker: ' {{text=No Conditions}}',
         status_tracker: ' {{text=No Statuses}}',
@@ -154,7 +155,7 @@ on('sheet:opened', (_event) => {
           "Nice to meet you! I'm **@{character_name}** from **@{homeland}**. My pronouns are **@{pronouns}**. My class is **@{class}**, my calling is **@{calling}**, and my role is **@{role}**.",
       }
       for (let key of Object.keys(defaults)) {
-        if (v[key]) {
+        if (v[key] !== undefined) {
           delete defaults[key]
         }
       }

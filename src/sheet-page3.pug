@@ -39,7 +39,7 @@ include sections/combat-effects
         .column.is-narrow
           button.noctis-button-announce(type="roll" name="announce_statuses" value="&{template:announce} {{name=Statuses}}@{status_tracker}")
       +status("afraid", {target: true})
-        p Do -3 damage vs. whoever inflicted this on you.
+        p Inflict -3 damage vs. target, reduce one weapon die by 3 when target included in attacks.
       +status("agony")
         p Don't regain HP. Cleansed by the first healing effect you receive.
       +status("dazed")
