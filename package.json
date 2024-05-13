@@ -24,7 +24,7 @@
     "jstransformer-markdown-it": "^3.0.0",
     "jstransformer-typescript": "^2.0.0",
     "pug": "^3.0.2",
-    "sass": "^1.75.0",
+    "sass": "^1.77.1",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
